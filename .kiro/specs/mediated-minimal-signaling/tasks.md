@@ -39,20 +39,41 @@
     - _Requirements: 2.1_
 
 
+
+
+
+
+
   - [ ] 1.4 Write property test for schema validation
     - **Property 9: Schema validation rejects invalid input**
+
     - **Validates: Requirements 4.4**
 
-- [ ] 2. Implement configuration system
-  - [ ] 2.1 Create MediatorConfig Pydantic model with validation
+- [x] 2. Implement configuration system
+
+
+  - [x] 2.1 Create MediatorConfig Pydantic model with validation
+
     - Support token_budget, recursion_limit, stage toggles
     - Add dashboard config section
+
     - _Requirements: 6.2, 6.3, 6.4, 6.5, 6.6_
-  - [ ] 2.2 Implement YAML config loader with error handling
+  - [x] 2.2 Implement YAML config loader with error handling
+
+
+
+
     - Load from file path, validate against schema
     - _Requirements: 6.1, 6.7_
-  - [ ] 2.3 Write property test for configuration validation
+
+
+  - [x] 2.3 Write property test for configuration validation
+
+
     - **Property 12: Configuration validation**
+
+
+
     - **Validates: Requirements 6.7**
 
 - [ ] 3. Implement tokenization layer
