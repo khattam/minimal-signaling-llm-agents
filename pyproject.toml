@@ -6,6 +6,9 @@ authors = ["khattam"]
 readme = "README.md"
 packages = [{include = "minimal_signaling", from = "src"}]
 
+[tool.poetry.scripts]
+minimal-signaling = "minimal_signaling.cli:main"
+
 [tool.poetry.dependencies]
 python = ">=3.10,<3.13"
 # Core ML/NLP
@@ -22,6 +25,9 @@ rich = ">=13.7.0"
 # Async & Utils
 httpx = ">=0.25.0"
 tenacity = ">=8.2.0"
+fastapi = "^0.124.4"
+uvicorn = "^0.38.0"
+websockets = "^15.0.1"
 
 [tool.poetry.group.dev.dependencies]
 # Testing

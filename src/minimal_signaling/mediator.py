@@ -4,10 +4,22 @@ import time
 import uuid
 from typing import Optional
 
-from .interfaces import Compressor, SemanticKeyExtractor, Judge, Tokenizer, EventEmitter
+from .interfaces import Compressor, SemanticKeyExtractor, Judge, Tokenizer
 from .models import MediatorResult, PipelineError, CompressionResult, ExtractionResult
 from .config import MediatorConfig
 from .compression import CompressionEngine
+from .events import (
+    SyncEventEmitter,
+    create_message_received_event,
+    create_compression_start_event,
+    create_compression_complete_event,
+    create_extraction_start_event,
+    create_extraction_complete_event,
+    create_judge_start_event,
+    create_judge_complete_event,
+    create_pipeline_complete_event,
+    create_pipeline_error_event,
+)
 
 
 class Mediator:
@@ -28,7 +40,7 @@ class Mediator:
         extractor: SemanticKeyExtractor,
         tokenizer: Tokenizer,
         judge: Optional[Judge] = None,
-        event_emitter: Optional[EventEmitter] = None
+        event_emitter: Optional[SyncEventEmitter] = None
     ):
         """Initialize the mediator.
         
@@ -53,8 +65,13 @@ class Mediator:
             tokenizer=tokenizer,
             budget=config.compression.token_budget,
             max_passes=config.compression.max_recursion,
-            event_emitter=event_emitter
+            event_emitter=None  # Compression engine doesn't use events yet
         )
+    
+    def _emit(self, event_payload) -> None:
+        """Emit an event if emitter is configured."""
+        if self.event_emitter:
+            self.event_emitter.emit(event_payload)
     
     def process(self, message: str) -> MediatorResult:
         """Process a message through the full pipeline.
@@ -73,14 +90,35 @@ class Mediator:
             extraction_result: Optional[ExtractionResult] = None
             judge_result = None
             
+            # Emit message received event
+            original_tokens = self.tokenizer.count_tokens(message)
+            self._emit(create_message_received_event(message, original_tokens))
+            
             # Stage 1: Compression (if enabled)
             if self.config.compression.enabled:
+                self._emit(create_compression_start_event(
+                    input_tokens=original_tokens,
+                    budget=self.config.compression.token_budget
+                ))
+                
                 try:
                     compression_result = self.compression_engine.compress_to_budget(
                         current_text
                     )
                     current_text = compression_result.compressed_text
+                    
+                    self._emit(create_compression_complete_event(
+                        original_tokens=compression_result.original_tokens,
+                        final_tokens=compression_result.final_tokens,
+                        passes=compression_result.passes,
+                        total_ratio=compression_result.total_ratio
+                    ))
                 except Exception as e:
+                    self._emit(create_pipeline_error_event(
+                        stage="compression",
+                        error_type=type(e).__name__,
+                        message=str(e)
+                    ))
                     return self._create_error_result(
                         stage="compression",
                         error_type=type(e).__name__,
@@ -90,9 +128,21 @@ class Mediator:
             
             # Stage 2: Semantic Key Extraction (if enabled)
             if self.config.semantic_keys.enabled:
+                self._emit(create_extraction_start_event())
+                
                 try:
                     extraction_result = self.extractor.extract(current_text)
+                    
+                    self._emit(create_extraction_complete_event(
+                        key_count=len(extraction_result.keys),
+                        schema_version=extraction_result.schema_version
+                    ))
                 except Exception as e:
+                    self._emit(create_pipeline_error_event(
+                        stage="extraction",
+                        error_type=type(e).__name__,
+                        message=str(e)
+                    ))
                     return self._create_error_result(
                         stage="extraction",
                         error_type=type(e).__name__,
@@ -103,12 +153,20 @@ class Mediator:
             
             # Optional Judge verification (if enabled)
             if self.config.judge.enabled and self.judge is not None:
+                self._emit(create_judge_start_event())
+                
                 try:
                     if extraction_result is not None:
                         judge_result = self.judge.evaluate(
                             original=message,
                             keys=extraction_result.keys
                         )
+                        
+                        self._emit(create_judge_complete_event(
+                            passed=judge_result.passed,
+                            confidence=judge_result.confidence,
+                            issue_count=len(judge_result.issues)
+                        ))
                 except Exception as e:
                     # Judge errors are non-fatal - log and continue
                     # (judge is optional verification)
@@ -116,6 +174,12 @@ class Mediator:
             
             # Calculate duration
             duration_ms = (time.time() - start_time) * 1000
+            
+            # Emit pipeline complete event
+            self._emit(create_pipeline_complete_event(
+                success=True,
+                duration_ms=duration_ms
+            ))
             
             return MediatorResult(
                 success=True,
@@ -128,6 +192,11 @@ class Mediator:
             
         except Exception as e:
             # Catch-all for unexpected errors
+            self._emit(create_pipeline_error_event(
+                stage="pipeline",
+                error_type=type(e).__name__,
+                message=str(e)
+            ))
             return self._create_error_result(
                 stage="pipeline",
                 error_type=type(e).__name__,
