@@ -21,15 +21,24 @@
 
 
 
+
     - **Property 8: Semantic key serialization round-trip**
 
 
     - **Validates: Requirements 4.3**
 
 
+
+
+
+
   - [ ] 1.3 Create abstract base classes for Compressor, SemanticKeyExtractor, Judge, Tokenizer
     - Define method signatures matching design document
+
+
     - _Requirements: 2.1_
+
+
   - [ ] 1.4 Write property test for schema validation
     - **Property 9: Schema validation rejects invalid input**
     - **Validates: Requirements 4.4**
