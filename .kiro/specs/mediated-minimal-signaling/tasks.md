@@ -15,9 +15,18 @@
     - _Requirements: 3.3, 4.1, 4.2_
 
 
-  - [ ] 1.2 Write property test for semantic key serialization round-trip
+  - [x] 1.2 Write property test for semantic key serialization round-trip
+
+
+
+
+
     - **Property 8: Semantic key serialization round-trip**
+
+
     - **Validates: Requirements 4.3**
+
+
   - [ ] 1.3 Create abstract base classes for Compressor, SemanticKeyExtractor, Judge, Tokenizer
     - Define method signatures matching design document
     - _Requirements: 2.1_

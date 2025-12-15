@@ -1,22 +1,24 @@
 # Minimal Signaling Configuration
-mediator:
-  # Stage 1: Compression
-  compression:
-    enabled: true
-    token_budget: 50
-    max_recursion: 5
-    model: "sshleifer/distilbart-cnn-12-6"
-    
-  # Stage 2: Semantic Key Extraction  
-  semantic_keys:
-    enabled: true
-    schema_version: "1.0"
-    
-  # Optional: Judge/Verification
-  judge:
-    enabled: false
-    
-# Logging
+compression:
+  enabled: true
+  token_budget: 50
+  max_recursion: 5
+  model: "sshleifer/distilbart-cnn-12-6"
+
+semantic_keys:
+  enabled: true
+  schema_version: "1.0"
+  extractor: "placeholder"  # or "llm"
+
+judge:
+  enabled: false
+
 logging:
   level: "INFO"
   trace_dir: "traces"
+
+dashboard:
+  enabled: true
+  host: "localhost"
+  port: 8080
+  ws_port: 8081
