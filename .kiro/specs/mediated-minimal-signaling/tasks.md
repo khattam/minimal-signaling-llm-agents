@@ -5,13 +5,13 @@
     - Define KeyType enum with INSTRUCTION, STATE, GOAL, CONTEXT, CONSTRAINT
     - Implement Pydantic models for validation
     - _Requirements: 3.3, 4.1, 4.2_
-  - [ ]* 1.2 Write property test for semantic key serialization round-trip
+  - [ ] 1.2 Write property test for semantic key serialization round-trip
     - **Property 8: Semantic key serialization round-trip**
     - **Validates: Requirements 4.3**
   - [ ] 1.3 Create abstract base classes for Compressor, SemanticKeyExtractor, Judge, Tokenizer
     - Define method signatures matching design document
     - _Requirements: 2.1_
-  - [ ]* 1.4 Write property test for schema validation
+  - [ ] 1.4 Write property test for schema validation
     - **Property 9: Schema validation rejects invalid input**
     - **Validates: Requirements 4.4**
 
@@ -23,7 +23,7 @@
   - [ ] 2.2 Implement YAML config loader with error handling
     - Load from file path, validate against schema
     - _Requirements: 6.1, 6.7_
-  - [ ]* 2.3 Write property test for configuration validation
+  - [ ] 2.3 Write property test for configuration validation
     - **Property 12: Configuration validation**
     - **Validates: Requirements 6.7**
 
@@ -32,7 +32,7 @@
     - Use tiktoken library for accurate token counting
     - Support configurable encoding
     - _Requirements: 1.1_
-  - [ ]* 3.2 Write property test for token count consistency
+  - [ ] 3.2 Write property test for token count consistency
     - **Property 1: Token count consistency**
     - **Validates: Requirements 1.1**
 
@@ -48,13 +48,13 @@
     - Implement compress_to_budget with recursion tracking
     - Handle termination conditions (budget met, limit reached, no improvement)
     - _Requirements: 1.2, 1.3, 1.4_
-  - [ ]* 5.3 Write property test for compression reduces tokens
+  - [ ] 5.3 Write property test for compression reduces tokens
     - **Property 2: Compression reduces or maintains token count**
     - **Validates: Requirements 1.2**
-  - [ ]* 5.4 Write property test for recursive compression termination
+  - [ ] 5.4 Write property test for recursive compression termination
     - **Property 3: Recursive compression termination**
     - **Validates: Requirements 1.3, 1.4**
-  - [ ]* 5.5 Write property test for compression result completeness
+  - [ ] 5.5 Write property test for compression result completeness
     - **Property 4: Compression result completeness**
     - **Validates: Requirements 1.5**
 
@@ -63,10 +63,10 @@
     - Parse text for key patterns deterministically
     - Return valid ExtractionResult
     - _Requirements: 3.1, 3.2_
-  - [ ]* 6.2 Write property test for extraction result schema conformance
+  - [ ] 6.2 Write property test for extraction result schema conformance
     - **Property 7: Extraction result schema conformance**
     - **Validates: Requirements 3.2, 3.4**
-  - [ ]* 6.3 Write property test for extraction follows compression
+  - [ ] 6.3 Write property test for extraction follows compression
     - **Property 6: Extraction follows compression**
     - **Validates: Requirements 3.1**
 
@@ -78,10 +78,10 @@
     - Return configurable pass/fail with confidence
     - Support issue detection stub
     - _Requirements: 5.2, 5.3_
-  - [ ]* 8.2 Write property test for judge result completeness
+  - [ ] 8.2 Write property test for judge result completeness
     - **Property 11: Judge result completeness**
     - **Validates: Requirements 5.2, 5.3**
-  - [ ]* 8.3 Write property test for judge invocation follows configuration
+  - [ ] 8.3 Write property test for judge invocation follows configuration
     - **Property 10: Judge invocation follows configuration**
     - **Validates: Requirements 5.1, 5.4**
 
@@ -90,10 +90,10 @@
     - Wire together compression, extraction, judge
     - Handle stage enable/disable based on config
     - _Requirements: 8.1, 8.2, 8.3_
-  - [ ]* 9.2 Write property test for compressor interface substitutability
+  - [ ] 9.2 Write property test for compressor interface substitutability
     - **Property 5: Compressor interface substitutability**
     - **Validates: Requirements 2.3**
-  - [ ]* 9.3 Write property test for end-to-end pipeline integrity
+  - [ ] 9.3 Write property test for end-to-end pipeline integrity
     - **Property 14: End-to-end pipeline integrity**
     - **Validates: Requirements 8.1-8.4**
 
@@ -102,7 +102,7 @@
     - Record all pipeline stages
     - Include timestamps, token counts, compression ratios
     - _Requirements: 7.1, 7.2, 7.3, 7.4, 7.5, 7.6_
-  - [ ]* 10.2 Write property test for trace record completeness
+  - [ ] 10.2 Write property test for trace record completeness
     - **Property 13: Trace record completeness**
     - **Validates: Requirements 7.1-7.5**
 
@@ -166,7 +166,7 @@
     - Display compression ratio bar
     - Show pass count vs limit
     - _Requirements: 12.1, 12.2, 12.3, 12.4, 12.5_
-  - [ ]* 15.7 Write property test for metrics calculation accuracy
+  - [ ] 15.7 Write property test for metrics calculation accuracy
     - **Property 15: Metrics calculation accuracy**
     - **Validates: Requirements 12.1-12.3**
   - [ ] 15.8 Implement dark mode support
