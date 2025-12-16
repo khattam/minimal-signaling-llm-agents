@@ -204,6 +204,7 @@
     - Include timestamps, token counts, compression ratios
 
 
+
     - _Requirements: 7.1, 7.2, 7.3, 7.4, 7.5, 7.6_
   - [ ] 10.2 Write property test for trace record completeness
     - **Property 13: Trace record completeness**
