@@ -134,6 +134,7 @@
 
 
 
+
     - Handle termination conditions (budget met, limit reached, no improvement)
     - _Requirements: 1.2, 1.3, 1.4_
   - [x] 5.3 Write property test for compression reduces tokens
@@ -175,22 +176,34 @@
     - **Property 10: Judge invocation follows configuration**
     - **Validates: Requirements 5.1, 5.4**
 
-- [ ] 9. Implement Mediator orchestration
+- [x] 9. Implement Mediator orchestration
+
+
+
   - [ ] 9.1 Create Mediator class with pipeline orchestration
     - Wire together compression, extraction, judge
+
     - Handle stage enable/disable based on config
     - _Requirements: 8.1, 8.2, 8.3_
   - [ ] 9.2 Write property test for compressor interface substitutability
     - **Property 5: Compressor interface substitutability**
+
     - **Validates: Requirements 2.3**
-  - [ ] 9.3 Write property test for end-to-end pipeline integrity
+  - [x] 9.3 Write property test for end-to-end pipeline integrity
+
+
+
     - **Property 14: End-to-end pipeline integrity**
     - **Validates: Requirements 8.1-8.4**
 
-- [ ] 10. Implement trace logging
+- [x] 10. Implement trace logging
+
+
   - [ ] 10.1 Create TraceLogger with JSONL output
     - Record all pipeline stages
     - Include timestamps, token counts, compression ratios
+
+
     - _Requirements: 7.1, 7.2, 7.3, 7.4, 7.5, 7.6_
   - [ ] 10.2 Write property test for trace record completeness
     - **Property 13: Trace record completeness**
