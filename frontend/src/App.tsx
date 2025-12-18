@@ -6,6 +6,12 @@ interface Key {
   value: string
 }
 
+interface CompressionPass {
+  pass: number
+  tokens: number
+  text: string
+}
+
 interface ProcessResult {
   success: boolean
   original_tokens: number
@@ -38,6 +44,7 @@ function App() {
   const [processing, setProcessing] = useState(false)
   const [activeStage, setActiveStage] = useState<string | null>(null)
   const [completedStages, setCompletedStages] = useState<Set<string>>(new Set())
+  const [compressionPasses, setCompressionPasses] = useState<CompressionPass[]>([])
   const wsRef = useRef<WebSocket | null>(null)
 
   useEffect(() => {
@@ -53,9 +60,17 @@ function App() {
         if (data.event === 'message_received') {
           setActiveStage('input')
           setCompletedStages(new Set())
+          setCompressionPasses([])
         } else if (data.event === 'compression_start') {
           setCompletedStages(prev => new Set([...prev, 'input']))
           setActiveStage('compress')
+        } else if (data.event === 'compression_pass') {
+          const passData = data.data as { pass_number: number; output_tokens: number; text?: string }
+          setCompressionPasses(prev => [...prev, {
+            pass: passData.pass_number,
+            tokens: passData.output_tokens,
+            text: passData.text || ''
+          }])
         } else if (data.event === 'compression_complete') {
           setCompletedStages(prev => new Set([...prev, 'compress']))
         } else if (data.event === 'extraction_start') {
@@ -86,6 +101,7 @@ function App() {
     setEvents([])
     setActiveStage(null)
     setCompletedStages(new Set())
+    setCompressionPasses([])
     
     try {
       const res = await fetch(`${API_URL}/api/process`, {
@@ -116,154 +132,232 @@ function App() {
     CONSTRAINT: '#ef4444'
   }
 
+  const maxTokens = result?.original_tokens || compressionPasses[0]?.tokens || 100
+
   return (
     <div className="container">
       <header>
-        <h1>🔬 Minimal Signaling Experiment</h1>
-        <p className="subtitle">Study minimal information exchange between LLM agents</p>
+        <h1>🔬 Minimal Signaling Lab</h1>
+        <p className="subtitle">Real-time visualization of LLM agent communication compression</p>
       </header>
 
       {/* Pipeline Visualization */}
       <div className="card pipeline-card">
         <div className="pipeline">
-          <div className={getStageClass('input')}>Agent A</div>
+          <div className={getStageClass('input')}>
+            <div className="stage-label">Source</div>
+            <div className="stage-name">Agent A</div>
+          </div>
           <span className="arrow">→</span>
-          <div className={getStageClass('compress')}>Compression</div>
+          <div className={getStageClass('compress')}>
+            <div className="stage-label">DistilBART</div>
+            <div className="stage-name">Compress</div>
+          </div>
           <span className="arrow">→</span>
-          <div className={getStageClass('extract')}>Extraction</div>
+          <div className={getStageClass('extract')}>
+            <div className="stage-label">Semantic</div>
+            <div className="stage-name">Extract</div>
+          </div>
           <span className="arrow">→</span>
-          <div className={getStageClass('judge')}>Judge</div>
+          <div className={getStageClass('judge')}>
+            <div className="stage-label">Verify</div>
+            <div className="stage-name">Judge</div>
+          </div>
           <span className="arrow">→</span>
-          <div className={getStageClass('output')}>Agent B</div>
+          <div className={getStageClass('output')}>
+            <div className="stage-label">Target</div>
+            <div className="stage-name">Agent B</div>
+          </div>
         </div>
       </div>
 
-      <div className="grid">
-        {/* Input Panel */}
-        <div className="card">
-          <h2>📝 Input Message</h2>
-          <textarea
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            placeholder={`Enter a message to compress and extract semantic keys...
+      <div className="main-layout">
+        {/* Left Panel - Input */}
+        <div className="left-panel">
+          <div className="card">
+            <h2>📝 Agent A Message</h2>
+            <textarea
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder={`Enter a structured message to compress...
 
 Example:
 INSTRUCTION: Analyze the quarterly sales data
-STATE: Data has been collected from all regions
+STATE: Data collected from all regions
 GOAL: Identify trends and anomalies
-CONTEXT: This is for the Q4 board meeting
-CONSTRAINT: Report must be ready by Friday`}
-          />
-          
-          <div className="config-row">
-            <label>Token Budget:</label>
-            <input
-              type="range"
-              min="10"
-              max="200"
-              value={budget}
-              onChange={(e) => setBudget(Number(e.target.value))}
+CONTEXT: Q4 board meeting preparation
+CONSTRAINT: Report due by Friday`}
             />
-            <span className="value">{budget}</span>
+            
+            <div className="config-row">
+              <label>Token Budget</label>
+              <input
+                type="range"
+                min="10"
+                max="200"
+                value={budget}
+                onChange={(e) => setBudget(Number(e.target.value))}
+              />
+              <span className="value">{budget}</span>
+            </div>
+            
+            <button onClick={processMessage} disabled={processing || !message.trim()}>
+              {processing ? '⏳ Processing...' : '🚀 Compress & Extract'}
+            </button>
           </div>
-          
-          <button onClick={processMessage} disabled={processing || !message.trim()}>
-            {processing ? '⏳ Processing...' : '🚀 Process Message'}
-          </button>
+
+          {/* Events Log */}
+          <div className="card">
+            <h2>📡 Event Stream</h2>
+            <div className="events-log">
+              {events.length > 0 ? events.map((evt, i) => (
+                <div key={i} className="event">
+                  <span className="event-dot" />
+                  <span className="event-name">{evt.event || evt.type}</span>
+                </div>
+              )) : (
+                <p className="placeholder">Events will appear here...</p>
+              )}
+            </div>
+          </div>
         </div>
 
-        {/* Results Panel */}
-        <div className="card">
-          <h2>📊 Compression Results</h2>
-          
-          {result ? (
-            <>
-              <div className="compression-bar">
-                <div 
-                  className="compression-fill" 
-                  style={{ width: `${result.compression_ratio * 100}%` }}
-                />
-                <span className="compression-label">
-                  {(result.compression_ratio * 100).toFixed(1)}% of original
-                </span>
+        {/* Right Panel - Visualization */}
+        <div className="right-panel">
+          {/* Compression Passes */}
+          <div className="card compression-viz">
+            <h2>🔄 Compression Passes</h2>
+            {compressionPasses.length > 0 || result ? (
+              <div className="passes-container">
+                {/* Original */}
+                <div className="pass-item">
+                  <span className="pass-label">Original</span>
+                  <div className="pass-bar-container">
+                    <div className="pass-bar" style={{ width: '100%' }} />
+                  </div>
+                  <span className="pass-tokens">{result?.original_tokens || '—'} tokens</span>
+                </div>
+                
+                {/* Each compression pass */}
+                {compressionPasses.map((pass, i) => (
+                  <div key={i} className="pass-item">
+                    <span className="pass-label">Pass {pass.pass}</span>
+                    <div className="pass-bar-container">
+                      <div 
+                        className="pass-bar" 
+                        style={{ width: `${(pass.tokens / maxTokens) * 100}%` }} 
+                      />
+                    </div>
+                    <span className="pass-tokens">{pass.tokens} tokens</span>
+                  </div>
+                ))}
+                
+                {/* Final result */}
+                {result && (
+                  <div className="pass-item" style={{ borderColor: '#22c55e' }}>
+                    <span className="pass-label" style={{ color: '#22c55e' }}>Final</span>
+                    <div className="pass-bar-container">
+                      <div 
+                        className="pass-bar" 
+                        style={{ 
+                          width: `${result.compression_ratio * 100}%`,
+                          background: 'linear-gradient(90deg, #22c55e, #4ade80)'
+                        }} 
+                      />
+                    </div>
+                    <span className="pass-tokens">{result.final_tokens} tokens</span>
+                  </div>
+                )}
               </div>
-              
-              <div className="metrics">
+            ) : (
+              <p className="placeholder">Compression visualization will appear here...</p>
+            )}
+          </div>
+
+          {/* Results Metrics */}
+          {result && (
+            <div className="card">
+              <h2>📊 Results</h2>
+              <div className="results-grid">
                 <div className="metric">
                   <div className="metric-value">{result.original_tokens}</div>
                   <div className="metric-label">Original</div>
                 </div>
                 <div className="metric">
-                  <div className="metric-value">{result.final_tokens}</div>
-                  <div className="metric-label">Final</div>
+                  <div className="metric-value highlight">{result.final_tokens}</div>
+                  <div className="metric-label">Compressed</div>
                 </div>
                 <div className="metric">
-                  <div className="metric-value">{result.passes}</div>
-                  <div className="metric-label">Passes</div>
+                  <div className="metric-value success">{(result.compression_ratio * 100).toFixed(0)}%</div>
+                  <div className="metric-label">Ratio</div>
                 </div>
                 <div className="metric">
-                  <div className="metric-value">{result.duration_ms.toFixed(1)}</div>
+                  <div className="metric-value">{result.duration_ms.toFixed(0)}</div>
                   <div className="metric-label">ms</div>
                 </div>
               </div>
               
               {result.compressed_text && (
-                <div className="compressed-text">
-                  <strong>Compressed:</strong> {result.compressed_text}
+                <div className="compressed-output">
+                  <strong style={{ color: '#38bdf8' }}>Compressed Output:</strong>
+                  <br /><br />
+                  {result.compressed_text}
                 </div>
               )}
-            </>
-          ) : (
-            <p className="placeholder">Process a message to see results...</p>
+            </div>
           )}
-        </div>
 
-        {/* Semantic Keys Panel */}
-        <div className="card">
-          <h2>🔑 Extracted Semantic Keys</h2>
-          <div className="keys-container">
-            {result?.keys.length ? (
-              result.keys.map((key, i) => (
-                <div 
-                  key={i} 
-                  className="key"
-                  style={{ borderLeftColor: keyColors[key.type] || '#666' }}
-                >
-                  <span className="key-type">{key.type}</span>
-                  <span className="key-value">{key.value}</span>
-                </div>
-              ))
-            ) : (
-              <p className="placeholder">No keys extracted yet...</p>
-            )}
-          </div>
-        </div>
-
-        {/* Judge & Events Panel */}
-        <div className="card">
-          <h2>⚖️ Judge Verification</h2>
-          {result && result.judge_passed !== null ? (
-            <div className={`judge-result ${result.judge_passed ? 'passed' : 'failed'}`}>
-              <span className="judge-icon">{result.judge_passed ? '✅' : '❌'}</span>
-              <div>
-                <strong>{result.judge_passed ? 'PASSED' : 'FAILED'}</strong>
-                <br />
-                <span className="confidence">
-                  Confidence: {((result.judge_confidence ?? 0) * 100).toFixed(0)}%
-                </span>
+          {/* Bottom Grid - Keys & Judge */}
+          <div className="bottom-grid">
+            {/* Semantic Keys */}
+            <div className="card">
+              <h2>🔑 Semantic Keys</h2>
+              <div className="keys-grid">
+                {result?.keys.length ? (
+                  result.keys.map((key, i) => (
+                    <div 
+                      key={i} 
+                      className="key"
+                      style={{ borderLeftColor: keyColors[key.type] || '#666' }}
+                    >
+                      <span 
+                        className="key-type"
+                        style={{ color: keyColors[key.type] || '#666' }}
+                      >
+                        {key.type}
+                      </span>
+                      <span className="key-value">{key.value}</span>
+                    </div>
+                  ))
+                ) : (
+                  <p className="placeholder">Keys will appear here...</p>
+                )}
               </div>
             </div>
-          ) : (
-            <p className="placeholder">Judge result will appear here...</p>
-          )}
-          
-          <h2 style={{ marginTop: '20px' }}>📡 Live Events</h2>
-          <div className="events">
-            {events.map((evt, i) => (
-              <div key={i} className="event">
-                <span className="event-name">{evt.event || evt.type}</span>
-              </div>
-            ))}
+
+            {/* Judge */}
+            <div className="card">
+              <h2>⚖️ Judge Verification</h2>
+              {result && result.judge_passed !== null ? (
+                <div className={`judge-result ${result.judge_passed ? 'passed' : 'failed'}`}>
+                  <span className="judge-icon">{result.judge_passed ? '✅' : '❌'}</span>
+                  <div className="judge-details">
+                    <h3>{result.judge_passed ? 'Semantics Preserved' : 'Information Lost'}</h3>
+                    <span style={{ color: '#94a3b8' }}>
+                      Confidence: {((result.judge_confidence ?? 0) * 100).toFixed(0)}%
+                    </span>
+                    <div className="confidence-bar">
+                      <div 
+                        className="confidence-fill" 
+                        style={{ width: `${(result.judge_confidence ?? 0) * 100}%` }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <p className="placeholder">Judge result will appear here...</p>
+              )}
+            </div>
           </div>
         </div>
       </div>

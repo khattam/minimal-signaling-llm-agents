@@ -59,13 +59,13 @@ class Mediator:
         self.judge = judge
         self.event_emitter = event_emitter
         
-        # Create compression engine
+        # Create compression engine with event emitter for pass-level events
         self.compression_engine = CompressionEngine(
             compressor=compressor,
             tokenizer=tokenizer,
             budget=config.compression.token_budget,
             max_passes=config.compression.max_recursion,
-            event_emitter=None  # Compression engine doesn't use events yet
+            event_emitter=event_emitter
         )
     
     def _emit(self, event_payload) -> None:

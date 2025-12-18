@@ -1,11 +1,12 @@
 """Stage 1: Compression Engine with recursive compression logic."""
 
-from typing import List
+from typing import List, Optional
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 import torch
 
-from .interfaces import Compressor, Tokenizer, EventEmitter
+from .interfaces import Compressor, Tokenizer
 from .models import CompressionResult, CompressionStep
+from .events import SyncEventEmitter, create_compression_pass_event
 
 
 class DistilBARTCompressor(Compressor):
@@ -84,7 +85,7 @@ class CompressionEngine:
         tokenizer: Tokenizer,
         budget: int,
         max_passes: int,
-        event_emitter: EventEmitter | None = None
+        event_emitter: Optional[SyncEventEmitter] = None
     ):
         """Initialize the compression engine.
         
@@ -100,6 +101,11 @@ class CompressionEngine:
         self.budget = budget
         self.max_passes = max_passes
         self.event_emitter = event_emitter
+    
+    def _emit(self, payload) -> None:
+        """Emit an event if emitter is configured."""
+        if self.event_emitter:
+            self.event_emitter.emit(payload)
     
     def compress_to_budget(self, text: str) -> CompressionResult:
         """Recursively compress text until budget is met or limit reached.
@@ -150,6 +156,14 @@ class CompressionEngine:
             current_text = compressed
             current_tokens = new_tokens
             passes += 1
+            
+            # Emit pass event for real-time visualization
+            self._emit(create_compression_pass_event(
+                pass_number=passes,
+                input_tokens=step.input_tokens,
+                output_tokens=new_tokens,
+                ratio=new_tokens / original_tokens if original_tokens > 0 else 1.0
+            ))
         
         return CompressionResult(
             compressed_text=current_text,

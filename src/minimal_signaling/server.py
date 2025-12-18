@@ -123,7 +123,7 @@ class DashboardServer:
         # CORS for development
         app.add_middleware(
             CORSMiddleware,
-            allow_origins=["http://localhost:5173", "http://localhost:3000"],
+            allow_origins=["*"],
             allow_credentials=True,
             allow_methods=["*"],
             allow_headers=["*"],
@@ -222,3 +222,8 @@ def create_dashboard_server(
             judge=JudgeConfig(enabled=True)
         )
     return DashboardServer(config=config, use_real_compressor=use_real_compressor)
+
+
+# Module-level app instance for uvicorn
+_server = create_dashboard_server()
+app = _server.app
