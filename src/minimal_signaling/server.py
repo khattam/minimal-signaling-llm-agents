@@ -1,13 +1,19 @@
 """FastAPI-based dashboard server for the minimal-signaling pipeline."""
 
 import asyncio
+import os
 from pathlib import Path
-from typing import Optional
+
+# Load .env file from project root
+from dotenv import load_dotenv
+env_path = Path(__file__).parent.parent.parent / ".env"
+load_dotenv(env_path)
+from typing import Optional, Any
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
@@ -45,6 +51,99 @@ class ProcessResponse(BaseModel):
     judge_passed: Optional[bool] = None
     judge_confidence: Optional[float] = None
     duration_ms: float
+
+
+# MSP-specific request/response models
+class MSPProcessRequest(BaseModel):
+    """Request to process a message through MSP pipeline."""
+    message: str
+    style: str = "professional"
+
+
+class MSPSignalResponse(BaseModel):
+    """MSP signal in response format."""
+    version: str
+    intent: str
+    target: str
+    params: dict[str, Any]
+    constraints: list[str]
+    state: dict[str, Any]
+    priority: str
+    trace_id: str
+    timestamp: str
+
+
+class MSPProcessResponse(BaseModel):
+    """Response from MSP pipeline processing."""
+    success: bool
+    original_text: str
+    signal: MSPSignalResponse
+    decoded_text: str
+    judge_passed: bool
+    judge_confidence: float
+    similarity_score: float
+    original_tokens: int
+    signal_tokens: int
+    decoded_tokens: int
+    compression_ratio: float
+    latency_ms: float
+    trace_id: str
+
+
+class AgentFlowRequest(BaseModel):
+    """Request for Agent A → MSP → Agent B flow."""
+    agent_a_message: str
+
+
+class AgentFlowResponse(BaseModel):
+    """Response showing full agent communication flow."""
+    success: bool
+    agent_a_message: str
+    agent_a_tokens: int
+    signal: MSPSignalResponse
+    signal_json: str
+    signal_tokens: int
+    agent_b_response: str
+    agent_b_tokens: int
+    compression_ratio: float
+    tokens_saved: int
+    latency_ms: float
+
+
+class RefinementStepResponse(BaseModel):
+    """One iteration of refinement."""
+    iteration: int
+    signal_tokens: int
+    similarity: float
+    feedback: Optional[str]
+    intent: str
+    target: str
+
+
+class IterativeFlowRequest(BaseModel):
+    """Request for iterative encoding flow."""
+    agent_a_message: str
+    target_similarity: float = 0.85
+    max_iterations: int = 3
+
+
+class IterativeFlowResponse(BaseModel):
+    """Response with full iterative refinement history."""
+    success: bool
+    agent_a_message: str
+    agent_a_tokens: int
+    iterations: int
+    converged: bool
+    refinement_history: list[RefinementStepResponse]
+    final_signal: MSPSignalResponse
+    final_signal_json: str
+    final_signal_tokens: int
+    final_similarity: float
+    agent_b_response: str
+    agent_b_tokens: int
+    compression_ratio: float
+    tokens_saved: int
+    latency_ms: float
 
 
 class DashboardServer:
@@ -174,8 +273,368 @@ class DashboardServer:
                     "enabled": self.config.semantic_keys.enabled,
                     "schema_version": self.config.semantic_keys.schema_version
                 },
-                "judge": {"enabled": self.config.judge.enabled}
+                "judge": {"enabled": self.config.judge.enabled},
+                "msp": {
+                    "enabled": os.environ.get("GROQ_API_KEY") is not None
+                }
             }
+        
+        @app.post("/api/msp/process", response_model=MSPProcessResponse)
+        async def process_msp(request: MSPProcessRequest):
+            """Process message through MSP pipeline (Groq-based)."""
+            groq_key = os.environ.get("GROQ_API_KEY")
+            if not groq_key:
+                raise HTTPException(
+                    status_code=503,
+                    detail="GROQ_API_KEY not set. Get a free key at https://console.groq.com"
+                )
+            
+            try:
+                from .msp_pipeline import MSPPipeline
+                from .msp_config import MSPConfig
+                
+                config = MSPConfig.from_env()
+                pipeline = MSPPipeline(config=config, event_emitter=self.event_emitter)
+                
+                result = await pipeline.process(request.message, style=request.style)
+                
+                return MSPProcessResponse(
+                    success=True,
+                    original_text=result.original_text,
+                    signal=MSPSignalResponse(
+                        version=result.signal.version,
+                        intent=result.signal.intent,
+                        target=result.signal.target,
+                        params=result.signal.params,
+                        constraints=result.signal.constraints,
+                        state=result.signal.state,
+                        priority=result.signal.priority,
+                        trace_id=result.signal.trace_id,
+                        timestamp=result.signal.timestamp.isoformat()
+                    ),
+                    decoded_text=result.decoded_text,
+                    judge_passed=result.judge.passed,
+                    judge_confidence=result.judge.confidence,
+                    similarity_score=result.judge.similarity_score,
+                    original_tokens=result.metrics.original_tokens,
+                    signal_tokens=result.metrics.signal_tokens,
+                    decoded_tokens=result.metrics.decoded_tokens,
+                    compression_ratio=result.metrics.compression_ratio,
+                    latency_ms=result.metrics.latency_ms,
+                    trace_id=result.trace_id
+                )
+            except Exception as e:
+                raise HTTPException(status_code=500, detail=str(e))
+        
+        @app.post("/api/msp/agent-flow", response_model=AgentFlowResponse)
+        async def agent_flow(request: AgentFlowRequest):
+            """Full Agent A → MSP Signal → Agent B flow."""
+            import time
+            groq_key = os.environ.get("GROQ_API_KEY")
+            if not groq_key:
+                raise HTTPException(
+                    status_code=503,
+                    detail="GROQ_API_KEY not set. Get a free key at https://console.groq.com"
+                )
+            
+            try:
+                start_time = time.time()
+                
+                from .groq_client import GroqClient
+                from .msp_encoder import MSPEncoder
+                
+                groq = GroqClient(api_key=groq_key)
+                encoder = MSPEncoder(groq)
+                
+                # Count Agent A tokens
+                agent_a_tokens = self.tokenizer.count_tokens(request.agent_a_message)
+                
+                # Encode to MSP
+                signal = await encoder.encode(request.agent_a_message)
+                signal_json = signal.model_dump_json(indent=2)
+                signal_tokens = self.tokenizer.count_tokens(signal_json)
+                
+                # Agent B receives raw JSON and responds
+                agent_b_response = await groq.chat(
+                    messages=[
+                        {"role": "system", "content": "You are an AI assistant. Respond to the incoming message."},
+                        {"role": "user", "content": signal_json}
+                    ],
+                    temperature=0.3
+                )
+                agent_b_tokens = self.tokenizer.count_tokens(agent_b_response)
+                
+                latency_ms = (time.time() - start_time) * 1000
+                
+                return AgentFlowResponse(
+                    success=True,
+                    agent_a_message=request.agent_a_message,
+                    agent_a_tokens=agent_a_tokens,
+                    signal=MSPSignalResponse(
+                        version=signal.version,
+                        intent=signal.intent,
+                        target=signal.target,
+                        params=signal.params,
+                        constraints=signal.constraints,
+                        state=signal.state,
+                        priority=signal.priority,
+                        trace_id=signal.trace_id,
+                        timestamp=signal.timestamp.isoformat()
+                    ),
+                    signal_json=signal_json,
+                    signal_tokens=signal_tokens,
+                    agent_b_response=agent_b_response,
+                    agent_b_tokens=agent_b_tokens,
+                    compression_ratio=signal_tokens / agent_a_tokens if agent_a_tokens > 0 else 1.0,
+                    tokens_saved=agent_a_tokens - signal_tokens,
+                    latency_ms=latency_ms
+                )
+            except Exception as e:
+                raise HTTPException(status_code=500, detail=str(e))
+        
+        @app.post("/api/msp/iterative-flow", response_model=IterativeFlowResponse)
+        async def iterative_flow(request: IterativeFlowRequest):
+            """Iterative encoding with semantic feedback loop."""
+            import time
+            groq_key = os.environ.get("GROQ_API_KEY")
+            if not groq_key:
+                raise HTTPException(
+                    status_code=503,
+                    detail="GROQ_API_KEY not set"
+                )
+            
+            try:
+                start_time = time.time()
+                
+                from .groq_client import GroqClient
+                from .iterative_encoder import IterativeEncoder
+                from .semantic_judge import SemanticJudge
+                from .msp_decoder import MSPDecoder
+                
+                groq = GroqClient(api_key=groq_key)
+                judge = SemanticJudge(threshold=request.target_similarity)
+                decoder = MSPDecoder(groq)
+                
+                encoder = IterativeEncoder(
+                    groq_client=groq,
+                    judge=judge,
+                    decoder=decoder,
+                    max_iterations=request.max_iterations,
+                    target_similarity=request.target_similarity
+                )
+                
+                agent_a_tokens = self.tokenizer.count_tokens(request.agent_a_message)
+                
+                # Run iterative encoding
+                result = await encoder.encode_with_refinement(request.agent_a_message)
+                
+                # Build refinement history for response
+                history = [
+                    RefinementStepResponse(
+                        iteration=step.iteration,
+                        signal_tokens=step.signal_tokens,
+                        similarity=step.similarity_score,
+                        feedback=step.feedback,  # Full feedback, not truncated
+                        intent=step.signal.intent,
+                        target=step.signal.target
+                    )
+                    for step in result.refinement_history
+                ]
+                
+                signal_json = result.final_signal.model_dump_json(indent=2)
+                
+                # Agent B receives final signal
+                agent_b_response = await groq.chat(
+                    messages=[
+                        {"role": "system", "content": "You are an AI assistant. Respond to the incoming message."},
+                        {"role": "user", "content": signal_json}
+                    ],
+                    temperature=0.3
+                )
+                agent_b_tokens = self.tokenizer.count_tokens(agent_b_response)
+                
+                latency_ms = (time.time() - start_time) * 1000
+                
+                return IterativeFlowResponse(
+                    success=True,
+                    agent_a_message=request.agent_a_message,
+                    agent_a_tokens=agent_a_tokens,
+                    iterations=result.iterations,
+                    converged=result.converged,
+                    refinement_history=history,
+                    final_signal=MSPSignalResponse(
+                        version=result.final_signal.version,
+                        intent=result.final_signal.intent,
+                        target=result.final_signal.target,
+                        params=result.final_signal.params,
+                        constraints=result.final_signal.constraints,
+                        state=result.final_signal.state,
+                        priority=result.final_signal.priority,
+                        trace_id=result.final_signal.trace_id,
+                        timestamp=result.final_signal.timestamp.isoformat()
+                    ),
+                    final_signal_json=signal_json,
+                    final_signal_tokens=result.signal_tokens,
+                    final_similarity=result.final_similarity,
+                    agent_b_response=agent_b_response,
+                    agent_b_tokens=agent_b_tokens,
+                    compression_ratio=result.signal_tokens / agent_a_tokens if agent_a_tokens > 0 else 1.0,
+                    tokens_saved=agent_a_tokens - result.signal_tokens,
+                    latency_ms=latency_ms
+                )
+            except Exception as e:
+                raise HTTPException(status_code=500, detail=str(e))
+        
+        @app.post("/api/msp/iterative-flow-stream")
+        async def iterative_flow_stream(request: IterativeFlowRequest):
+            """Iterative encoding with real-time SSE streaming of pipeline stages."""
+            import time
+            import json as json_module
+            
+            groq_key = os.environ.get("GROQ_API_KEY")
+            if not groq_key:
+                raise HTTPException(status_code=503, detail="GROQ_API_KEY not set")
+            
+            async def event_generator():
+                try:
+                    start_time = time.time()
+                    event_queue: asyncio.Queue = asyncio.Queue()
+                    
+                    from .groq_client import GroqClient
+                    from .iterative_encoder import IterativeEncoder, StageEvent
+                    from .semantic_judge import SemanticJudge
+                    from .msp_decoder import MSPDecoder
+                    
+                    def on_stage_change(event: StageEvent):
+                        # Put event in queue (sync callback)
+                        asyncio.get_event_loop().call_soon_threadsafe(
+                            event_queue.put_nowait,
+                            event
+                        )
+                    
+                    groq = GroqClient(api_key=groq_key)
+                    judge = SemanticJudge(threshold=request.target_similarity)
+                    decoder = MSPDecoder(groq)
+                    
+                    encoder = IterativeEncoder(
+                        groq_client=groq,
+                        judge=judge,
+                        decoder=decoder,
+                        max_iterations=request.max_iterations,
+                        target_similarity=request.target_similarity,
+                        on_stage_change=on_stage_change
+                    )
+                    
+                    agent_a_tokens = self.tokenizer.count_tokens(request.agent_a_message)
+                    
+                    # Start encoding in background task
+                    encoding_task = asyncio.create_task(
+                        encoder.encode_with_refinement(request.agent_a_message)
+                    )
+                    
+                    # Stream events as they come
+                    while not encoding_task.done():
+                        try:
+                            event = await asyncio.wait_for(event_queue.get(), timeout=0.1)
+                            event_data = {
+                                "stage": event.stage.value,
+                                "iteration": event.iteration,
+                                "similarity": event.similarity,
+                                "passed_threshold": event.passed_threshold,
+                                "feedback": event.feedback[:100] if event.feedback else None
+                            }
+                            yield f"data: {json_module.dumps(event_data)}\n\n"
+                        except asyncio.TimeoutError:
+                            continue
+                    
+                    # Drain remaining events
+                    while not event_queue.empty():
+                        event = event_queue.get_nowait()
+                        event_data = {
+                            "stage": event.stage.value,
+                            "iteration": event.iteration,
+                            "similarity": event.similarity,
+                            "passed_threshold": event.passed_threshold,
+                            "feedback": event.feedback[:100] if event.feedback else None
+                        }
+                        yield f"data: {json_module.dumps(event_data)}\n\n"
+                    
+                    result = encoding_task.result()
+                    
+                    # Emit agent_b stage
+                    yield f"data: {json_module.dumps({'stage': 'agent_b', 'iteration': result.iterations})}\n\n"
+                    
+                    signal_json = result.final_signal.model_dump_json(indent=2)
+                    
+                    # Agent B response
+                    agent_b_response = await groq.chat(
+                        messages=[
+                            {"role": "system", "content": "You are an AI assistant. Respond to the incoming message."},
+                            {"role": "user", "content": signal_json}
+                        ],
+                        temperature=0.3
+                    )
+                    agent_b_tokens = self.tokenizer.count_tokens(agent_b_response)
+                    
+                    latency_ms = (time.time() - start_time) * 1000
+                    
+                    # Build final response
+                    history = [
+                        {
+                            "iteration": step.iteration,
+                            "signal_tokens": step.signal_tokens,
+                            "similarity": step.similarity_score,
+                            "feedback": step.feedback,  # Full feedback
+                            "intent": step.signal.intent,
+                            "target": step.signal.target
+                        }
+                        for step in result.refinement_history
+                    ]
+                    
+                    final_response = {
+                        "stage": "complete",
+                        "result": {
+                            "success": True,
+                            "agent_a_message": request.agent_a_message,
+                            "agent_a_tokens": agent_a_tokens,
+                            "iterations": result.iterations,
+                            "converged": result.converged,
+                            "refinement_history": history,
+                            "final_signal": {
+                                "version": result.final_signal.version,
+                                "intent": result.final_signal.intent,
+                                "target": result.final_signal.target,
+                                "params": result.final_signal.params,
+                                "constraints": result.final_signal.constraints,
+                                "state": result.final_signal.state,
+                                "priority": result.final_signal.priority,
+                                "trace_id": result.final_signal.trace_id,
+                                "timestamp": result.final_signal.timestamp.isoformat()
+                            },
+                            "final_signal_json": signal_json,
+                            "final_signal_tokens": result.signal_tokens,
+                            "final_similarity": result.final_similarity,
+                            "agent_b_response": agent_b_response,
+                            "agent_b_tokens": agent_b_tokens,
+                            "compression_ratio": result.signal_tokens / agent_a_tokens if agent_a_tokens > 0 else 1.0,
+                            "tokens_saved": agent_a_tokens - result.signal_tokens,
+                            "latency_ms": latency_ms
+                        }
+                    }
+                    yield f"data: {json_module.dumps(final_response)}\n\n"
+                    
+                except Exception as e:
+                    yield f"data: {json_module.dumps({'stage': 'error', 'error': str(e)})}\n\n"
+            
+            return StreamingResponse(
+                event_generator(),
+                media_type="text/event-stream",
+                headers={
+                    "Cache-Control": "no-cache",
+                    "Connection": "keep-alive",
+                    "X-Accel-Buffering": "no"
+                }
+            )
         
         @app.websocket("/ws")
         async def websocket_endpoint(websocket: WebSocket):

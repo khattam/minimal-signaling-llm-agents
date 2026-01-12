@@ -30,6 +30,7 @@ uvicorn = "^0.38.0"
 websockets = "^15.0.1"
 groq = "^1.0.0"
 sentence-transformers = "^5.2.0"
+python-dotenv = "^1.2.1"
 
 [tool.poetry.group.dev.dependencies]
 # Testing

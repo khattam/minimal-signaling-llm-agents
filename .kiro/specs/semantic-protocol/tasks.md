@@ -95,6 +95,7 @@
 
 - [x] 7. Implement Pipeline Orchestrator
 
+
   - [x] 7.1 Create `msp_pipeline.py` with MSPPipeline class
 
 
@@ -115,18 +116,18 @@
 - [ ] 8. Checkpoint - Ensure pipeline tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 9. Update Dashboard for MSP Visualization
-  - [ ] 9.1 Update backend server to use MSPPipeline
+- [x] 9. Update Dashboard for MSP Visualization
+  - [x] 9.1 Update backend server to use MSPPipeline
     - Replace old compression pipeline with MSP pipeline
     - Add new API endpoints for MSP processing
     - _Requirements: 6.1_
-  - [ ] 9.2 Update frontend to display MSP JSON
+  - [x] 9.2 Update frontend to display MSP JSON
     - Show original NL, MSP JSON (formatted), decoded NL side-by-side
     - _Requirements: 6.1, 6.2_
-  - [ ] 9.3 Add semantic fidelity score display
+  - [x] 9.3 Add semantic fidelity score display
     - Show similarity score with visual indicator
     - _Requirements: 6.3_
-  - [ ] 9.4 Add token count and compression metrics display
+  - [x] 9.4 Add token count and compression metrics display
     - _Requirements: 6.4_
 
 - [ ] 10. Implement Evaluation Harness
