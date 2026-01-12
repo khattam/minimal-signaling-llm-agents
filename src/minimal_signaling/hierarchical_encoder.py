@@ -333,7 +333,7 @@ class HierarchicalCompressor:
         signal: HierarchicalSignal, 
         target_bits: Optional[float] = None,
         target_ratio: Optional[float] = None,
-        min_similarity: float = 0.7
+        preserve_top_k: Optional[int] = None
     ) -> HierarchicalSignal:
         """Compress signal by pruning low-importance nodes.
         
@@ -341,7 +341,7 @@ class HierarchicalCompressor:
             signal: Original hierarchical signal
             target_bits: Target bit budget (optional)
             target_ratio: Target compression ratio (optional)
-            min_similarity: Minimum semantic similarity to preserve
+            preserve_top_k: Always keep top K most important nodes
             
         Returns:
             Compressed signal with pruned nodes
@@ -352,36 +352,38 @@ class HierarchicalCompressor:
         if not target_bits:
             target_bits = signal.total_entropy() * 0.5  # Default 50% compression
         
-        # Get all nodes sorted by importance (ascending - prune least important first)
+        # Get all nodes sorted by importance (descending - keep most important)
         all_nodes = signal.root.flatten()
         
         # Never prune the root (intent)
         prunable = [n for n in all_nodes if n.level != SemanticLevel.INTENT]
-        prunable.sort(key=lambda n: n.importance)
         
-        # Prune until we hit target
-        current_bits = signal.total_entropy()
-        pruned_nodes = set()
+        # Sort by importance descending to identify top nodes
+        prunable_sorted = sorted(prunable, key=lambda n: n.importance, reverse=True)
         
-        for node in prunable:
-            if current_bits <= target_bits:
-                break
-            
-            # Check if pruning this would drop below min importance threshold
-            remaining_importance = sum(
-                n.importance for n in all_nodes 
-                if n not in pruned_nodes and n != node
-            )
-            total_importance = sum(n.importance for n in all_nodes)
-            
-            if remaining_importance / total_importance < min_similarity:
-                break  # Don't prune - would lose too much
-            
-            pruned_nodes.add(node)
-            current_bits -= node.entropy
+        # Determine how many nodes to keep
+        if preserve_top_k is not None:
+            keep_count = min(preserve_top_k, len(prunable_sorted))
+        else:
+            # Calculate based on target bits
+            current_bits = signal.root.entropy  # Start with root
+            keep_count = 0
+            for node in prunable_sorted:
+                if current_bits + node.entropy <= target_bits:
+                    current_bits += node.entropy
+                    keep_count += 1
+                else:
+                    break
+        
+        # Keep top K nodes by importance
+        nodes_to_keep = set(prunable_sorted[:keep_count])
+        nodes_to_keep.add(signal.root)  # Always keep root
+        
+        # Prune everything else - use _id for comparison
+        keep_ids = {n._id for n in nodes_to_keep}
         
         # Build compressed tree
-        compressed_root = self._rebuild_without_pruned(signal.root, pruned_nodes)
+        compressed_root = self._rebuild_keeping_ids(signal.root, keep_ids)
         
         return HierarchicalSignal(
             root=compressed_root,
@@ -389,19 +391,21 @@ class HierarchicalCompressor:
             original_text=signal.original_text
         )
     
-    def _rebuild_without_pruned(
+    def _rebuild_keeping_ids(
         self, 
         node: SemanticNode, 
-        pruned: set
+        keep_ids: set
     ) -> SemanticNode:
-        """Rebuild tree excluding pruned nodes."""
+        """Rebuild tree keeping only nodes with IDs in keep_ids."""
         new_children = []
         for child in node.children:
-            if child not in pruned:
-                new_child = self._rebuild_without_pruned(child, pruned)
+            # Check if this child should be kept
+            if child._id in keep_ids:
+                new_child = self._rebuild_keeping_ids(child, keep_ids)
                 new_children.append(new_child)
         
-        return SemanticNode(
+        # Create new node with filtered children
+        new_node = SemanticNode(
             content=node.content,
             level=node.level,
             node_type=node.node_type,
@@ -410,3 +414,5 @@ class HierarchicalCompressor:
             children=new_children,
             metadata=node.metadata
         )
+        new_node._id = node._id
+        return new_node

@@ -103,13 +103,31 @@ Please confirm receipt and provide ETAs for each action item. I'll continue moni
     
     compressor = HierarchicalCompressor()
     
-    for ratio in [0.7, 0.5, 0.3]:
-        compressed = compressor.compress(result.signal, target_ratio=ratio)
+    # Show compression by keeping top K nodes
+    for k in [20, 10, 5]:
+        compressed = compressor.compress(result.signal, preserve_top_k=k)
         
-        print(f"\n🗜️ Compression to {ratio:.0%}:")
+        print(f"\n🗜️ Keep top {k} nodes by importance:")
         print(f"   Nodes: {result.signal.node_count()} → {compressed.node_count()}")
         print(f"   Entropy: {result.signal.total_entropy():.1f} → {compressed.total_entropy():.1f} bits")
         print(f"   Importance preserved: {compressed.total_importance() / result.signal.total_importance():.1%}")
+        
+        # Show which nodes were kept
+        kept_nodes = compressed.root.flatten()
+        kept_types = [f"{n.node_type}:{n.content[:15]}" for n in kept_nodes]
+        print(f"   Kept: {kept_types[:5]}...")
+    
+    # Show importance ranking
+    print("\n" + "=" * 70)
+    print("IMPORTANCE RANKING (Top 10)")
+    print("=" * 70)
+    
+    all_nodes = result.signal.root.flatten()
+    ranked = sorted(all_nodes, key=lambda n: n.importance, reverse=True)
+    
+    for i, node in enumerate(ranked[:10], 1):
+        print(f"   {i}. [{node.level.name}] {node.node_type}: {node.content[:40]}...")
+        print(f"      importance={node.importance:.4f}, entropy={node.entropy:.1f} bits")
     
     # Show JSON output
     print("\n" + "=" * 70)

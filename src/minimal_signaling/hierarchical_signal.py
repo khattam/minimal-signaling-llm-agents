@@ -18,6 +18,10 @@ from dataclasses import dataclass, field
 from typing import List, Dict, Any, Optional
 from enum import Enum
 from collections import Counter
+import itertools
+
+# Global counter for unique node IDs
+_node_id_counter = itertools.count()
 
 
 class SemanticLevel(int, Enum):
@@ -46,7 +50,7 @@ class SemanticNode:
     entropy: float = 0.0
     children: List['SemanticNode'] = field(default_factory=list)
     metadata: Dict[str, Any] = field(default_factory=dict)
-    _id: int = field(default_factory=lambda: id(object()))  # Unique ID for hashing
+    _id: int = field(default_factory=lambda: next(_node_id_counter))  # Unique ID
     
     def __hash__(self):
         return self._id
@@ -135,24 +139,88 @@ class InformationCalculator:
     - Entropy: Shannon entropy of the content
     - Mutual Information: How much the node tells us about the message
     - Importance: Information density (bang for your bit)
+    
+    Novel approach: Uses TF-IDF-inspired specificity scoring combined with
+    structural position and semantic role weights to compute importance.
     """
+    
+    # Common English words to discount (stopwords)
+    STOPWORDS = {
+        'the', 'a', 'an', 'is', 'are', 'was', 'were', 'be', 'been', 'being',
+        'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could',
+        'should', 'may', 'might', 'must', 'shall', 'can', 'need', 'dare',
+        'to', 'of', 'in', 'for', 'on', 'with', 'at', 'by', 'from', 'as',
+        'into', 'through', 'during', 'before', 'after', 'above', 'below',
+        'between', 'under', 'again', 'further', 'then', 'once', 'here',
+        'there', 'when', 'where', 'why', 'how', 'all', 'each', 'few', 'more',
+        'most', 'other', 'some', 'such', 'no', 'nor', 'not', 'only', 'own',
+        'same', 'so', 'than', 'too', 'very', 'just', 'and', 'but', 'if', 'or',
+        'because', 'until', 'while', 'this', 'that', 'these', 'those', 'i',
+        'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', 'your',
+        'yours', 'yourself', 'yourselves', 'he', 'him', 'his', 'himself',
+        'she', 'her', 'hers', 'herself', 'it', 'its', 'itself', 'they', 'them',
+        'their', 'theirs', 'themselves', 'what', 'which', 'who', 'whom'
+    }
+    
+    # High-value semantic markers
+    SEMANTIC_MARKERS = {
+        # Urgency markers
+        'urgent': 2.0, 'critical': 2.0, 'immediately': 1.8, 'asap': 1.8,
+        'emergency': 2.0, 'priority': 1.5, 'deadline': 1.5,
+        # Quantity markers
+        'million': 1.5, 'thousand': 1.3, 'percent': 1.3, '%': 1.3,
+        'hours': 1.2, 'minutes': 1.2, 'days': 1.2,
+        # Action markers
+        'escalate': 1.5, 'resolve': 1.3, 'fix': 1.3, 'investigate': 1.3,
+        'analyze': 1.3, 'report': 1.2, 'confirm': 1.2,
+        # Entity markers (IDs, codes)
+        'ticket': 1.4, 'client': 1.4, 'customer': 1.3, 'user': 1.2,
+    }
     
     def __init__(self, vocab_size: int = 50000):
         self.vocab_size = vocab_size
         self._word_freq: Counter = Counter()
+        self._doc_freq: Counter = Counter()  # How many "documents" contain each word
         self._total_words: int = 0
+        self._doc_count: int = 0
+        self._original_word_set: set = set()
     
     def update_corpus(self, text: str) -> None:
         """Update word frequency from text."""
-        words = text.lower().split()
+        words = self._tokenize(text)
         self._word_freq.update(words)
         self._total_words += len(words)
+        self._doc_count += 1
+        
+        # Track unique words in this document
+        unique_words = set(words)
+        self._doc_freq.update(unique_words)
+        self._original_word_set = unique_words
     
-    def word_probability(self, word: str) -> float:
-        """Estimate probability of a word."""
-        word = word.lower()
-        count = self._word_freq.get(word, 1)  # Laplace smoothing
-        return count / (self._total_words + self.vocab_size)
+    def _tokenize(self, text: str) -> List[str]:
+        """Tokenize text into words, preserving numbers and IDs."""
+        import re
+        # Split on whitespace and punctuation, but keep numbers and IDs
+        tokens = re.findall(r'[#$]?\w+(?:\.\d+)?', text.lower())
+        return tokens
+    
+    def _is_specific_term(self, word: str) -> bool:
+        """Check if a word is a specific/meaningful term (not stopword)."""
+        return (
+            word.lower() not in self.STOPWORDS and
+            len(word) > 2 and
+            not word.isdigit()  # Pure numbers handled separately
+        )
+    
+    def _has_numeric(self, text: str) -> bool:
+        """Check if text contains numeric values."""
+        import re
+        return bool(re.search(r'\d', text))
+    
+    def _extract_numbers(self, text: str) -> List[str]:
+        """Extract numeric values from text."""
+        import re
+        return re.findall(r'[$#]?\d+(?:,\d{3})*(?:\.\d+)?[%]?', text)
     
     def content_entropy(self, content: str) -> float:
         """Calculate Shannon entropy of content in bits.
@@ -164,13 +232,12 @@ class InformationCalculator:
         if not content:
             return 0.0
         
-        words = content.lower().split()
-        if not words:
-            return 0.0
-        
-        # Character-level entropy for more granular measurement
+        # Character-level entropy for granular measurement
         char_counts = Counter(content.lower())
         total_chars = len(content)
+        
+        if total_chars == 0:
+            return 0.0
         
         entropy = 0.0
         for count in char_counts.values():
@@ -181,63 +248,165 @@ class InformationCalculator:
         # Scale by length (more content = more total bits)
         return entropy * len(content) / 8  # Approximate bytes
     
-    def information_content(self, content: str) -> float:
-        """Calculate self-information (surprisal) of content.
+    def specificity_score(self, content: str, original_text: str) -> float:
+        """Calculate how specific/unique this content is.
         
-        I(x) = -log2 p(x)
-        
-        Rare/specific content has higher information content.
+        Based on TF-IDF intuition:
+        - Rare terms in the original message are more important
+        - Common stopwords contribute less
+        - Numbers and IDs are highly specific
         """
         if not content:
             return 0.0
         
-        words = content.lower().split()
-        if not words:
+        words = self._tokenize(content)
+        original_words = self._tokenize(original_text)
+        original_freq = Counter(original_words)
+        total_original = len(original_words)
+        
+        if not words or total_original == 0:
             return 0.0
         
-        total_info = 0.0
-        for word in words:
-            p = self.word_probability(word)
-            total_info += -math.log2(p) if p > 0 else 0
+        specificity = 0.0
+        matched_terms = 0
+        meaningful_words = 0
         
-        return total_info
+        for word in words:
+            # Skip stopwords
+            if not self._is_specific_term(word):
+                continue
+            
+            meaningful_words += 1
+            
+            # Check if word appears in original
+            if word in original_freq:
+                matched_terms += 1
+                
+                # TF: term frequency in original (normalized)
+                tf = original_freq[word] / total_original
+                
+                # IDF-like: rarer in original = more important
+                # Inverse of frequency gives higher weight to rare terms
+                idf = 1.0 / (original_freq[word] + 1)
+                
+                # Semantic marker bonus
+                marker_weight = self.SEMANTIC_MARKERS.get(word, 1.0)
+                
+                specificity += tf * idf * marker_weight * 10  # Scale up
+            else:
+                # Word not in original - might be a derived/summarized term
+                # Give partial credit if it's semantically meaningful
+                marker_weight = self.SEMANTIC_MARKERS.get(word, 0.5)
+                specificity += 0.02 * marker_weight
+        
+        # Bonus for numeric content (highly specific)
+        numbers = self._extract_numbers(content)
+        for num in numbers:
+            # Clean the number for comparison
+            clean_num = num.replace(',', '').replace('$', '').replace('#', '')
+            if clean_num in original_text or num in original_text:
+                specificity += 0.4  # Numbers are very specific
+            else:
+                specificity += 0.15  # Still valuable even if formatted differently
+        
+        # Match ratio bonus: reward high overlap with original
+        if meaningful_words > 0:
+            match_ratio = matched_terms / meaningful_words
+            specificity *= (1.0 + match_ratio)  # Up to 2x for perfect match
+        
+        # Normalize by content length (but not too aggressively)
+        if meaningful_words > 0:
+            specificity = specificity / math.log1p(meaningful_words)
+        
+        return min(specificity, 1.0)
+    
+    def coverage_score(self, content: str, original_text: str) -> float:
+        """Calculate how much of the original this node covers.
+        
+        Higher coverage = more important for reconstruction.
+        """
+        if not content or not original_text:
+            return 0.0
+        
+        content_words = set(self._tokenize(content))
+        original_words = set(self._tokenize(original_text))
+        
+        # Remove stopwords for meaningful coverage
+        content_meaningful = {w for w in content_words if self._is_specific_term(w)}
+        original_meaningful = {w for w in original_words if self._is_specific_term(w)}
+        
+        if not original_meaningful:
+            return 0.0
+        
+        # What fraction of original meaningful words does this node cover?
+        overlap = content_meaningful & original_meaningful
+        coverage = len(overlap) / len(original_meaningful)
+        
+        return coverage
     
     def importance_score(self, node: SemanticNode, original_text: str) -> float:
         """Calculate importance score for a node.
         
-        Importance = (Information Content × Level Weight) / Entropy
+        Novel formula combining multiple information-theoretic factors:
         
-        This measures "information density" - how much semantic value
-        per bit of encoding cost.
+        Importance = (Specificity × Level_Weight × Coverage_Bonus) / (1 + log(Entropy))
+        
+        This measures "semantic value density" - how much unique, 
+        reconstructable meaning per bit of encoding cost.
         """
-        if node.entropy == 0:
+        if not node.content:
             return 0.0
         
-        # Level weights: higher levels are more important
+        # 1. Level weights: structural importance
         level_weights = {
-            SemanticLevel.INTENT: 1.0,
-            SemanticLevel.ENTITIES: 0.8,
-            SemanticLevel.ATTRIBUTES: 0.6,
-            SemanticLevel.DETAILS: 0.4
+            SemanticLevel.INTENT: 0.95,      # Intent is always critical
+            SemanticLevel.ENTITIES: 0.75,    # Entities carry core meaning
+            SemanticLevel.ATTRIBUTES: 0.55,  # Attributes add precision
+            SemanticLevel.DETAILS: 0.35      # Details are nice-to-have
         }
-        
-        # Check if content appears in original (relevance)
-        content_lower = node.content.lower()
-        original_lower = original_text.lower()
-        
-        # Relevance: does this content relate to the original?
-        relevance = 1.0
-        if content_lower in original_lower:
-            relevance = 1.5  # Bonus for direct match
-        elif any(word in original_lower for word in content_lower.split()):
-            relevance = 1.2  # Partial match
-        
-        # Information content (surprisal)
-        info_content = self.information_content(node.content)
-        
-        # Final importance
         level_weight = level_weights.get(node.level, 0.5)
-        importance = (info_content * level_weight * relevance) / (node.entropy + 1)
+        
+        # 2. Specificity: how unique/rare is this content?
+        specificity = self.specificity_score(node.content, original_text)
+        
+        # 3. Coverage: how much of original does this represent?
+        coverage = self.coverage_score(node.content, original_text)
+        coverage_bonus = 1.0 + coverage * 0.5  # Up to 1.5x bonus
+        
+        # 4. Node type weights: some types are inherently more important
+        type_weights = {
+            'intent': 1.0,
+            'actor': 0.8,
+            'object': 0.85,
+            'action': 0.9,
+            'urgency': 0.75,
+            'quantity': 0.8,
+            'timeframe': 0.7,
+            'cause': 0.6,
+            'effect': 0.55,
+            'condition': 0.5
+        }
+        type_weight = type_weights.get(node.node_type, 0.6)
+        
+        # 5. Numeric bonus: numbers are highly specific
+        numeric_bonus = 1.3 if self._has_numeric(node.content) else 1.0
+        
+        # 6. Entropy penalty: more bits = less efficient
+        entropy_penalty = 1.0 / (1.0 + math.log1p(node.entropy)) if node.entropy > 0 else 1.0
+        
+        # Combine factors
+        raw_importance = (
+            specificity * 
+            level_weight * 
+            type_weight * 
+            coverage_bonus * 
+            numeric_bonus * 
+            entropy_penalty
+        )
+        
+        # Ensure minimum importance for non-empty nodes
+        min_importance = 0.1 * level_weight
+        importance = max(raw_importance, min_importance)
         
         return min(importance, 1.0)  # Cap at 1.0
 
