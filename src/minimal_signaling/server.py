@@ -761,6 +761,89 @@ class DashboardServer:
             except Exception as e:
                 raise HTTPException(status_code=500, detail=str(e))
         
+        @app.post("/api/msp/decode-tree")
+        async def decode_tree(request: dict):
+            """Decode a tree signal back to natural language."""
+            groq_key = os.environ.get("GROQ_API_KEY")
+            if not groq_key:
+                raise HTTPException(status_code=503, detail="GROQ_API_KEY not set")
+            
+            try:
+                from .groq_client import GroqClient
+                groq = GroqClient(api_key=groq_key)
+                
+                tree_signal = request.get("tree_signal", {})
+                
+                prompt = f"""Convert this structured signal back to natural language:
+
+Intent: {tree_signal.get('intent', 'UNKNOWN')}
+Entities: {', '.join(tree_signal.get('entities', []))}
+Attributes: {', '.join(tree_signal.get('attributes', []))}
+Details: {', '.join(tree_signal.get('details', []))}
+
+Write a clear, professional message that captures all this information."""
+
+                decoded = await groq.chat(
+                    messages=[
+                        {"role": "system", "content": "You convert structured data to natural language."},
+                        {"role": "user", "content": prompt}
+                    ],
+                    temperature=0.3
+                )
+                
+                return {"decoded_text": decoded}
+            except Exception as e:
+                raise HTTPException(status_code=500, detail=str(e))
+        
+        @app.post("/api/msp/judge")
+        async def judge_similarity(request: dict):
+            """Judge semantic similarity between original and decoded text."""
+            try:
+                from .semantic_judge import SemanticJudge
+                
+                original = request.get("original", "")
+                decoded = request.get("decoded", "")
+                
+                judge = SemanticJudge()
+                result = judge.evaluate(original, decoded)
+                
+                return {"similarity": result.similarity_score}
+            except Exception as e:
+                raise HTTPException(status_code=500, detail=str(e))
+        
+        @app.post("/api/msp/agent-respond")
+        async def agent_respond(request: dict):
+            """Agent B responds to the compressed signal."""
+            groq_key = os.environ.get("GROQ_API_KEY")
+            if not groq_key:
+                raise HTTPException(status_code=503, detail="GROQ_API_KEY not set")
+            
+            try:
+                from .groq_client import GroqClient
+                groq = GroqClient(api_key=groq_key)
+                
+                signal = request.get("signal", {})
+                
+                prompt = f"""You received this structured message from another agent:
+
+Intent: {signal.get('intent', 'UNKNOWN')}
+Key Information: {', '.join(signal.get('entities', [])[:5])}
+Properties: {', '.join(signal.get('attributes', [])[:3])}
+
+Respond appropriately to acknowledge and address the request."""
+
+                response = await groq.chat(
+                    messages=[
+                        {"role": "system", "content": "You are Agent B, responding to messages from Agent A."},
+                        {"role": "user", "content": prompt}
+                    ],
+                    temperature=0.3
+                )
+                
+                return {"response": response}
+            except Exception as e:
+                raise HTTPException(status_code=500, detail=str(e))
+        
         @app.websocket("/ws")
         async def websocket_endpoint(websocket: WebSocket):
             await websocket.accept()
