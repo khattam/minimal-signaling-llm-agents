@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import PipelineFlow, { type PipelineStage } from './PipelineFlow'
+import SemanticTree from './SemanticTree'
 import './App.css'
 
 interface MSPSignal {
@@ -49,6 +50,38 @@ interface StreamEvent {
   feedback?: string
   result?: IterativeResult
   error?: string
+}
+
+// Hierarchical tree types
+interface TreeNode {
+  content: string
+  level: string
+  node_type: string
+  importance: number
+  entropy: number
+  children: TreeNode[]
+}
+
+interface ParetoPoint {
+  target_similarity: number
+  minimum_bits: number
+  compression_ratio: number
+}
+
+interface HierarchicalResult {
+  success: boolean
+  tree: TreeNode
+  total_nodes: number
+  total_entropy: number
+  total_importance: number
+  pareto_frontier: ParetoPoint[]
+  theoretical_bound_80: number
+  efficiency: number
+  compressed_tree?: TreeNode
+  compressed_nodes?: number
+  compressed_entropy?: number
+  importance_preserved?: number
+  latency_ms: number
 }
 
 const API_URL = import.meta.env.DEV ? 'http://localhost:8080' : ''
@@ -102,6 +135,12 @@ function App() {
   const [currentIteration, setCurrentIteration] = useState(0)
   const [currentSimilarity, setCurrentSimilarity] = useState<number | null>(null)
   const [eventLog, setEventLog] = useState<string[]>([])
+  
+  // Hierarchical tree state
+  const [hierarchicalResult, setHierarchicalResult] = useState<HierarchicalResult | null>(null)
+  const [compressToK, setCompressToK] = useState(10)
+  const [loadingTree, setLoadingTree] = useState(false)
+  const [activeTab, setActiveTab] = useState<'pipeline' | 'tree'>('pipeline')
 
   useEffect(() => {
     fetch(`${API_URL}/api/config`)
@@ -190,6 +229,35 @@ function App() {
 
   const loadSample = () => {
     setMessage(SAMPLE_MESSAGE)
+  }
+
+  const fetchHierarchicalTree = async () => {
+    if (!message.trim()) return
+    
+    setLoadingTree(true)
+    setError(null)
+    
+    try {
+      const response = await fetch(`${API_URL}/api/msp/hierarchical`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          message,
+          compress_to_k: compressToK
+        })
+      })
+      
+      if (!response.ok) {
+        throw new Error('Hierarchical encoding failed')
+      }
+      
+      const data = await response.json()
+      setHierarchicalResult(data)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to encode')
+    } finally {
+      setLoadingTree(false)
+    }
   }
 
   // Parse feedback into structured format
@@ -288,7 +356,24 @@ function App() {
         </div>
       )}
 
+      {/* Tab Navigation */}
+      <div className="view-tabs">
+        <button 
+          className={activeTab === 'pipeline' ? 'active' : ''}
+          onClick={() => setActiveTab('pipeline')}
+        >
+          🔄 Iterative Pipeline
+        </button>
+        <button 
+          className={activeTab === 'tree' ? 'active' : ''}
+          onClick={() => setActiveTab('tree')}
+        >
+          🌳 Hierarchical Tree
+        </button>
+      </div>
+
       {/* Live Pipeline Visualization */}
+      {activeTab === 'pipeline' && (
       <div className="card pipeline-card">
         <h2>🔌 Live Pipeline {processing && <span className="live-indicator">● LIVE</span>}</h2>
         <PipelineFlow 
@@ -308,6 +393,56 @@ function App() {
           </div>
         )}
       </div>
+      )}
+
+      {/* Hierarchical Tree View */}
+      {activeTab === 'tree' && (
+        <div className="card tree-card">
+          <h2>🌳 Hierarchical Semantic Tree</h2>
+          <p className="tree-description">
+            Information-theoretic importance scoring with compression bounds
+          </p>
+          
+          <div className="tree-controls">
+            <div className="setting">
+              <label>Compress to top K nodes</label>
+              <input 
+                type="range" 
+                min="3" max="30" step="1"
+                value={compressToK}
+                onChange={(e) => setCompressToK(parseInt(e.target.value))}
+              />
+              <span>{compressToK}</span>
+            </div>
+            <button 
+              onClick={fetchHierarchicalTree} 
+              disabled={loadingTree || !message.trim() || !mspEnabled}
+            >
+              {loadingTree ? '⏳ Encoding...' : '🌳 Build Tree'}
+            </button>
+          </div>
+          
+          <SemanticTree 
+            tree={hierarchicalResult?.tree || null}
+            compressedTree={hierarchicalResult?.compressed_tree}
+            paretoFrontier={hierarchicalResult?.pareto_frontier}
+            totalNodes={hierarchicalResult?.total_nodes}
+            totalEntropy={hierarchicalResult?.total_entropy}
+            totalImportance={hierarchicalResult?.total_importance}
+            compressedNodes={hierarchicalResult?.compressed_nodes}
+            compressedEntropy={hierarchicalResult?.compressed_entropy}
+            importancePreserved={hierarchicalResult?.importance_preserved}
+          />
+          
+          {hierarchicalResult && (
+            <div className="tree-metrics-bar">
+              <span>⏱️ {(hierarchicalResult.latency_ms / 1000).toFixed(1)}s</span>
+              <span>📐 Efficiency: {(hierarchicalResult.efficiency * 100).toFixed(0)}%</span>
+              <span>🎯 80% sim needs: {hierarchicalResult.theoretical_bound_80.toFixed(0)} bits</span>
+            </div>
+          )}
+        </div>
+      )}
 
       <div className="main-grid">
         {/* Left: Input */}

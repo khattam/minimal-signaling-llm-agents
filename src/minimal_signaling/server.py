@@ -146,6 +146,49 @@ class IterativeFlowResponse(BaseModel):
     latency_ms: float
 
 
+# Hierarchical encoding models
+class HierarchicalNodeResponse(BaseModel):
+    """A node in the hierarchical semantic tree."""
+    content: str
+    level: str
+    node_type: str
+    importance: float
+    entropy: float
+    children: list["HierarchicalNodeResponse"] = []
+
+
+class ParetoPointResponse(BaseModel):
+    """A point on the Pareto frontier."""
+    target_similarity: float
+    minimum_bits: float
+    compression_ratio: float
+
+
+class HierarchicalEncodeRequest(BaseModel):
+    """Request for hierarchical encoding."""
+    message: str
+    compress_to_k: Optional[int] = None  # Optional: keep top K nodes
+
+
+class HierarchicalEncodeResponse(BaseModel):
+    """Response from hierarchical encoding."""
+    success: bool
+    original_text: str
+    original_tokens: int
+    tree: HierarchicalNodeResponse
+    total_nodes: int
+    total_entropy: float
+    total_importance: float
+    pareto_frontier: list[ParetoPointResponse]
+    theoretical_bound_80: float
+    efficiency: float
+    compressed_tree: Optional[HierarchicalNodeResponse] = None
+    compressed_nodes: Optional[int] = None
+    compressed_entropy: Optional[float] = None
+    importance_preserved: Optional[float] = None
+    latency_ms: float
+
+
 class DashboardServer:
     """Dashboard server for visualizing pipeline execution."""
     
@@ -635,6 +678,88 @@ class DashboardServer:
                     "X-Accel-Buffering": "no"
                 }
             )
+        
+        @app.post("/api/msp/hierarchical", response_model=HierarchicalEncodeResponse)
+        async def hierarchical_encode(request: HierarchicalEncodeRequest):
+            """Encode message into hierarchical semantic tree with importance scores."""
+            import time
+            groq_key = os.environ.get("GROQ_API_KEY")
+            if not groq_key:
+                raise HTTPException(status_code=503, detail="GROQ_API_KEY not set")
+            
+            try:
+                start_time = time.time()
+                
+                from .groq_client import GroqClient
+                from .hierarchical_encoder import HierarchicalEncoder, HierarchicalCompressor
+                
+                groq = GroqClient(api_key=groq_key)
+                encoder = HierarchicalEncoder(groq)
+                
+                # Encode to hierarchical signal
+                result = await encoder.encode(request.message)
+                
+                # Convert tree to response format
+                def node_to_response(node) -> HierarchicalNodeResponse:
+                    return HierarchicalNodeResponse(
+                        content=node.content,
+                        level=node.level.name,
+                        node_type=node.node_type,
+                        importance=round(node.importance, 4),
+                        entropy=round(node.entropy, 2),
+                        children=[node_to_response(c) for c in node.children]
+                    )
+                
+                tree = node_to_response(result.signal.root)
+                
+                # Get Pareto frontier
+                frontier = encoder.bound_calc.pareto_frontier(result.signal)
+                pareto = [
+                    ParetoPointResponse(
+                        target_similarity=p["target_similarity"],
+                        minimum_bits=p["minimum_bits"],
+                        compression_ratio=p["compression_ratio"]
+                    )
+                    for p in frontier
+                ]
+                
+                # Optional compression
+                compressed_tree = None
+                compressed_nodes = None
+                compressed_entropy = None
+                importance_preserved = None
+                
+                if request.compress_to_k:
+                    compressor = HierarchicalCompressor()
+                    compressed = compressor.compress(result.signal, preserve_top_k=request.compress_to_k)
+                    compressed_tree = node_to_response(compressed.root)
+                    compressed_nodes = compressed.node_count()
+                    compressed_entropy = round(compressed.total_entropy(), 2)
+                    importance_preserved = round(
+                        compressed.total_importance() / result.signal.total_importance(), 4
+                    )
+                
+                latency_ms = (time.time() - start_time) * 1000
+                
+                return HierarchicalEncodeResponse(
+                    success=True,
+                    original_text=request.message,
+                    original_tokens=result.signal.original_tokens,
+                    tree=tree,
+                    total_nodes=result.signal.node_count(),
+                    total_entropy=round(result.signal.total_entropy(), 2),
+                    total_importance=round(result.signal.total_importance(), 4),
+                    pareto_frontier=pareto,
+                    theoretical_bound_80=round(result.theoretical_bound, 2),
+                    efficiency=round(result.efficiency, 4),
+                    compressed_tree=compressed_tree,
+                    compressed_nodes=compressed_nodes,
+                    compressed_entropy=compressed_entropy,
+                    importance_preserved=importance_preserved,
+                    latency_ms=latency_ms
+                )
+            except Exception as e:
+                raise HTTPException(status_code=500, detail=str(e))
         
         @app.websocket("/ws")
         async def websocket_endpoint(websocket: WebSocket):
