@@ -1,0 +1,125 @@
+{
+  "metadata": {
+    "timestamp": "2026-02-19T08:00:53.441114",
+    "test_name": "Long Message Hierarchical Encoding",
+    "model": "llama-3.3-70b-versatile"
+  },
+  "success": true,
+  "iterations": 1,
+  "original_tokens": 1763,
+  "final_tokens": 727,
+  "compression_ratio": 0.41236528644356213,
+  "final_similarity": 0.8184539675712585,
+  "target_similarity": 0.8,
+  "sections": {
+    "count": 6,
+    "breakdown": [
+      {
+        "title": "Authentication Migration",
+        "importance": "critical",
+        "tokens": 87,
+        "content_preview": "The authentication service migration from Auth0 to our in-house OAuth2 implementation is currently 6..."
+      },
+      {
+        "title": "Mobile App Performance Issues",
+        "importance": "high",
+        "tokens": 65,
+        "content_preview": "The iOS app is crashing for 8.3% of users due to a memory leak in the image caching layer, specifica..."
+      },
+      {
+        "title": "Data Warehouse Migration",
+        "importance": "medium",
+        "tokens": 56,
+        "content_preview": "The data warehouse migration to Snowflake is delayed, with a new completion date of December 15th. T..."
+      },
+      {
+        "title": "Customer Support Ticket Backlog",
+        "importance": "high",
+        "tokens": 53,
+        "content_preview": "The customer support ticket backlog has increased significantly, with 2,847 open tickets. The averag..."
+      },
+      {
+        "title": "Security Audit Findings",
+        "importance": "critical",
+        "tokens": 60,
+        "content_preview": "The security audit has identified 8 medium-severity findings and 2 high-severity findings that need ..."
+      },
+      {
+        "title": "Budget Planning for Q1 2025",
+        "importance": "medium",
+        "tokens": 42,
+        "content_preview": "Department heads need to submit Q1 2025 budget proposals by November 20th, including detailed justif..."
+      }
+    ]
+  },
+  "iteration_history": [
+    {
+      "iteration": 1,
+      "similarity": 0.8184539675712585,
+      "tokens": 727,
+      "compression": 0.41236528644356213,
+      "section_importances": [
+        {
+          "title": "Authentication Migration",
+          "importance": "critical",
+          "key_concepts": [
+            "Auth0",
+            "OAuth2",
+            "Redis cluster"
+          ]
+        },
+        {
+          "title": "Mobile App Performance Issues",
+          "importance": "high",
+          "key_concepts": [
+            "iOS app",
+            "SDWebImage library",
+            "WebP images"
+          ]
+        },
+        {
+          "title": "Data Warehouse Migration",
+          "importance": "medium",
+          "key_concepts": [
+            "Snowflake",
+            "PostgreSQL",
+            "ETL pipelines"
+          ]
+        },
+        {
+          "title": "Customer Support Ticket Backlog",
+          "importance": "high",
+          "key_concepts": [
+            "Support tickets",
+            "Customer satisfaction",
+            "Renewal rates"
+          ]
+        },
+        {
+          "title": "Security Audit Findings",
+          "importance": "critical",
+          "key_concepts": [
+            "SOC 2 Type II audit",
+            "Access logging",
+            "Automated security scanning"
+          ]
+        },
+        {
+          "title": "Budget Planning for Q1 2025",
+          "importance": "medium",
+          "key_concepts": [
+            "Budget proposals",
+            "Headcount increases",
+            "Infrastructure costs"
+          ]
+        }
+      ],
+      "feedback": null
+    }
+  ],
+  "texts": {
+    "original": "Hi team, I wanted to provide a comprehensive update on the Q4 2024 product roadmap \nand address several critical issues that have emerged over the past two weeks. This is going to be \na detailed update, so please read through carefully as there are action items for multiple teams.\n\nFirst, regarding the authentication service migration that we started on November 1st. The migration \nfrom Auth0 to our in-house OAuth2 implementation is currently 65% complete. We've successfully migrated \n12,000 enterprise users and 450,000 consumer accounts. However, we're experiencing some concerning issues \nwith the session management layer. Specifically, users are reporting that they're being logged out \nunexpectedly after 15-20 minutes of activity, even though our session timeout is configured for 8 hours. \nThe engineering team has traced this to a Redis cluster configuration issue where the TTL values aren't \nbeing properly propagated across all 6 nodes in the cluster.\n\nSarah from DevOps is working on this with AWS support, but we need to make a decision by Friday about \nwhether to roll back the migration for the remaining 35% of users or push forward with a hotfix. The \nrollback would cost us approximately 3 weeks of development time and $75K in AWS migration costs that \nwe've already incurred. The hotfix approach is riskier but could be deployed by Monday if we dedicate \nthe entire backend team to it this weekend.\n\nSecond, the mobile app performance issues that were escalated last week. Our analytics show that the \niOS app is crashing for 8.3% of users on devices running iOS 17.2 or later. This is a critical issue \nbecause iOS 17.2+ represents 67% of our active mobile user base. The crash logs indicate a memory leak \nin the image caching layer, specifically in how we're handling WebP format images. The mobile team has \nidentified the root cause - we're using an outdated version of the SDWebImage library (version 5.12) \nthat has a known memory management bug with WebP images larger than 2MB.\n\nThe fix is straightforward - upgrade to SDWebImage 5.18 - but this requires updating our entire image \npipeline and re-testing all image-related features. QA estimates this will take 4-5 days of testing. \nWe need to decide if we want to fast-track this through our normal release process or do an emergency \npatch release. An emergency release would get the fix to users by Wednesday but bypasses our standard \nbeta testing phase with our 5,000 beta users.\n\nThird, the data warehouse migration to Snowflake. We're currently running dual systems - our legacy \nPostgreSQL data warehouse and the new Snowflake instance - which is costing us $12,000 per month in \nredundant infrastructure. The original plan was to complete the migration by October 31st, but we're \nnow looking at a December 15th completion date. The delay is primarily due to the complexity of \nmigrating our custom ETL pipelines. We have 47 different data pipelines, and only 23 have been \nsuccessfully migrated and validated so far.\n\nThe data engineering team is requesting 2 additional contractors for 6 weeks to accelerate the migration. \nThe cost would be approximately $45,000, but it would save us roughly $36,000 in redundant infrastructure \ncosts over the next 3 months. Additionally, the longer we run dual systems, the higher the risk of data \ninconsistencies between the two warehouses, which could impact our business intelligence dashboards and \nexecutive reporting.\n\nFourth, regarding the customer support ticket backlog. We're currently sitting at 2,847 open tickets, \nwhich is 340% higher than our target of 700 tickets. The average response time has increased from 4 hours \nto 18 hours, and customer satisfaction scores have dropped from 4.2/5.0 to 3.1/5.0 over the past month. \nThis is directly impacting our renewal rates - we've seen a 12% increase in churn among customers who \nhad support tickets open for more than 48 hours.\n\nThe support team is requesting approval to hire 5 additional support engineers immediately. At $65K \nannual salary each, this would be $325K in additional headcount costs. However, the alternative is \npotentially losing high-value customers. Our analysis shows that each 1% increase in churn costs us \napproximately $2.3M in annual recurring revenue.\n\nFifth, the security audit findings from our SOC 2 Type II audit. The auditors identified 8 medium-severity \nfindings and 2 high-severity findings that need to be remediated before we can receive our certification. \nThe high-severity findings are: (1) insufficient access logging for production database access, and \n(2) lack of automated security scanning in our CI/CD pipeline. We need SOC 2 certification to close \nseveral enterprise deals worth a combined $4.5M in ARR.\n\nThe security team has a remediation plan that would take 6 weeks to implement fully. However, the auditors \nhave indicated that if we can address the 2 high-severity findings within 2 weeks, they would be willing \nto issue a conditional certification that would allow us to proceed with the enterprise deals while we \nwork on the medium-severity findings.\n\nFinally, budget planning for Q1 2025. Finance is requesting that all department heads submit their Q1 \nbudget proposals by November 20th. Please include detailed justifications for any headcount increases, \nnew tools or services, and capital expenditures over $10,000. The executive team will review all proposals \nduring the week of November 27th, and final budgets will be approved by December 6th.\n\nAdditionally, I want to address the infrastructure costs that have been escalating. Our AWS bill for \nOctober was $287,000, which is 23% higher than our budgeted amount of $233,000. The primary drivers are: \nincreased EC2 usage in our production environment (up 31% month-over-month), higher data transfer costs \ndue to our expanded CDN usage (up $18K), and the dual data warehouse setup I mentioned earlier. We need \nto implement better cost monitoring and optimization strategies. I'm asking all engineering teams to \nreview their resource usage and identify opportunities for optimization.\n\nOn the product side, we're seeing strong traction with the new analytics dashboard that launched in \nSeptember. Usage has grown to 12,400 daily active users, which is 156% of our initial target. Customer \nfeedback has been overwhelmingly positive (4.7/5.0 average rating), and we're seeing increased engagement \nacross the board. However, this success is putting strain on our backend infrastructure, which ties back \nto the AWS cost increases I mentioned. We need to scale our infrastructure to support this growth while \nkeeping costs under control.\n\nThe marketing team has also requested budget for a major campaign in Q1 targeting enterprise customers \nin the healthcare and financial services verticals. The proposed budget is $450,000, which would be our \nlargest marketing investment to date. Early projections suggest this could generate 200-250 qualified \nleads and potentially $8-12M in pipeline. However, we need to ensure our sales team has the capacity \nto handle this influx of leads, which may require hiring 2-3 additional sales engineers.\n\nAction items:\n1. Engineering leads: Provide recommendation on auth migration (rollback vs hotfix) by Thursday EOD\n2. Mobile team: Submit iOS crash fix timeline and release strategy by Wednesday 10 AM\n3. Data engineering: Provide detailed cost-benefit analysis for contractor request by Friday\n4. Support team: Present hiring plan and interim solutions for ticket backlog by Tuesday\n5. Security team: Prioritize high-severity findings and provide 2-week remediation plan by Monday\n6. All department heads: Submit Q1 2025 budget proposals by November 20th\n7. Engineering teams: Conduct AWS cost optimization review and submit findings by November 25th\n8. Sales leadership: Assess capacity for Q1 marketing campaign and provide hiring recommendations\n\nPlease let me know if you have any questions or concerns about any of these items. We'll have a \nleadership sync on Friday at 2 PM to discuss the most critical decisions. I know this is a lot to \ndigest, but these are all important initiatives that will set us up for success in 2025.\n\nThanks,\nAlex",
+    "final_decoded": "**Q4 2024 Product Roadmap Update Analysis**\n\nThe current state of the Q4 2024 product roadmap update is critical, with several high-priority issues that require immediate attention. The authentication migration progress is at 65%, the iOS app crash rate is at 8.3%, the data warehouse migration has been delayed until December 15th, the support ticket backlog has increased to 2,847, and the security audit has identified 8 medium-severity and 2 high-severity findings.\n\n### Authentication Migration\n\nThe authentication service migration from Auth0 to our in-house OAuth2 implementation is currently 65% complete. However, we're experiencing issues with the session management layer, specifically users being logged out unexpectedly after 15-20 minutes of activity. The engineering team has traced this to a Redis cluster configuration issue. We need to decide whether to roll back the migration for the remaining 35% of users or push forward with a hotfix. This issue is critical and requires a decision by Friday.\n\n### Mobile App Performance Issues\n\nThe iOS app is crashing for 8.3% of users due to a memory leak in the image caching layer, specifically in how we're handling WebP format images. The fix is to upgrade to SDWebImage 5.18, but this requires updating our entire image pipeline and re-testing all image-related features. This issue is high-priority and requires a fix timeline and release strategy by Wednesday.\n\n### Data Warehouse Migration\n\nThe data warehouse migration to Snowflake is delayed, with a new completion date of December 15th. The delay is primarily due to the complexity of migrating our custom ETL pipelines. The data engineering team is requesting 2 additional contractors for 6 weeks to accelerate the migration. This issue is medium-priority and requires a cost-benefit analysis by Friday.\n\n### Customer Support Ticket Backlog\n\nThe customer support ticket backlog has increased significantly, with 2,847 open tickets. The average response time has increased from 4 hours to 18 hours, and customer satisfaction scores have dropped. The support team is requesting approval to hire 5 additional support engineers. This issue is high-priority and requires a hiring plan and interim solutions by Tuesday.\n\n### Security Audit Findings\n\nThe security audit has identified 8 medium-severity findings and 2 high-severity findings that need to be remediated before we can receive our SOC 2 certification. The high-severity findings are insufficient access logging for production database access and lack of automated security scanning in our CI/CD pipeline. This issue is critical and requires a remediation plan by Monday.\n\n### Budget Planning for Q1 2025\n\nDepartment heads need to submit Q1 2025 budget proposals by November 20th, including detailed justifications for any headcount increases, new tools or services, and capital expenditures over $10,000. This issue is medium-priority and requires budget proposals by November 20th. Additionally, an AWS cost optimization review is required by November 25th.\n\nIn summary, the Q4 2024 product roadmap update is facing several critical and high-priority issues that require immediate attention. The authentication migration, iOS app crash rate, support ticket backlog, and security audit findings are all critical issues that need to be addressed promptly. The data warehouse migration and budget planning for Q1 2025 are medium-priority issues that also require attention. It is essential to prioritize these issues and allocate resources accordingly to ensure the successful completion of the Q4 2024 product roadmap update.",
+    "final_signal_json": "{\n  \"version\": \"2.0\",\n  \"intent\": \"ANALYZE\",\n  \"target\": \"Q4 2024 Product Roadmap Update\",\n  \"priority\": \"high\",\n  \"summary\": {\n    \"auth_migration_progress\": \"65%\",\n    \"ios_app_crash_rate\": \"8.3%\",\n    \"data_warehouse_migration_delay\": \"December 15th\",\n    \"support_ticket_backlog\": \"2,847\",\n    \"security_audit_findings\": \"8 medium-severity, 2 high-severity\"\n  },\n  \"sections\": [\n    {\n      \"title\": \"Authentication Migration\",\n      \"content\": \"The authentication service migration from Auth0 to our in-house OAuth2 implementation is currently 65% complete. However, we're experiencing issues with the session management layer, specifically users being logged out unexpectedly after 15-20 minutes of activity. The engineering team has traced this to a Redis cluster configuration issue. We need to decide whether to roll back the migration for the remaining 35% of users or push forward with a hotfix.\",\n      \"importance\": \"critical\"\n    },\n    {\n      \"title\": \"Mobile App Performance Issues\",\n      \"content\": \"The iOS app is crashing for 8.3% of users due to a memory leak in the image caching layer, specifically in how we're handling WebP format images. The fix is to upgrade to SDWebImage 5.18, but this requires updating our entire image pipeline and re-testing all image-related features.\",\n      \"importance\": \"high\"\n    },\n    {\n      \"title\": \"Data Warehouse Migration\",\n      \"content\": \"The data warehouse migration to Snowflake is delayed, with a new completion date of December 15th. The delay is primarily due to the complexity of migrating our custom ETL pipelines. The data engineering team is requesting 2 additional contractors for 6 weeks to accelerate the migration.\",\n      \"importance\": \"medium\"\n    },\n    {\n      \"title\": \"Customer Support Ticket Backlog\",\n      \"content\": \"The customer support ticket backlog has increased significantly, with 2,847 open tickets. The average response time has increased from 4 hours to 18 hours, and customer satisfaction scores have dropped. The support team is requesting approval to hire 5 additional support engineers.\",\n      \"importance\": \"high\"\n    },\n    {\n      \"title\": \"Security Audit Findings\",\n      \"content\": \"The security audit has identified 8 medium-severity findings and 2 high-severity findings that need to be remediated before we can receive our SOC 2 certification. The high-severity findings are insufficient access logging for production database access and lack of automated security scanning in our CI/CD pipeline.\",\n      \"importance\": \"critical\"\n    },\n    {\n      \"title\": \"Budget Planning for Q1 2025\",\n      \"content\": \"Department heads need to submit Q1 2025 budget proposals by November 20th, including detailed justifications for any headcount increases, new tools or services, and capital expenditures over $10,000.\",\n      \"importance\": \"medium\"\n    }\n  ],\n  \"constraints\": [\n    \"Decision on auth migration by Friday\",\n    \"iOS crash fix timeline and release strategy by Wednesday\",\n    \"Data engineering cost-benefit analysis by Friday\",\n    \"Support team hiring plan and interim solutions by Tuesday\",\n    \"Security team remediation plan by Monday\",\n    \"Q1 2025 budget proposals by November 20th\",\n    \"AWS cost optimization review by November 25th\"\n  ],\n  \"state\": {\n    \"auth_migration_progress\": \"65%\",\n    \"ios_app_crash_rate\": \"8.3%\",\n    \"data_warehouse_migration_delay\": \"December 15th\",\n    \"support_ticket_backlog\": \"2,847\",\n    \"security_audit_findings\": \"8 medium-severity, 2 high-severity\"\n  },\n  \"encoding_strategy\": \"chunked\",\n  \"total_sections\": 6,\n  \"trace_id\": \"7b0c326f-137c-4c4e-abc9-5de92715f8b9\",\n  \"timestamp\": \"2026-02-19T08:00:50.713324\",\n  \"parent_id\": null\n}"
+  }
+}

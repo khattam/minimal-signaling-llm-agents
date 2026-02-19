@@ -173,9 +173,16 @@ async def main():
     print(f"\n📄 Decoded Output (first 500 chars):")
     print(f"{result.final_decoded[:500]}...")
     
-    # Save results
+    # Save comprehensive results for dashboard
     import json
+    from datetime import datetime
+    
     output = {
+        "metadata": {
+            "timestamp": datetime.utcnow().isoformat(),
+            "test_name": "Long Message Hierarchical Encoding",
+            "model": "llama-3.3-70b-versatile"
+        },
         "success": result.converged,
         "iterations": result.iterations,
         "original_tokens": result.original_tokens,
@@ -183,22 +190,51 @@ async def main():
         "compression_ratio": result.signal_tokens / result.original_tokens,
         "final_similarity": result.final_similarity,
         "target_similarity": 0.80,
-        "sections": len(result.final_signal.sections),
+        "sections": {
+            "count": len(result.final_signal.sections),
+            "breakdown": [
+                {
+                    "title": sec.title,
+                    "importance": sec.importance,
+                    "tokens": tokenizer.count_tokens(sec.content),
+                    "content_preview": sec.content[:100] + "..." if len(sec.content) > 100 else sec.content
+                }
+                for sec in result.final_signal.sections
+            ]
+        },
         "iteration_history": [
             {
                 "iteration": step.iteration,
                 "similarity": step.similarity_score,
                 "tokens": step.signal_tokens,
-                "compression": step.signal_tokens / result.original_tokens
+                "compression": step.signal_tokens / result.original_tokens,
+                "section_importances": [
+                    {
+                        "title": sec.title,
+                        "importance": sec.importance,
+                        "key_concepts": sec.key_concepts
+                    }
+                    for sec in step.section_importances
+                ] if step.iteration == 1 else None,
+                "feedback": step.feedback
             }
             for step in result.refinement_history
-        ]
+        ],
+        "texts": {
+            "original": result.original_text,
+            "final_decoded": result.final_decoded,
+            "final_signal_json": result.final_signal.model_dump_json(indent=2)
+        }
     }
     
-    with open("hierarchical_test_results.json", "w") as f:
+    # Save to data folder
+    import os
+    os.makedirs("data", exist_ok=True)
+    
+    with open("data/hierarchical_test_results.json", "w") as f:
         json.dump(output, f, indent=2)
     
-    print(f"\n💾 Results saved to hierarchical_test_results.json")
+    print(f"\n💾 Results saved to data/hierarchical_test_results.json")
 
 
 if __name__ == "__main__":
