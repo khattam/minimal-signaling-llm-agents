@@ -1,0 +1,141 @@
+{
+  "metadata": {
+    "run_id": "run_20260219_085652",
+    "timestamp": "2026-02-19T08:56:52.905281",
+    "test_name": "API Encoding",
+    "model": "llama-3.3-70b-versatile"
+  },
+  "success": true,
+  "iterations": 1,
+  "original_tokens": 1260,
+  "final_tokens": 485,
+  "compression_ratio": 0.38492063492063494,
+  "final_similarity": 0.9120922684669495,
+  "target_similarity": 0.8,
+  "sections": {
+    "count": 7,
+    "breakdown": [
+      {
+        "title": "Introduction and Background",
+        "importance": "medium",
+        "tokens": 29,
+        "content_preview": "Preliminary results from Phase II clinical trial for NRX-447, a novel Alzheimer's treatment compound..."
+      },
+      {
+        "title": "Patient Enrollment and Demographics",
+        "importance": "medium",
+        "tokens": 29,
+        "content_preview": "156 patients enrolled, ages 62-84, with 89 females and 67 males. Baseline characteristics were well-..."
+      },
+      {
+        "title": "Primary Efficacy Outcomes",
+        "importance": "high",
+        "tokens": 23,
+        "content_preview": "High-dose group showed statistically significant improvements in cognitive function, with a 52% grea..."
+      },
+      {
+        "title": "Safety and Tolerability",
+        "importance": "high",
+        "tokens": 24,
+        "content_preview": "Most adverse events were mild to moderate, with serious adverse events occurring in 8 patients. Labo..."
+      },
+      {
+        "title": "Dropout Rates and Protocol Deviations",
+        "importance": "medium",
+        "tokens": 24,
+        "content_preview": "142 patients completed the trial, with 14 discontinuing due to adverse events or other reasons. Prot..."
+      },
+      {
+        "title": "Next Steps and Phase III Planning",
+        "importance": "critical",
+        "tokens": 35,
+        "content_preview": "Proposed Phase III program includes two identical trials, each enrolling 800 patients, with a primar..."
+      },
+      {
+        "title": "Regulatory Considerations",
+        "importance": "high",
+        "tokens": 29,
+        "content_preview": "Type B meeting with FDA scheduled for January 15, 2025, to discuss Phase III protocol. Patent protec..."
+      }
+    ]
+  },
+  "iteration_history": [
+    {
+      "iteration": 1,
+      "similarity": 0.9120922684669495,
+      "tokens": 485,
+      "compression": 0.38492063492063494,
+      "section_importances": [
+        {
+          "title": "Introduction and Background",
+          "importance": "medium",
+          "key_concepts": [
+            "NRX-447",
+            "Alzheimer's treatment",
+            "Phase II clinical trial"
+          ]
+        },
+        {
+          "title": "Patient Enrollment and Demographics",
+          "importance": "medium",
+          "key_concepts": [
+            "Patient enrollment",
+            "Demographics",
+            "Clinical sites"
+          ]
+        },
+        {
+          "title": "Primary Efficacy Outcomes",
+          "importance": "high",
+          "key_concepts": [
+            "ADAS-Cog scores",
+            "Cognitive function",
+            "High-dose group"
+          ]
+        },
+        {
+          "title": "Safety and Tolerability",
+          "importance": "high",
+          "key_concepts": [
+            "Adverse events",
+            "Serious adverse events",
+            "Laboratory abnormalities"
+          ]
+        },
+        {
+          "title": "Dropout Rates and Protocol Deviations",
+          "importance": "medium",
+          "key_concepts": [
+            "Dropout rates",
+            "Protocol deviations",
+            "Dosing interruptions"
+          ]
+        },
+        {
+          "title": "Next Steps and Phase III Planning",
+          "importance": "critical",
+          "key_concepts": [
+            "Phase III trials",
+            "Protocol design",
+            "Regulatory submissions"
+          ]
+        },
+        {
+          "title": "Regulatory Considerations",
+          "importance": "high",
+          "key_concepts": [
+            "FDA meeting",
+            "European Medicines Agency",
+            "Patent protection"
+          ]
+        }
+      ],
+      "feedback": null
+    }
+  ],
+  "texts": {
+    "original": "Subject: Clinical Trial Update - Phase II Results and Next Steps\n\nDear Research Team,\n\nI'm writing to share the preliminary results from our Phase II clinical trial for the novel Alzheimer's treatment compound, designated as NRX-447. This update covers patient outcomes, safety data, and our proposed timeline for Phase III trials.\n\nPATIENT ENROLLMENT AND DEMOGRAPHICS\n\nWe successfully enrolled 156 patients across 12 clinical sites between March 2024 and September 2024. The cohort consisted of 89 females and 67 males, with ages ranging from 62 to 84 years (mean age: 73.4 years). All participants met the diagnostic criteria for mild to moderate Alzheimer's disease, with baseline MMSE scores between 18 and 24.\n\nPatients were randomized into three groups: placebo (n=52), low-dose NRX-447 at 50mg daily (n=52), and high-dose NRX-447 at 100mg daily (n=52). The trial was double-blind, with neither patients nor clinicians aware of treatment assignments. Baseline characteristics were well-balanced across all three groups.\n\nPRIMARY EFFICACY OUTCOMES\n\nAfter 24 weeks of treatment, we observed statistically significant improvements in cognitive function for the high-dose group compared to placebo. The mean change in ADAS-Cog scores was -3.2 points for placebo, -4.8 points for low-dose, and -6.7 points for high-dose (p<0.001 for high-dose vs placebo). This represents a 52% greater improvement in the high-dose group compared to placebo.\n\nSecondary outcomes also showed promising trends. The Clinical Dementia Rating Scale Sum of Boxes (CDR-SB) improved by 0.8 points in the high-dose group versus 0.2 points in placebo (p=0.012). Activities of daily living, measured by the ADCS-ADL scale, showed a smaller decline in the high-dose group (-2.1 points) compared to placebo (-4.3 points), though this did not reach statistical significance (p=0.089).\n\nBiomarker analysis revealed interesting findings. Cerebrospinal fluid samples collected at baseline and week 24 showed a 23% reduction in phosphorylated tau levels in the high-dose group, compared to a 3% increase in the placebo group. Amyloid-beta 42 levels increased by 18% in the high-dose group, suggesting potential disease-modifying effects beyond symptomatic improvement.\n\nSAFETY AND TOLERABILITY\n\nThe safety profile was generally favorable, with most adverse events being mild to moderate in severity. The most common side effects in the high-dose group were headache (28% vs 15% in placebo), nausea (22% vs 12% in placebo), and dizziness (18% vs 10% in placebo). These symptoms typically resolved within the first 4 weeks of treatment.\n\nSerious adverse events occurred in 8 patients: 2 in placebo, 2 in low-dose, and 4 in high-dose groups. These included one case of pneumonia, two cardiovascular events (one myocardial infarction, one stroke), three hospitalizations for falls, and two cases of severe confusion. The independent Data Safety Monitoring Board reviewed all serious adverse events and concluded that none were definitively related to the study drug.\n\nLaboratory abnormalities were infrequent. Three patients in the high-dose group showed transient elevations in liver enzymes (ALT >3x upper limit of normal), which resolved after temporary dose reduction. No cases of drug-induced liver injury were observed. Renal function remained stable across all groups.\n\nDROPOUT RATES AND PROTOCOL DEVIATIONS\n\nOverall, 142 patients (91%) completed the 24-week trial. Fourteen patients discontinued: 6 due to adverse events (3 in high-dose, 2 in low-dose, 1 in placebo), 5 withdrew consent, 2 were lost to follow-up, and 1 died from an unrelated cause (pancreatic cancer diagnosed during the trial).\n\nProtocol deviations were minimal. Eight patients had dosing interruptions lasting more than 7 days due to intercurrent illnesses. Five patients missed scheduled MRI scans due to claustrophobia or contraindications discovered during the trial. All deviations were documented and reviewed by the steering committee.\n\nNEXT STEPS AND PHASE III PLANNING\n\nBased on these encouraging results, we recommend proceeding to Phase III trials. The proposed Phase III program would consist of two identical trials, each enrolling approximately 800 patients for a duration of 78 weeks. We would use the 100mg daily dose based on the superior efficacy observed in Phase II.\n\nThe primary endpoint would be change from baseline in ADAS-Cog at week 78, with key secondary endpoints including CDR-SB, ADCS-ADL, and caregiver burden measures. We would also include volumetric MRI assessments to evaluate potential effects on brain atrophy.\n\nEstimated timeline: protocol finalization by February 2025, regulatory submissions by April 2025, first patient enrollment by July 2025, and trial completion by December 2027. Total estimated cost for both Phase III trials is $145 million, including site payments, drug manufacturing, central laboratory costs, and data management.\n\nREGULATORY CONSIDERATIONS\n\nWe have scheduled a Type B meeting with the FDA for January 15, 2025, to discuss the Phase III protocol and confirm agreement on endpoints and statistical analysis plans. The European Medicines Agency has indicated willingness to provide scientific advice, with a meeting tentatively scheduled for February 2025.\n\nPatent protection for NRX-447 extends until 2038, providing adequate market exclusivity if approved. We have also filed for orphan drug designation in both the US and EU, which would provide additional regulatory and commercial benefits.\n\nPlease review these results carefully and come prepared to discuss at our team meeting on December 10th at 2 PM EST. We will need to make final decisions on the Phase III protocol design, site selection, and budget allocation.\n\nBest regards,\nDr. Sarah Mitchell\nPrincipal Investigator\n",
+    "final_decoded": "**NRX-447 Phase II Clinical Trial Results Report**\n\nThe NRX-447 Phase II clinical trial has yielded promising results, demonstrating the efficacy and safety of this novel Alzheimer's treatment compound. This report provides a comprehensive overview of the trial's findings, including patient enrollment, primary efficacy outcomes, safety and tolerability, dropout rates, and next steps.\n\n**Introduction and Background**\nPreliminary results from the Phase II clinical trial for NRX-447 show promising efficacy and safety data. The trial aimed to assess the compound's effectiveness in treating Alzheimer's disease, and the results indicate a positive trend.\n\n**Patient Enrollment and Demographics**\nA total of 156 patients were enrolled in the trial, with ages ranging from 62 to 84 years. The demographic breakdown consisted of 89 females and 67 males. Notably, the baseline characteristics were well-balanced across groups, ensuring a fair comparison of the treatment's effects.\n\n**Primary Efficacy Outcomes**\nThe high-dose group demonstrated statistically significant improvements in cognitive function, with a 52% greater improvement compared to the placebo group. This outcome suggests that NRX-447 may be an effective treatment for Alzheimer's disease, warranting further investigation in future trials.\n\n**Safety and Tolerability**\nThe majority of adverse events reported during the trial were mild to moderate, with serious adverse events occurring in 8 patients. Laboratory abnormalities were infrequent, indicating that the treatment was generally well-tolerated. These findings are crucial in assessing the safety profile of NRX-447.\n\n**Dropout Rates and Protocol Deviations**\nOut of the 156 patients enrolled, 142 completed the trial, while 14 discontinued due to adverse events or other reasons. Protocol deviations were minimal, suggesting that the trial was conducted with a high degree of adherence to the planned protocol.\n\n**Next Steps and Phase III Planning**\nThe proposed Phase III program includes two identical trials, each enrolling 800 patients. The primary endpoint of these trials will be the change from baseline in ADAS-Cog at week 78. This will provide a more comprehensive understanding of NRX-447's efficacy and safety in a larger patient population.\n\n**Regulatory Considerations**\nA Type B meeting with the FDA is scheduled for January 15, 2025, to discuss the Phase III protocol. Additionally, patent protection for NRX-447 extends until 2038, ensuring exclusivity for the treatment. The regulatory submissions are expected to be completed by April 2025, with the first patient enrollment planned for July 2025. The trial is anticipated to be completed by December 2027, with a total estimated cost of $145 million.\n\nIn conclusion, the NRX-447 Phase II clinical trial results demonstrate the potential of this novel compound in treating Alzheimer's disease. The next steps, including Phase III planning and regulatory considerations, are critical in advancing the development of this promising treatment. The constraints and state information indicate that the trial is currently in the Phase II stage, with Phase III planning underway. The encoding strategy and trace ID provide additional context for the report.",
+    "final_signal_json": "{\n  \"version\": \"2.0\",\n  \"intent\": \"REPORT\",\n  \"target\": \"NRX-447 Phase II Clinical Trial Results\",\n  \"priority\": \"high\",\n  \"summary\": {\n    \"patient_enrollment\": 156,\n    \"primary_efficacy_outcome\": \"52% greater improvement in high-dose group\",\n    \"serious_adverse_events\": 8,\n    \"dropout_rate\": \"9%\"\n  },\n  \"sections\": [\n    {\n      \"title\": \"Introduction and Background\",\n      \"content\": \"Preliminary results from Phase II clinical trial for NRX-447, a novel Alzheimer's treatment compound, show promising efficacy and safety data.\",\n      \"importance\": \"medium\"\n    },\n    {\n      \"title\": \"Patient Enrollment and Demographics\",\n      \"content\": \"156 patients enrolled, ages 62-84, with 89 females and 67 males. Baseline characteristics were well-balanced across groups.\",\n      \"importance\": \"medium\"\n    },\n    {\n      \"title\": \"Primary Efficacy Outcomes\",\n      \"content\": \"High-dose group showed statistically significant improvements in cognitive function, with a 52% greater improvement compared to placebo.\",\n      \"importance\": \"high\"\n    },\n    {\n      \"title\": \"Safety and Tolerability\",\n      \"content\": \"Most adverse events were mild to moderate, with serious adverse events occurring in 8 patients. Laboratory abnormalities were infrequent.\",\n      \"importance\": \"high\"\n    },\n    {\n      \"title\": \"Dropout Rates and Protocol Deviations\",\n      \"content\": \"142 patients completed the trial, with 14 discontinuing due to adverse events or other reasons. Protocol deviations were minimal.\",\n      \"importance\": \"medium\"\n    },\n    {\n      \"title\": \"Next Steps and Phase III Planning\",\n      \"content\": \"Proposed Phase III program includes two identical trials, each enrolling 800 patients, with a primary endpoint of change from baseline in ADAS-Cog at week 78.\",\n      \"importance\": \"critical\"\n    },\n    {\n      \"title\": \"Regulatory Considerations\",\n      \"content\": \"Type B meeting with FDA scheduled for January 15, 2025, to discuss Phase III protocol. Patent protection extends until 2038.\",\n      \"importance\": \"high\"\n    }\n  ],\n  \"constraints\": [\n    \"Protocol finalization by February 2025\",\n    \"Regulatory submissions by April 2025\",\n    \"First patient enrollment by July 2025\",\n    \"Trial completion by December 2027\",\n    \"Total estimated cost: $145 million\"\n  ],\n  \"state\": {\n    \"current_phase\": \"Phase II\",\n    \"next_steps\": \"Phase III planning\"\n  },\n  \"encoding_strategy\": \"chunked\",\n  \"total_sections\": 7,\n  \"trace_id\": \"5660ee51-8937-4182-924d-981ce699d17d\",\n  \"timestamp\": \"2026-02-19T08:56:50.370925\",\n  \"parent_id\": null\n}"
+  }
+}

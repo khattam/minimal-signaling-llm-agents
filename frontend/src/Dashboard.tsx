@@ -180,7 +180,7 @@ const Dashboard: React.FC = () => {
   return (
     <div className="dashboard">
       <header className="dashboard-header">
-        <h1>🧠 Hierarchical Adaptive Encoding</h1>
+        <h1>Hierarchical Adaptive Encoding</h1>
         <div className="metadata">
           <span>{runs.length} saved runs</span>
         </div>
@@ -291,25 +291,19 @@ const Dashboard: React.FC = () => {
                   className={activeTab === 'overview' ? 'active' : ''} 
                   onClick={() => setActiveTab('overview')}
                 >
-                  📊 Overview
+                  Overview
                 </button>
                 <button 
                   className={activeTab === 'iterations' ? 'active' : ''} 
                   onClick={() => setActiveTab('iterations')}
                 >
-                  🔄 Iterations
-                </button>
-                <button 
-                  className={activeTab === 'sections' ? 'active' : ''} 
-                  onClick={() => setActiveTab('sections')}
-                >
-                  📑 Sections
+                  Iterations
                 </button>
                 <button 
                   className={activeTab === 'comparison' ? 'active' : ''} 
                   onClick={() => setActiveTab('comparison')}
                 >
-                  🔍 Comparison
+                  Comparison
                 </button>
               </div>
 
@@ -317,99 +311,107 @@ const Dashboard: React.FC = () => {
                 {activeTab === 'overview' && (
                   <div className="overview">
                     <div className="metrics-grid">
-                      <div className="metric-card success">
-                        <div className="metric-icon">{data.success ? '✅' : '❌'}</div>
-                        <div className="metric-label">Status</div>
-                        <div className="metric-value">{data.success ? 'Success' : 'Failed'}</div>
+                      <div className="metric-card">
+                        <div className="metric-value">{data.original_tokens}</div>
+                        <div className="metric-label">Original Size</div>
                       </div>
 
                       <div className="metric-card">
-                        <div className="metric-icon">🎯</div>
-                        <div className="metric-label">Similarity</div>
+                        <div className="metric-value">{data.final_tokens}</div>
+                        <div className="metric-label">Compressed Size</div>
+                      </div>
+
+                      <div className="metric-card">
+                        <div className="metric-value">{((1 - data.compression_ratio) * 100).toFixed(1)}%</div>
+                        <div className="metric-label">Reduction</div>
+                        <div className="metric-sub">{data.original_tokens - data.final_tokens} tokens saved</div>
+                      </div>
+
+                      <div className="metric-card">
                         <div className="metric-value">{(data.final_similarity * 100).toFixed(1)}%</div>
+                        <div className="metric-label">Similarity</div>
                         <div className="metric-sub">Target: {(data.target_similarity * 100).toFixed(0)}%</div>
                       </div>
 
                       <div className="metric-card">
-                        <div className="metric-icon">🗜️</div>
-                        <div className="metric-label">Compression</div>
-                        <div className="metric-value">{(data.compression_ratio * 100).toFixed(1)}%</div>
-                        <div className="metric-sub">{data.original_tokens} → {data.final_tokens} tokens</div>
+                        <div className="metric-value">{data.iterations}</div>
+                        <div className="metric-label">Iterations</div>
                       </div>
 
                       <div className="metric-card">
-                        <div className="metric-icon">🔄</div>
-                        <div className="metric-label">Iterations</div>
-                        <div className="metric-value">{data.iterations}</div>
-                        <div className="metric-sub">{data.sections.count} sections</div>
+                        <div className="metric-value">{data.sections.count}</div>
+                        <div className="metric-label">Sections</div>
                       </div>
                     </div>
 
-                    <div className="chart-container">
-                      <h3>Token Flow</h3>
-                      <div className="token-flow">
-                        <div className="flow-step">
-                          <div className="flow-label">Original</div>
-                          <div className="flow-bar" style={{width: '100%', background: '#3b82f6'}}>
-                            {data.original_tokens}
+                    {/* Hierarchical Tree */}
+                    {data.iteration_history[0]?.section_importances && (
+                      <div className="tree-container">
+                        <h3>Section Hierarchy</h3>
+                        {data.iteration_history[0].section_importances.map((sec, idx) => (
+                          <div key={idx} className="tree-node">
+                            <div 
+                              className="tree-node-header" 
+                              style={{
+                                borderLeftColor: 
+                                  sec.importance === 'critical' ? '#dc3545' :
+                                  sec.importance === 'high' ? '#fd7e14' :
+                                  sec.importance === 'medium' ? '#ffc107' : '#198754'
+                              }}
+                            >
+                              <span className="tree-node-title">{sec.title}</span>
+                              <span className={`tree-node-badge ${sec.importance}`}>
+                                {sec.importance}
+                              </span>
+                            </div>
+                            <div className="tree-node-concepts">
+                              {sec.key_concepts.map((concept, cidx) => (
+                                <span key={cidx} className="concept-tag">{concept}</span>
+                              ))}
+                            </div>
                           </div>
-                        </div>
-                        <div className="flow-arrow">↓</div>
-                        <div className="flow-step">
-                          <div className="flow-label">Compressed</div>
-                          <div className="flow-bar" style={{
-                            width: `${data.compression_ratio * 100}%`, 
-                            background: '#10b981'
-                          }}>
-                            {data.final_tokens}
-                          </div>
-                        </div>
-                        <div className="flow-arrow">↓</div>
-                        <div className="flow-step">
-                          <div className="flow-label">Similarity</div>
-                          <div className="flow-bar" style={{
-                            width: `${data.final_similarity * 100}%`, 
-                            background: data.final_similarity >= data.target_similarity ? '#10b981' : '#ef4444'
-                          }}>
-                            {(data.final_similarity * 100).toFixed(1)}%
-                          </div>
-                        </div>
+                        ))}
                       </div>
-                    </div>
+                    )}
                   </div>
                 )}
 
                 {activeTab === 'iterations' && (
                   <div className="iterations">
-                    <h3>Iteration Progress</h3>
+                    <h3>Iteration Details</h3>
                     <div className="iteration-chart">
                       {data.iteration_history.map((iter, idx) => (
                         <div key={idx} className="iteration-row">
                           <div className="iteration-number">Iteration {iter.iteration}</div>
                           <div className="iteration-bars">
                             <div className="bar-group">
-                              <div className="bar-label">Similarity</div>
+                              <div className="bar-label">Kept: {(iter.compression * 100).toFixed(1)}% ({iter.tokens} tokens)</div>
                               <div className="bar-container">
                                 <div 
-                                  className="bar similarity-bar" 
-                                  style={{
-                                    width: `${iter.similarity * 100}%`,
-                                    background: iter.similarity >= data.target_similarity ? '#10b981' : '#f97316'
-                                  }}
-                                >
-                                  {(iter.similarity * 100).toFixed(1)}%
-                                </div>
+                                  className="bar" 
+                                  style={{width: `${iter.compression * 100}%`, background: '#0d6efd'}}
+                                />
                               </div>
                             </div>
                             <div className="bar-group">
-                              <div className="bar-label">Compression</div>
+                              <div className="bar-label">Reduced: {((1 - iter.compression) * 100).toFixed(1)}%</div>
                               <div className="bar-container">
                                 <div 
-                                  className="bar compression-bar" 
-                                  style={{width: `${iter.compression * 100}%`, background: '#3b82f6'}}
-                                >
-                                  {iter.tokens} tokens ({(iter.compression * 100).toFixed(1)}%)
-                                </div>
+                                  className="bar" 
+                                  style={{width: `${(1 - iter.compression) * 100}%`, background: '#6c757d'}}
+                                />
+                              </div>
+                            </div>
+                            <div className="bar-group">
+                              <div className="bar-label">Similarity: {(iter.similarity * 100).toFixed(1)}%</div>
+                              <div className="bar-container">
+                                <div 
+                                  className="bar" 
+                                  style={{
+                                    width: `${iter.similarity * 100}%`,
+                                    background: iter.similarity >= data.target_similarity ? '#198754' : '#fd7e14'
+                                  }}
+                                />
                               </div>
                             </div>
                           </div>
@@ -419,59 +421,6 @@ const Dashboard: React.FC = () => {
                               <pre>{iter.feedback}</pre>
                             </div>
                           )}
-                        </div>
-                      ))}
-                    </div>
-
-                    {data.iteration_history[0]?.section_importances && (
-                      <div className="importance-analysis">
-                        <h3>Section Importance Analysis (Pass 1)</h3>
-                        <div className="importance-tree">
-                          {data.iteration_history[0].section_importances.map((sec, idx) => (
-                            <div key={idx} className="tree-node">
-                              <div 
-                                className="node-header" 
-                                style={{borderLeft: `4px solid ${getImportanceColor(sec.importance)}`}}
-                              >
-                                <span className="node-title">{sec.title}</span>
-                                <span className="node-importance" style={{color: getImportanceColor(sec.importance)}}>
-                                  {sec.importance}
-                                </span>
-                              </div>
-                              <div className="node-concepts">
-                                {sec.key_concepts.map((concept, cidx) => (
-                                  <span key={cidx} className="concept-tag">{concept}</span>
-                                ))}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                )}
-
-                {activeTab === 'sections' && (
-                  <div className="sections">
-                    <h3>Section Breakdown ({data.sections.count} sections)</h3>
-                    <div className="sections-grid">
-                      {data.sections.breakdown.map((sec, idx) => (
-                        <div 
-                          key={idx} 
-                          className="section-card"
-                          style={{borderLeft: `4px solid ${getImportanceColor(sec.importance)}`}}
-                        >
-                          <div className="section-header">
-                            <h4>{sec.title}</h4>
-                            <span 
-                              className="section-importance"
-                              style={{background: getImportanceColor(sec.importance)}}
-                            >
-                              {sec.importance}
-                            </span>
-                          </div>
-                          <div className="section-tokens">{sec.tokens} tokens</div>
-                          <div className="section-preview">{sec.content_preview}</div>
                         </div>
                       ))}
                     </div>

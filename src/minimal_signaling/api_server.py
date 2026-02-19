@@ -7,16 +7,20 @@ from datetime import datetime
 from pathlib import Path
 from typing import List, Dict, Any
 
+from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
-from .groq_client import GroqClient
-from .semantic_judge import SemanticJudge
-from .msp_decoder import MSPDecoder
-from .encoding.hierarchical_adaptive_encoder import HierarchicalAdaptiveEncoder
-from .tokenization import TiktokenTokenizer
+# Load environment variables
+load_dotenv()
+
+from minimal_signaling.groq_client import GroqClient
+from minimal_signaling.semantic_judge import SemanticJudge
+from minimal_signaling.msp_decoder import MSPDecoder
+from minimal_signaling.encoding.hierarchical_adaptive_encoder import HierarchicalAdaptiveEncoder
+from minimal_signaling.tokenization import TiktokenTokenizer
 
 
 app = FastAPI(title="Hierarchical Adaptive Encoding API")
@@ -98,6 +102,7 @@ async def get_run(run_id: str) -> Dict[str, Any]:
 async def encode_message(request: EncodeRequest) -> Dict[str, Any]:
     """Encode a message and save the results."""
     try:
+        print(f"Received encode request: {len(request.text)} chars")
         # Initialize components
         groq = GroqClient()
         judge = SemanticJudge(threshold=request.target_similarity)
@@ -118,6 +123,11 @@ async def encode_message(request: EncodeRequest) -> Dict[str, Any]:
         # Generate run ID
         run_id = f"run_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}"
         
+        # Calculate ACTUAL compression: original tokens vs decoded tokens
+        decoded_tokens = tokenizer.count_tokens(result.final_decoded)
+        actual_compression_ratio = decoded_tokens / result.original_tokens
+        compression_percentage = (1 - actual_compression_ratio) * 100
+        
         # Prepare comprehensive data
         output = {
             "metadata": {
@@ -129,8 +139,11 @@ async def encode_message(request: EncodeRequest) -> Dict[str, Any]:
             "success": result.converged,
             "iterations": result.iterations,
             "original_tokens": result.original_tokens,
-            "final_tokens": result.signal_tokens,
-            "compression_ratio": result.signal_tokens / result.original_tokens,
+            "decoded_tokens": decoded_tokens,
+            "signal_tokens": result.signal_tokens,
+            "final_tokens": decoded_tokens,  # For backward compatibility
+            "compression_ratio": actual_compression_ratio,
+            "compression_percentage": compression_percentage,
             "final_similarity": result.final_similarity,
             "target_similarity": request.target_similarity,
             "sections": {
@@ -180,6 +193,9 @@ async def encode_message(request: EncodeRequest) -> Dict[str, Any]:
         return output
         
     except Exception as e:
+        import traceback
+        print(f"Error encoding: {e}")
+        print(traceback.format_exc())
         raise HTTPException(status_code=500, detail=str(e))
 
 

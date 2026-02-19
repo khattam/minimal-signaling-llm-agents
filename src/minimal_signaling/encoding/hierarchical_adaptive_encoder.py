@@ -83,32 +83,35 @@ HIERARCHICAL_ENCODING_PROMPT = """You are a semantic encoder using hierarchical 
 IMPORTANCE ANALYSIS:
 {importance_analysis}
 
-ENCODING STRATEGY:
-- For CRITICAL sections: Preserve ALL details, numbers, names, technical terms
-- For HIGH sections: Preserve key details and specific information
-- For MEDIUM sections: Preserve main points and important specifics
-- For LOW sections: Summarize main idea concisely
+ENCODING STRATEGY - Preserve what matters:
+- For CRITICAL sections: Preserve ALL key facts, numbers, deadlines, names, action items
+- For HIGH sections: Preserve main points and important details with specifics
+- For MEDIUM sections: Preserve key points with supporting details
+- For LOW sections: Summarize main ideas
+
+DO NOT force a specific compression ratio. Focus on preserving semantic completeness.
+Remove only: redundancy, filler words, overly verbose explanations.
+Keep: all numbers, names, dates, deadlines, metrics, key decisions, action items.
 
 Output a JSON object with:
 - intent: One of [ANALYZE, GENERATE, EVALUATE, TRANSFORM, QUERY, RESPOND, DELEGATE, REPORT]
 - target: What the message is about (concise)
-- summary: High-level overview with key metrics/counts (object)
+- summary: High-level overview (object with key metrics)
 - sections: Array of content sections, each with:
   - title: Section name (from importance analysis)
-  - content: Detailed content (detail level based on importance)
-  - importance: critical|high|medium|low (from analysis)
-- constraints: All constraints, deadlines, action items (array)
-- state: Current state information (object)
+  - content: COMPRESSED STRING preserving essential facts
+  - importance: critical|high|medium|low
+- constraints: Key constraints and deadlines (array)
+- state: Current state (object)
 - priority: One of [low, medium, high, critical]
 
-CRITICAL: For sections marked critical/high, include COMPLETE information.
-For medium/low sections, you can be more concise.
+CRITICAL: Prioritize completeness over compression. Natural compression will emerge from removing redundancy.
 
 Output ONLY valid JSON, no explanation."""
 
 
 # Refinement pass: Address missing information
-REFINEMENT_WITH_IMPORTANCE_PROMPT = """You are re-encoding a message. Previous attempt lost information.
+REFINEMENT_WITH_IMPORTANCE_PROMPT = """You are re-encoding a message. Previous attempt lost critical information.
 
 FEEDBACK FROM JUDGE:
 {feedback}
@@ -116,27 +119,32 @@ FEEDBACK FROM JUDGE:
 IMPORTANCE ANALYSIS:
 {importance_analysis}
 
-MISSING CONCEPTS (must be added):
+MISSING CONCEPTS (MUST ADD):
 {missing_concepts}
 
-Re-encode the message, focusing on:
-1. Adding the missing concepts identified above
-2. Preserving detail based on section importance
-3. Ensuring critical/high importance sections are complete
+Re-encode with these priorities:
+1. ADD all missing critical concepts identified above (numbers, deadlines, names, key facts)
+2. Maintain all information from previous encoding that was correct
+3. Focus on completeness - compression is secondary
+
+For each section:
+- CRITICAL/HIGH: Include ALL missing facts and details
+- MEDIUM: Include key missing facts
+- LOW: Add missing facts if they're in the feedback
 
 Output a JSON object with:
 - intent: One of [ANALYZE, GENERATE, EVALUATE, TRANSFORM, QUERY, RESPOND, DELEGATE, REPORT]
 - target: What the message is about
-- summary: High-level overview (object)
+- summary: High-level overview with key metrics (object)
 - sections: Array of sections with:
   - title: Section name
-  - content: FULL content (especially for critical/high importance)
+  - content: COMPRESSED STRING with ALL key facts including missing critical info
   - importance: critical|high|medium|low
-- constraints: All constraints and deadlines
-- state: Current state
+- constraints: Key constraints and deadlines (array)
+- state: Current state (object)
 - priority: One of [low, medium, high, critical]
 
-CRITICAL: Address ALL missing concepts. For critical sections, preserve EVERYTHING.
+CRITICAL: Prioritize adding missing information over maintaining compression ratio.
 
 Output ONLY valid JSON, no explanation."""
 
@@ -240,20 +248,22 @@ class HierarchicalAdaptiveEncoder:
                 signal_tokens=signal_tokens
             )
         
+        # Generate feedback for iteration 1 (it failed)
+        print(f"\n🔍 Analyzing missing information...")
+        feedback = await self._analyze_loss(natural_language, decoded)
+        missing_concepts = self._extract_missing_concepts(feedback, section_importances)
+        print(f"   Missing {len(missing_concepts)} key concepts")
+        
+        # Update iteration 1 with its feedback
+        refinement_history[0].feedback = feedback
+        
         # ITERATIVE REFINEMENT
         for iteration in range(2, self.max_iterations + 1):
             print(f"\n{'─'*80}")
             print(f"ITERATION {iteration}")
             print(f"{'─'*80}")
             
-            # Analyze what's missing
-            print(f"🔍 Analyzing missing information...")
-            feedback = await self._analyze_loss(natural_language, decoded)
-            missing_concepts = self._extract_missing_concepts(feedback, section_importances)
-            
-            print(f"   Missing {len(missing_concepts)} key concepts")
-            
-            # Re-encode with feedback
+            # Re-encode with feedback from previous iteration
             print(f"🔧 Re-encoding with focus on missing information...")
             signal = await self._encode_with_feedback(
                 natural_language,
@@ -271,14 +281,14 @@ class HierarchicalAdaptiveEncoder:
             
             print(f"   Similarity: {judge_result.similarity_score:.1%}")
             
-            # Record iteration
+            # Record iteration (without feedback initially)
             step = HierarchicalRefinementStep(
                 iteration=iteration,
                 signal=signal,
                 decoded_text=decoded,
                 similarity_score=judge_result.similarity_score,
                 section_importances=section_importances,
-                feedback=feedback,
+                feedback=None,
                 signal_tokens=signal_tokens
             )
             refinement_history.append(step)
@@ -297,6 +307,15 @@ class HierarchicalAdaptiveEncoder:
                     converged=True,
                     signal_tokens=signal_tokens
                 )
+            
+            # Generate feedback for this iteration (it failed)
+            print(f"\n🔍 Analyzing missing information...")
+            feedback = await self._analyze_loss(natural_language, decoded)
+            missing_concepts = self._extract_missing_concepts(feedback, section_importances)
+            print(f"   Missing {len(missing_concepts)} key concepts")
+            
+            # Update this iteration with its feedback
+            refinement_history[-1].feedback = feedback
         
         # Max iterations reached
         final_step = refinement_history[-1]
@@ -395,25 +414,29 @@ class HierarchicalAdaptiveEncoder:
     
     async def _analyze_loss(self, original: str, decoded: str) -> str:
         """Analyze what information was lost in decoding."""
-        prompt = f"""Compare original and decoded messages. Identify what's MISSING or DISTORTED.
+        prompt = f"""Compare original and decoded messages. Identify SPECIFIC missing information.
 
 Original:
-{original}
+{original[:2000]}...
 
 Decoded:
-{decoded}
+{decoded[:2000]}...
 
-List specific missing information:
-1. Missing facts, numbers, names
-2. Missing action items or deadlines
-3. Missing technical details
-4. Distorted or oversimplified information
+List SPECIFIC missing information with examples:
+1. Missing numbers/metrics (e.g., "Revenue was $487M" → missing)
+2. Missing names/entities (e.g., "Michael Chen" → missing)
+3. Missing dates/deadlines (e.g., "January 22, 2025" → missing)
+4. Missing action items (e.g., "hire 23 engineers" → missing)
+5. Missing technical details (e.g., "99.97% uptime" → missing)
+6. Oversimplified sections (e.g., entire financial breakdown → one sentence)
 
-Be specific and concise."""
+Format each as: "MISSING: [specific fact from original]"
+
+Be extremely specific with actual values and facts."""
         
         response = await self.client.chat(
             messages=[
-                {"role": "system", "content": "You are a precise analyst."},
+                {"role": "system", "content": "You are a precise analyst identifying specific missing facts."},
                 {"role": "user", "content": prompt}
             ],
             temperature=0.0
@@ -465,9 +488,17 @@ Be specific and concise."""
             # Parse sections
             sections = []
             for section_data in data.get("sections", []):
+                # Handle case where content might be a dict instead of string
+                content = section_data.get("content", "")
+                if isinstance(content, dict):
+                    # Convert dict to string representation
+                    content = json.dumps(content, indent=2)
+                elif not isinstance(content, str):
+                    content = str(content)
+                
                 sections.append(ContentSection(
                     title=section_data.get("title", ""),
-                    content=section_data.get("content", ""),
+                    content=content,
                     importance=section_data.get("importance", "medium")
                 ))
             

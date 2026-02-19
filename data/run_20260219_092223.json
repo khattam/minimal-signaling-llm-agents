@@ -1,0 +1,143 @@
+{
+  "metadata": {
+    "run_id": "run_20260219_092223",
+    "timestamp": "2026-02-19T09:22:23.999946",
+    "test_name": "API Encoding",
+    "model": "llama-3.3-70b-versatile"
+  },
+  "success": true,
+  "iterations": 2,
+  "original_tokens": 476,
+  "final_tokens": 541,
+  "compression_ratio": 1.1365546218487395,
+  "final_similarity": 0.8069431781768799,
+  "target_similarity": 0.8,
+  "sections": {
+    "count": 6,
+    "breakdown": [
+      {
+        "title": "Production Database Migration",
+        "importance": "critical",
+        "tokens": 51,
+        "content_preview": "Migrate PostgreSQL database from version 12.8 to 15.3 over the weekend of March 15-16, 2025, for sec..."
+      },
+      {
+        "title": "Migration Timeline",
+        "importance": "high",
+        "tokens": 41,
+        "content_preview": "Friday 11:59 PM PST: maintenance window begins. Saturday: database backup (1.8TB), migration and dat..."
+      },
+      {
+        "title": "Team Assignments",
+        "importance": "medium",
+        "tokens": 44,
+        "content_preview": "Sarah Chen (DBA): lead migration, schema updates. Marcus Rodriguez (DevOps): infrastructure provisio..."
+      },
+      {
+        "title": "Critical Metrics to Monitor",
+        "importance": "high",
+        "tokens": 37,
+        "content_preview": "Query response time (currently 145ms), connection pool usage (currently 340), replication lag (under..."
+      },
+      {
+        "title": "Risks and Rollback Plan",
+        "importance": "critical",
+        "tokens": 63,
+        "content_preview": "Downtime could extend to 10 hours. Customer-facing APIs will be unavailable. Estimated revenue impac..."
+      },
+      {
+        "title": "Budget Impact",
+        "importance": "medium",
+        "tokens": 35,
+        "content_preview": "AWS RDS upgrade: $2,400/month. Increased IOPS: $890/month. Backup storage: $340/month. Total annual ..."
+      }
+    ]
+  },
+  "iteration_history": [
+    {
+      "iteration": 1,
+      "similarity": 0.7952719926834106,
+      "tokens": 562,
+      "compression": 1.180672268907563,
+      "section_importances": [
+        {
+          "title": "Production Database Migration",
+          "importance": "critical",
+          "key_concepts": [
+            "Database Migration",
+            "PostgreSQL",
+            "Security Compliance",
+            "Performance Features",
+            "Urgent Action"
+          ]
+        },
+        {
+          "title": "Migration Timeline",
+          "importance": "high",
+          "key_concepts": [
+            "Maintenance Window",
+            "Database Backup",
+            "Migration",
+            "Application Testing",
+            "Timeline"
+          ]
+        },
+        {
+          "title": "Team Assignments",
+          "importance": "medium",
+          "key_concepts": [
+            "Team Roles",
+            "DBA",
+            "DevOps",
+            "Backend",
+            "QA"
+          ]
+        },
+        {
+          "title": "Critical Metrics to Monitor",
+          "importance": "high",
+          "key_concepts": [
+            "Query Response Time",
+            "Connection Pool",
+            "Replication Lag",
+            "Disk I/O"
+          ]
+        },
+        {
+          "title": "Risks and Rollback Plan",
+          "importance": "critical",
+          "key_concepts": [
+            "Downtime",
+            "Compatibility Issues",
+            "Revenue Impact",
+            "Rollback Plan"
+          ]
+        },
+        {
+          "title": "Budget Impact",
+          "importance": "medium",
+          "key_concepts": [
+            "AWS RDS Upgrade",
+            "Increased IOPS",
+            "Backup Storage",
+            "Annual Impact"
+          ]
+        }
+      ],
+      "feedback": "Here are the specific missing information:\n\n1. MISSING: Query response time of 145ms\n2. MISSING: Connection pool usage of 340 connections\n3. MISSING: Replication lag of under 5 seconds\n4. MISSING: Disk I/O utilization of 80%\n5. MISSING: Estimated revenue impact of $45,000 per hour of downtime\n6. MISSING: Number of legacy stored procedures that need manual conversion (3)\n7. MISSING: Number of rows in the orders table (23M)\n8. MISSING: Time by which migration failure would trigger rollback (4:00 AM)\n9. MISSING: Time for post-mortem meeting (Monday 9:00 AM)\n10. MISSING: Detailed breakdown of budget (AWS RDS upgrade: $2,400/month, Increased IOPS: $890/month, Backup storage: $340/month)\n11. MISSING: Total annual impact of budget ($43,560)\n12. MISSING: Deadline for team members to confirm availability (EOD Thursday)\n13. MISSING: Time when Sarah will send detailed runbooks (tomorrow morning)\n14. MISSING: Contact information for questions (Slack or #db-migration channel)\n15. MISSING: Title and name of the person sending the message (Alex Thompson, VP Engineering)\n\nThese specific facts and values are present in the original message but are missing or oversimplified in the decoded message."
+    },
+    {
+      "iteration": 2,
+      "similarity": 0.8069431781768799,
+      "tokens": 541,
+      "compression": 1.1365546218487395,
+      "section_importances": null,
+      "feedback": null
+    }
+  ],
+  "texts": {
+    "original": "URGENT: Production Database Migration - Action Required\n\nTeam,\n\nWe need to migrate our production PostgreSQL database from version 12.8 to 15.3 this weekend (March 15-16, 2025). This is critical for security compliance and to unlock new performance features.\n\nTIMELINE:\n- Friday 11:59 PM PST: Begin maintenance window\n- Saturday 12:00 AM - 2:00 AM: Database backup (estimated 1.8TB)\n- Saturday 2:00 AM - 6:00 AM: Migration and data validation\n- Saturday 6:00 AM - 8:00 AM: Application testing\n- Saturday 8:00 AM: Resume normal operations\n\nTEAM ASSIGNMENTS:\n- Sarah Chen (DBA): Lead migration, handle schema updates\n- Marcus Rodriguez (DevOps): Infrastructure provisioning, monitoring\n- Aisha Patel (Backend): Application compatibility testing\n- James Kim (QA): Validation scripts, rollback procedures\n\nCRITICAL METRICS TO MONITOR:\n- Query response time: Must stay under 200ms (currently 145ms)\n- Connection pool: 500 max connections (currently using 340)\n- Replication lag: Must be under 5 seconds\n- Disk I/O: Watch for spikes above 80% utilization\n\nRISKS:\n1. Downtime could extend to 10 hours if we hit compatibility issues\n2. Customer-facing APIs will be unavailable during migration\n3. Estimated revenue impact: $45,000 per hour of downtime\n4. 3 legacy stored procedures need manual conversion\n5. Foreign key constraints on orders table (23M rows) may slow migration\n\nROLLBACK PLAN:\nIf migration fails by 4:00 AM, we execute rollback:\n- Restore from backup (2 hour process)\n- Revert DNS changes\n- Notify customers via status page\n- Post-mortem scheduled for Monday 9:00 AM\n\nBUDGET:\n- AWS RDS upgrade: $2,400/month additional cost\n- Increased IOPS: $890/month\n- Backup storage: $340/month\n- Total annual impact: $43,560\n\nPlease confirm your availability by EOD Thursday. Sarah will send detailed runbooks tomorrow morning.\n\nQuestions? Slack me or join the #db-migration channel.\n\n- Alex Thompson, VP Engineering\n",
+    "final_decoded": "**Production Database Migration Report**\n\nThe intent of this report is to provide a comprehensive overview of the upcoming production database migration, targeting the PostgreSQL database currently running on version 12.8. The migration is deemed critical, with a high priority due to security compliance and performance enhancement requirements.\n\n**Production Database Migration**\n\nThe production database migration is scheduled to take place over the weekend of March 15-16, 2025. The primary objective is to migrate the PostgreSQL database from version 12.8 to 15.3. This migration is crucial for ensuring security compliance and enhancing performance. A key performance indicator (KPI) for this migration is the query response time, which must remain under 200ms. Currently, the query response time is 145ms, which is within the acceptable range.\n\n**Migration Timeline**\n\nThe migration timeline is as follows: \n- Friday, March 15, 2025, at 11:59 PM PST, the maintenance window will begin.\n- On Saturday, March 16, 2025, the following activities will be performed:\n  - Database backup (approximately 1.8TB)\n  - Migration and data validation\n  - Application testing\n- Normal operations are expected to resume by Saturday, March 16, 2025, at 8:00 AM.\n\n**Team Assignments**\n\nThe following team members have been assigned to the migration project:\n- Sarah Chen (DBA): lead migration and schema updates\n- Marcus Rodriguez (DevOps): infrastructure provisioning and monitoring\n- Aisha Patel (Backend): application compatibility testing\n- James Kim (QA): validation scripts and rollback procedures\n\n**Critical Metrics to Monitor**\n\nDuring the migration, the following critical metrics will be closely monitored:\n- Query response time (currently 145ms)\n- Connection pool usage (currently 340)\n- Replication lag (currently under 5 seconds)\n- Disk I/O utilization (currently at 80%, with a watch for spikes above this threshold)\n\n**Risks and Rollback Plan**\n\nThe migration poses some risks, including:\n- Potential downtime of up to 10 hours\n- Customer-facing APIs will be unavailable during the migration\n- Estimated revenue impact of $45,000 per hour\n- Three legacy stored procedures require manual conversion\nIn the event of a migration failure, a rollback plan will be triggered. The rollback plan involves:\n- Restoring the database from backup\n- Reverting DNS changes\n- Notifying customers\n- Conducting a post-mortem meeting on Monday at 9:00 AM to review the migration and identify areas for improvement\n\n**Budget Impact**\n\nThe budget impact of the migration includes:\n- AWS RDS upgrade: $2,400 per month\n- Increased IOPS: $890 per month\n- Backup storage: $340 per month\nThe total annual impact is estimated to be $43,560.\n\n**Constraints and State**\n\nThe following constraints must be observed:\n- Confirm availability by end of day (EOD) on Thursday\n- Migration failure will trigger a rollback by 4:00 AM\n- A post-mortem meeting is scheduled for Monday at 9:00 AM\nThe current state of the migration is pending, with the database version at 12.8. It is essential to adhere to these constraints and monitor the migration status closely to ensure a successful migration.",
+    "final_signal_json": "{\n  \"version\": \"2.0\",\n  \"intent\": \"REPORT\",\n  \"target\": \"Production Database Migration\",\n  \"priority\": \"critical\",\n  \"summary\": {\n    \"queryResponseTime\": 145,\n    \"connectionPoolUsage\": 340,\n    \"replicationLag\": \"< 5 seconds\",\n    \"diskIOUtilization\": \"80%\",\n    \"estimatedRevenueImpact\": \"$45,000/hour\",\n    \"legacyStoredProcedures\": 3,\n    \"ordersTableRows\": 23000000\n  },\n  \"sections\": [\n    {\n      \"title\": \"Production Database Migration\",\n      \"content\": \"Migrate PostgreSQL database from version 12.8 to 15.3 over the weekend of March 15-16, 2025, for security compliance and performance enhancements. Query response time must stay under 200ms, currently 145ms.\",\n      \"importance\": \"critical\"\n    },\n    {\n      \"title\": \"Migration Timeline\",\n      \"content\": \"Friday 11:59 PM PST: maintenance window begins. Saturday: database backup (1.8TB), migration and data validation, application testing. Resume normal operations by Saturday 8:00 AM.\",\n      \"importance\": \"high\"\n    },\n    {\n      \"title\": \"Team Assignments\",\n      \"content\": \"Sarah Chen (DBA): lead migration, schema updates. Marcus Rodriguez (DevOps): infrastructure provisioning, monitoring. Aisha Patel (Backend): application compatibility testing. James Kim (QA): validation scripts, rollback procedures.\",\n      \"importance\": \"medium\"\n    },\n    {\n      \"title\": \"Critical Metrics to Monitor\",\n      \"content\": \"Query response time (currently 145ms), connection pool usage (currently 340), replication lag (under 5 seconds), disk I/O utilization (watch for spikes above 80%).\",\n      \"importance\": \"high\"\n    },\n    {\n      \"title\": \"Risks and Rollback Plan\",\n      \"content\": \"Downtime could extend to 10 hours. Customer-facing APIs will be unavailable. Estimated revenue impact: $45,000/hour. 3 legacy stored procedures need manual conversion. Rollback plan: restore from backup, revert DNS changes, notify customers, post-mortem on Monday 9:00 AM.\",\n      \"importance\": \"critical\"\n    },\n    {\n      \"title\": \"Budget Impact\",\n      \"content\": \"AWS RDS upgrade: $2,400/month. Increased IOPS: $890/month. Backup storage: $340/month. Total annual impact: $43,560.\",\n      \"importance\": \"medium\"\n    }\n  ],\n  \"constraints\": [\n    \"Confirm availability by EOD Thursday\",\n    \"Migration failure triggers rollback by 4:00 AM\",\n    \"Post-mortem meeting on Monday 9:00 AM\"\n  ],\n  \"state\": {\n    \"migrationStatus\": \"pending\",\n    \"databaseVersion\": \"12.8\"\n  },\n  \"encoding_strategy\": \"chunked\",\n  \"total_sections\": 6,\n  \"trace_id\": \"6007ea7e-e559-4cf9-89d9-f424f09ff1b6\",\n  \"timestamp\": \"2026-02-19T09:22:21.742290\",\n  \"parent_id\": null\n}"
+  }
+}

@@ -56,10 +56,13 @@ class GroqClient:
         if not api_key:  # Only use backups if using env var (not explicit key)
             backup1 = os.environ.get("GROQ_BACKUP_KEY")
             backup2 = os.environ.get("GROQ_BACKUP_KEY_2")
+            super_fallback = os.environ.get("GROQ_SUPER_FALLBACK_KEY")
             if backup1:
                 self.backup_keys.append(backup1)
             if backup2:
                 self.backup_keys.append(backup2)
+            if super_fallback:
+                self.backup_keys.append(super_fallback)
         
         self.client = Groq(api_key=self.api_key)
         self.model = model
