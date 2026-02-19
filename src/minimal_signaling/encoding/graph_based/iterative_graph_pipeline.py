@@ -109,8 +109,15 @@ class IterativeGraphPipeline:
         graph = await self.encoder.encode(message)
         print(f"   Extracted {graph.node_count()} nodes, {graph.edge_count()} edges")
         
+        # Adaptive initial entropy based on message length
+        # For long messages, we need to preserve more information to hit 30% compression with 80% similarity
+        if original_tokens > 1000:
+            current_entropy_target = 0.80  # Start at 80% for long messages (preserve more)
+            print(f"   📊 Long message detected - starting at 80% entropy for better fidelity")
+        else:
+            current_entropy_target = self.initial_entropy_target
+        
         iterations: List[IterationResult] = []
-        current_entropy_target = self.initial_entropy_target
         
         # Iterative refinement
         for iteration in range(1, self.max_iterations + 1):
@@ -197,7 +204,7 @@ class IterativeGraphPipeline:
                 
                 # Relax compression if similarity is low
                 if similarity < 0.70:
-                    current_entropy_target = min(current_entropy_target + self.entropy_step, 0.80)
+                    current_entropy_target = min(current_entropy_target + self.entropy_step, 0.95)
                     print(f"   Relaxed entropy target to {current_entropy_target:.0%}")
                 else:
                     print(f"   Keeping entropy target at {current_entropy_target:.0%}")
@@ -273,21 +280,29 @@ Output ONLY valid JSON."""
             return 0
         
         boosted_count = 0
-        boost_factor = 1.3  # Increase importance by 30%
+        boost_factor = 1.5  # Increase importance by 50% (was 30%, now more aggressive)
+        
+        # Extract key terms from missing concepts (remove common words)
+        stop_words = {'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by'}
+        missing_terms = set()
+        for concept in missing_concepts:
+            terms = concept.lower().split()
+            missing_terms.update(term for term in terms if term not in stop_words and len(term) > 2)
         
         for node in graph.nodes.values():
-            # Check if node content relates to any missing concept
             node_content_lower = node.content.lower()
-            for concept in missing_concepts:
-                concept_lower = concept.lower()
-                
-                # Simple substring matching (could be improved with embeddings)
-                if concept_lower in node_content_lower or node_content_lower in concept_lower:
-                    old_importance = node.importance
-                    node.importance = min(node.importance * boost_factor, 1.0)
-                    if node.importance > old_importance:
-                        boosted_count += 1
-                    break
+            node_terms = set(term for term in node_content_lower.split() if term not in stop_words and len(term) > 2)
+            
+            # Check for term overlap
+            overlap = missing_terms & node_terms
+            if overlap:
+                old_importance = node.importance
+                # Boost more if there's significant overlap
+                overlap_ratio = len(overlap) / max(len(node_terms), 1)
+                boost = boost_factor if overlap_ratio > 0.3 else 1.2
+                node.importance = min(node.importance * boost, 1.0)
+                if node.importance > old_importance:
+                    boosted_count += 1
         
         return boosted_count
     

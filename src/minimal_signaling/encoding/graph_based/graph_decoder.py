@@ -4,9 +4,9 @@ from ...groq_client import GroqClient
 from .semantic_graph import SemanticGraph, NodeType
 
 
-GRAPH_DECODER_PROMPT = """You are a semantic decoder. Reconstruct the original message from the semantic graph.
+GRAPH_DECODER_PROMPT = """You are reconstructing a message from a semantic graph. Your job is to convert the structured information back into natural language.
 
-The graph contains:
+The graph contains these semantic elements:
 - Intent: {intent}
 - Entities: {entities}
 - Attributes: {attributes}
@@ -15,14 +15,16 @@ The graph contains:
 - Outcomes: {outcomes}
 
 CRITICAL RULES:
-1. Be CONCISE and FACTUAL - no fluff, no introductions, no conclusions
-2. Use EXACT numbers and dates from the graph - do not invent or mix up values
-3. Preserve the ORIGINAL TONE and STRUCTURE - don't make it sound formal if it wasn't
-4. Include ALL information from the graph, but ONLY what's in the graph
-5. Do NOT add phrases like "As we approach", "I would like to", "Overall", etc.
-6. Do NOT hallucinate or infer information not present in the graph
+1. Be FACTUAL - only state what's in the graph, nothing more
+2. Keep numbers EXACT - if graph says "23% decline", say exactly that
+3. NO fluff phrases like "I would like to", "As we approach", "Overall"
+4. NO hallucinations - don't invent connections or details
+5. Be CONCISE - get straight to the point
+6. Maintain ORIGINAL tone - if it was urgent/casual/formal, keep that tone
+7. List facts clearly - don't try to make it sound "professional" if it wasn't
 
-Output ONLY the reconstructed message, no JSON or explanation."""
+Reconstruct the message using ONLY the information provided above.
+Output ONLY the reconstructed message."""
 
 
 class GraphDecoder:
@@ -54,29 +56,53 @@ class GraphDecoder:
         constraints = self._get_nodes_content(graph, NodeType.CONSTRAINT)
         outcomes = self._get_nodes_content(graph, NodeType.OUTCOME)
         
-        # Build prompt
-        prompt = GRAPH_DECODER_PROMPT.format(
-            intent=intent,
-            entities=", ".join(entities) if entities else "None",
-            attributes=", ".join(attributes) if attributes else "None",
-            details=", ".join(details) if details else "None",
-            constraints=", ".join(constraints) if constraints else "None",
-            outcomes=", ".join(outcomes) if outcomes else "None"
-        )
+        # Get all intents (not just root)
+        all_intents = [node.content for node in graph.get_nodes_by_type(NodeType.INTENT)]
         
-        # Add style guidance
-        style_guidance = {
-            "professional": "Use formal, business-appropriate language.",
-            "casual": "Use friendly, conversational language.",
-            "technical": "Use precise, technical language with details."
-        }
-        prompt += f"\n\nStyle: {style_guidance.get(style, style_guidance['professional'])}"
+        # Calculate target output based on graph complexity
+        # Aim for ~25-30 tokens per node (balanced between detail and conciseness)
+        target_tokens = graph.node_count() * 28
+        
+        # Build prompt with emphasis on balanced output
+        completeness_instruction = f"""
+CRITICAL OUTPUT REQUIREMENTS:
+- Target output length: approximately {target_tokens} tokens
+- Include ALL key information from each node
+- Provide necessary context for numbers and metrics
+- Use complete, well-formed sentences
+- Be direct and factual - no verbose explanations
+- Don't repeat information
+- Balance detail with conciseness"""
+        
+        prompt = f"""You are reconstructing a message from a semantic graph. Convert the structured information back into natural language.
+
+The graph contains these semantic elements:
+- Intents/Actions: {', '.join(all_intents) if all_intents else intent}
+- Entities: {', '.join(entities) if entities else 'None'}
+- Attributes: {', '.join(attributes) if attributes else 'None'}
+- Details: {', '.join(details) if details else 'None'}
+- Constraints: {', '.join(constraints) if constraints else 'None'}
+- Outcomes: {', '.join(outcomes) if outcomes else 'None'}
+
+{completeness_instruction}
+
+CRITICAL RULES:
+1. Be FACTUAL - only state what's in the graph
+2. Keep numbers EXACT - if graph says "23% decline", say exactly that
+3. NO fluff phrases like "I would like to", "As we approach"
+4. NO hallucinations - don't invent details
+5. Provide ADEQUATE DETAIL for each element - don't just list, explain
+6. Maintain ORIGINAL tone
+7. Write in complete, well-formed paragraphs with proper context
+
+Reconstruct the message using the information provided above. Aim for approximately {target_tokens} tokens.
+Output ONLY the reconstructed message."""
         
         # Decode using LLM
         response = await self.client.chat(
             messages=[
                 {"role": "system", "content": prompt},
-                {"role": "user", "content": "Reconstruct the message."}
+                {"role": "user", "content": "Reconstruct the message with appropriate detail."}
             ],
             temperature=0.0
         )

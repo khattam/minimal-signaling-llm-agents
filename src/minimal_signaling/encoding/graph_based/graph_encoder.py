@@ -21,7 +21,7 @@ from .semantic_graph import SemanticGraph, SemanticNode, NodeType
 
 GRAPH_EXTRACTION_PROMPT = """You are a semantic graph extractor. Analyze the message and extract semantic nodes with their relationships.
 
-Output JSON with this structure:
+You MUST output ONLY valid JSON in this exact structure (no other text):
 {
   "nodes": [
     {
@@ -40,14 +40,15 @@ Output JSON with this structure:
   ]
 }
 
-IMPORTANT:
+CRITICAL RULES:
+- Output MUST be valid JSON only
+- No markdown, no code blocks, no explanations
+- Start with { and end with }
 - Create multiple intent nodes if there are multiple actions requested
 - Connect related nodes to EACH OTHER, not just to intent
 - Example: "23% decline" (attribute) should connect to "enterprise segment" (entity)
 - Example: "$500K budget" (constraint) should connect to "remediation plan" (outcome)
-- Be thorough and capture ALL relationships between concepts
-
-Output ONLY valid JSON."""
+- Be thorough and capture ALL relationships between concepts"""
 
 
 class GraphEncoder:
@@ -106,16 +107,27 @@ class GraphEncoder:
         response = await self.client.chat(
             messages=[
                 {"role": "system", "content": GRAPH_EXTRACTION_PROMPT},
-                {"role": "user", "content": text}
+                {"role": "user", "content": f"Extract semantic graph from this message:\n\n{text}"}
             ],
             json_mode=True,
             temperature=0.0
         )
         
         try:
+            # Try to parse the response
+            # Some models might wrap JSON in markdown code blocks
+            response = response.strip()
+            if response.startswith("```"):
+                # Remove markdown code blocks
+                lines = response.split("\n")
+                response = "\n".join(lines[1:-1]) if len(lines) > 2 else response
+                response = response.replace("```json", "").replace("```", "").strip()
+            
             return json.loads(response)
-        except json.JSONDecodeError:
-            # Fallback
+        except json.JSONDecodeError as e:
+            print(f"Warning: JSON decode failed: {e}")
+            print(f"Response was: {response[:200]}...")
+            # Fallback: create minimal graph
             return {
                 "nodes": [
                     {"id": "intent_1", "content": "QUERY", "type": "intent", "importance": "high"}
