@@ -1,0 +1,131 @@
+"""Generate a realistic 1.5k token message for testing."""
+from minimal_signaling.tokenization import TiktokenTokenizer
+
+# Generate a realistic long message
+long_message = """I have completed a comprehensive security audit of our production infrastructure and need to communicate critical findings to the DevOps and Security teams for immediate action.
+
+EXECUTIVE SUMMARY:
+After conducting a thorough 3-week security assessment across all production systems, I have identified 23 critical vulnerabilities, 47 high-priority issues, and 89 medium-priority concerns that require immediate attention. The most severe issues pose significant risks to data integrity, customer privacy, and regulatory compliance.
+
+CRITICAL SECURITY VULNERABILITIES (Immediate Action Required):
+
+1. AUTHENTICATION SYSTEM FLAWS:
+   - Session tokens are not properly invalidated upon user logout, creating a 4-hour window where stolen tokens remain valid
+   - Password reset mechanism uses predictable tokens based on timestamp, allowing attackers to potentially hijack accounts
+   - Multi-factor authentication can be bypassed through a race condition in the verification endpoint
+   - JWT tokens are signed with a weak secret key that was committed to the public GitHub repository 8 months ago
+   - No rate limiting on login attempts, enabling brute force attacks
+
+2. DATABASE SECURITY ISSUES:
+   - SQL injection vulnerabilities found in 12 different endpoints, primarily in the user management and reporting modules
+   - Database credentials are stored in plaintext in configuration files on production servers
+   - No encryption at rest for sensitive customer data including payment information and personal identifiable information
+   - Database backups are stored on publicly accessible S3 buckets without proper access controls
+   - Connection strings contain hardcoded passwords that haven't been rotated in 18 months
+
+3. API SECURITY CONCERNS:
+   - REST API endpoints lack proper input validation, allowing malformed requests to crash services
+   - CORS policy is set to allow all origins (*), exposing the API to cross-site request forgery attacks
+   - API keys are transmitted in URL query parameters instead of headers, appearing in server logs
+   - No request size limits, making the system vulnerable to denial of service attacks
+   - Sensitive data is returned in error messages, leaking internal system information
+
+4. INFRASTRUCTURE VULNERABILITIES:
+   - Production servers are running outdated operating systems with 47 known CVEs
+   - Docker containers are running as root user, violating principle of least privilege
+   - Network segmentation is insufficient, allowing lateral movement between services
+   - SSH access uses password authentication instead of key-based authentication
+   - No intrusion detection system is deployed to monitor for suspicious activity
+
+5. APPLICATION SECURITY FLAWS:
+   - User input is not sanitized, creating XSS vulnerabilities on 8 different pages
+   - File upload functionality allows execution of arbitrary code through unrestricted file types
+   - Session management uses predictable session IDs that can be guessed
+   - Sensitive operations lack CSRF protection tokens
+   - Error handling exposes stack traces and internal paths to end users
+
+PERFORMANCE AND RELIABILITY ISSUES:
+
+1. The product catalog service makes 47 redundant database queries per page load, causing 3-second average response times
+2. Image processing pipeline has no queue management, leading to memory exhaustion under load
+3. Cache invalidation logic is broken, serving stale data for up to 6 hours
+4. Database connection pool is undersized, causing connection timeouts during peak traffic
+5. No circuit breakers implemented, causing cascading failures across microservices
+
+DATA COMPLIANCE CONCERNS:
+
+1. GDPR compliance issues: User data deletion requests are not fully processed, leaving data in backup systems
+2. PCI-DSS violations: Credit card data is logged in application logs and stored beyond required retention period
+3. HIPAA concerns: Healthcare data lacks proper access controls and audit logging
+4. Data residency requirements not met: EU customer data is being processed in US data centers
+
+REQUIRED IMMEDIATE ACTIONS:
+
+1. Rotate all database credentials and API keys within 24 hours
+2. Remove the exposed JWT secret from GitHub history and deploy new signing keys
+3. Implement rate limiting on all authentication endpoints by end of week
+4. Patch all SQL injection vulnerabilities in user management and reporting modules
+5. Enable database encryption at rest for all production databases
+6. Implement proper CORS policies restricting to known domains only
+7. Update all production servers to latest OS versions with security patches
+8. Deploy intrusion detection system to monitor for attack patterns
+9. Implement comprehensive input validation and sanitization across all endpoints
+10. Set up proper error handling that doesn't expose sensitive information
+
+TIMELINE AND PRIORITIES:
+
+WEEK 1 (Critical - Must Complete):
+- Credential rotation and secret management
+- SQL injection fixes
+- Authentication bypass patches
+- Database encryption enablement
+
+WEEK 2 (High Priority):
+- API security hardening
+- Input validation implementation
+- Server patching and updates
+- Network segmentation improvements
+
+WEEK 3-4 (Medium Priority):
+- Performance optimization
+- Monitoring and alerting setup
+- Compliance gap remediation
+- Security testing and validation
+
+RESOURCE REQUIREMENTS:
+
+- 3 senior backend engineers for authentication and database fixes
+- 2 DevOps engineers for infrastructure updates
+- 1 security specialist for validation and testing
+- 1 compliance officer for regulatory review
+- Estimated 400 engineering hours total
+- Budget approval needed for security tools and monitoring solutions
+
+RISK ASSESSMENT:
+
+If these vulnerabilities are not addressed immediately, we face:
+- High probability of data breach within next 30 days
+- Potential regulatory fines ranging from $50,000 to $500,000
+- Reputational damage and customer trust erosion
+- Possible service disruptions affecting 100,000+ active users
+- Legal liability for data privacy violations
+
+I need your immediate approval to proceed with the remediation plan and allocation of engineering resources. The security audit report with detailed technical findings has been uploaded to the secure document repository. Please schedule an emergency meeting with stakeholders to discuss implementation strategy.
+
+This is the highest priority issue currently facing our organization and requires executive-level attention and decision-making."""
+
+tokenizer = TiktokenTokenizer()
+token_count = tokenizer.count_tokens(long_message)
+
+print(f"Generated message:")
+print(f"  Tokens: {token_count}")
+print(f"  Characters: {len(long_message)}")
+print(f"\nMessage preview (first 500 chars):")
+print(long_message[:500])
+print("\n...")
+print(f"\nSave this message? It has {token_count} tokens.")
+
+# Save to file
+with open("long_test_message.txt", "w") as f:
+    f.write(long_message)
+print("\nSaved to long_test_message.txt")

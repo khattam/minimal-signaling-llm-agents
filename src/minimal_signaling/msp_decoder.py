@@ -6,17 +6,31 @@ from .protocol import MinimalSignal, DecoderError
 
 DECODER_SYSTEM_PROMPT = """You are a semantic decoder. Convert the structured signal into clear natural language.
 
-The output should:
-- Be a complete, coherent message
-- Include all information from the signal
-- Match the requested style: {style}
+The signal uses a two-tier architecture:
+- TIER 1 (summary): High-level structured overview
+- TIER 2 (sections): Detailed content sections
+
+CRITICAL: You must reconstruct the complete message from both tiers.
+
+Decoding strategy:
+1. Start with the intent and target to establish context
+2. If sections are present, expand EACH section fully with all details
+3. Include information from summary for context
+4. Preserve all constraints and state information
+5. Match the requested style: {style}
+
+For signals with sections:
+- Organize output by section titles
+- Expand each section's content completely
+- Maintain logical flow between sections
+- Do NOT summarize or omit details from sections
 
 Style guidelines:
-- professional: Clear, formal business language
-- casual: Friendly, conversational tone
-- technical: Precise, detailed technical language
+- professional: Clear, formal business language with complete details
+- casual: Friendly, conversational tone but still comprehensive
+- technical: Precise, detailed technical language with all specifics
 
-Do not add information not present in the signal.
+Do not add information not present in the signal, but DO expand everything that is present.
 Output ONLY the natural language message, no JSON or explanation."""
 
 

@@ -39,7 +39,7 @@ Output a JSON object with these fields:
   - content: Full detailed content for this section (preserve ALL details)
   - importance: critical|high|medium|low
 - constraints: List of constraints/requirements
-- state: Current state information (object)
+- state: Current state information
 - priority: One of [low, medium, high, critical]
 
 CRITICAL: In sections, preserve ALL specific details, numbers, names, technical terms.
@@ -65,7 +65,7 @@ Output a JSON object with these fields:
   - content: COMPLETE detailed content for this section (do NOT summarize)
   - importance: critical|high|medium|low
 - constraints: All constraints and deadlines
-- state: Current state (object)
+- state: Current state
 - priority: One of [low, medium, high, critical]
 
 STRATEGY FOR LONG MESSAGES:
@@ -102,57 +102,6 @@ class MSPEncoder:
         else:
             return ("chunked", ENCODER_CHUNKED_PROMPT)
     
-    def _parse_response(self, response: str, strategy: str) -> MinimalSignal:
-        """Parse LLM response into MinimalSignal with proper validation."""
-        data = json.loads(response)
-        
-        # Validate and normalize intent
-        intent = data.get("intent", "QUERY").upper()
-        if intent not in VALID_INTENTS:
-            intent = "QUERY"
-        
-        # Validate priority
-        priority = data.get("priority", "medium").lower()
-        if priority not in VALID_PRIORITIES:
-            priority = "medium"
-        
-        # Parse sections if present
-        sections = []
-        for section_data in data.get("sections", []):
-            sections.append(ContentSection(
-                title=section_data.get("title", ""),
-                content=section_data.get("content", ""),
-                importance=section_data.get("importance", "medium")
-            ))
-        
-        # Coerce state to dict if it's a string
-        state = data.get("state", {})
-        if isinstance(state, str):
-            state = {"status": state}
-        elif not isinstance(state, dict):
-            state = {}
-        
-        # Coerce constraints to list if it's not
-        constraints = data.get("constraints", [])
-        if isinstance(constraints, dict):
-            # Convert dict to list of strings
-            constraints = [f"{k}: {v}" for k, v in constraints.items()]
-        elif not isinstance(constraints, list):
-            constraints = []
-        
-        return MinimalSignal(
-            version="2.0",
-            intent=intent,
-            target=data.get("target", ""),
-            summary=data.get("summary", {}),
-            sections=sections,
-            constraints=constraints,
-            state=state,
-            priority=priority,
-            encoding_strategy=strategy,
-            total_sections=len(sections)
-        )
-    
     async def encode(self, natural_language: str) -> MinimalSignal:
         """Encode natural language to MSP format with adaptive strategy.
         
@@ -182,7 +131,47 @@ class MSPEncoder:
                 temperature=0.0
             )
             
-            return self._parse_response(response, strategy)
+            # Parse JSON response
+            data = json.loads(response)
+            
+            # Validate and normalize intent
+            intent = data.get("intent", "QUERY").upper()
+            if intent not in VALID_INTENTS:
+                intent = "QUERY"
+            
+            # Validate priority
+            priority = data.get("priority", "medium").lower()
+            if priority not in VALID_PRIORITIES:
+                priority = "medium"
+            
+            # Parse sections if present
+            sections = []
+            for section_data in data.get("sections", []):
+                sections.append(ContentSection(
+                    title=section_data.get("title", ""),
+                    content=section_data.get("content", ""),
+                    importance=section_data.get("importance", "medium")
+                ))
+            
+            # Coerce state to dict if it's a string
+            state = data.get("state", {})
+            if isinstance(state, str):
+                state = {"status": state}
+            elif not isinstance(state, dict):
+                state = {}
+            
+            return MinimalSignal(
+                version="2.0",
+                intent=intent,
+                target=data.get("target", ""),
+                summary=data.get("summary", {}),
+                sections=sections,
+                constraints=data.get("constraints", []),
+                state=data.get("state", {}),
+                priority=priority,
+                encoding_strategy=strategy,
+                total_sections=len(sections)
+            )
             
         except json.JSONDecodeError as e:
             raise EncoderError(f"Failed to parse LLM response: {e}")
@@ -207,7 +196,43 @@ class MSPEncoder:
                 temperature=0.0
             )
             
-            return self._parse_response(response, strategy)
+            data = json.loads(response)
+            
+            intent = data.get("intent", "QUERY").upper()
+            if intent not in VALID_INTENTS:
+                intent = "QUERY"
+            
+            priority = data.get("priority", "medium").lower()
+            if priority not in VALID_PRIORITIES:
+                priority = "medium"
+            
+            sections = []
+            for section_data in data.get("sections", []):
+                sections.append(ContentSection(
+                    title=section_data.get("title", ""),
+                    content=section_data.get("content", ""),
+                    importance=section_data.get("importance", "medium")
+                ))
+            
+            # Coerce state to dict if it's a string
+            state = data.get("state", {})
+            if isinstance(state, str):
+                state = {"status": state}
+            elif not isinstance(state, dict):
+                state = {}
+            
+            return MinimalSignal(
+                version="2.0",
+                intent=intent,
+                target=data.get("target", ""),
+                summary=data.get("summary", {}),
+                sections=sections,
+                constraints=data.get("constraints", []),
+                state=data.get("state", {}),
+                priority=priority,
+                encoding_strategy=strategy,
+                total_sections=len(sections)
+            )
             
         except json.JSONDecodeError as e:
             raise EncoderError(f"Failed to parse LLM response: {e}")

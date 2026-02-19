@@ -11,9 +11,10 @@ from typing import List, Optional, Callable, Any
 from enum import Enum
 
 from .groq_client import GroqClient
-from .protocol import MinimalSignal, EncoderError, VALID_INTENTS, VALID_PRIORITIES
+from .protocol import MinimalSignal, ContentSection, EncoderError, VALID_INTENTS, VALID_PRIORITIES
 from .semantic_judge import SemanticJudge
 from .msp_decoder import MSPDecoder
+from .msp_encoder import MSPEncoder
 from .tokenization import TiktokenTokenizer
 
 
@@ -48,6 +49,7 @@ class RefinementStep:
     decoded_text: str
     similarity_score: float
     feedback: Optional[str]
+    signal_tokens: int = 0  # Add this back
     signal_tokens: int
 
 
@@ -137,6 +139,7 @@ class IterativeEncoder:
         on_stage_change: Optional[Callable[[StageEvent], Any]] = None
     ):
         self.client = groq_client
+        self.encoder = MSPEncoder(groq_client)  # Use MSPEncoder
         self.judge = judge
         self.decoder = decoder
         self.tokenizer = TiktokenTokenizer()
@@ -250,15 +253,7 @@ class IterativeEncoder:
     
     async def _encode_initial(self, text: str) -> MinimalSignal:
         """First encoding attempt without feedback."""
-        response = await self.client.chat(
-            messages=[
-                {"role": "system", "content": ENCODER_BASE_PROMPT},
-                {"role": "user", "content": text}
-            ],
-            json_mode=True,
-            temperature=0.0
-        )
-        return self._parse_signal(response)
+        return await self.encoder.encode(text)
     
     async def _encode_with_feedback(
         self, 
@@ -267,17 +262,49 @@ class IterativeEncoder:
         focus_areas: str
     ) -> MinimalSignal:
         """Re-encode with feedback from previous iteration."""
-        prompt = ENCODER_REFINEMENT_PROMPT.format(
-            feedback=feedback,
-            focus_areas=focus_areas
-        )
+        # Determine strategy based on length
+        token_count = self.tokenizer.count_tokens(text)
+        
+        if token_count < 500:
+            strategy_note = "Use compact encoding with summary only."
+        elif token_count < 1500:
+            strategy_note = "Use detailed encoding with summary and sections."
+        else:
+            strategy_note = "Use chunked encoding with multiple detailed sections."
+        
+        refinement_prompt = f"""You are a semantic encoder. A previous encoding lost information.
+
+FEEDBACK FROM JUDGE:
+{feedback}
+
+FOCUS ON: {focus_areas}
+
+{strategy_note}
+
+Output JSON with:
+- intent: One of [ANALYZE, GENERATE, EVALUATE, TRANSFORM, QUERY, RESPOND, DELEGATE, REPORT]
+- target: What the action is about
+- summary: High-level structured overview
+- sections: Array of detailed sections (if message is complex):
+  - title: Section name
+  - content: FULL details for this section
+  - importance: critical|high|medium|low
+- constraints: All constraints
+- state: Current state
+- priority: One of [low, medium, high, critical]
+
+CRITICAL: Address the missing information identified in feedback.
+In sections, preserve ALL specific details mentioned in the original message.
+
+Output ONLY valid JSON."""
+        
         response = await self.client.chat(
             messages=[
-                {"role": "system", "content": prompt},
+                {"role": "system", "content": refinement_prompt},
                 {"role": "user", "content": text}
             ],
             json_mode=True,
-            temperature=0.1  # Slight variation to try different encoding
+            temperature=0.1
         )
         return self._parse_signal(response)
     
@@ -316,13 +343,48 @@ class IterativeEncoder:
             if priority not in VALID_PRIORITIES:
                 priority = "medium"
             
+            # Parse sections
+            sections = []
+            for section_data in data.get("sections", []):
+                sections.append(ContentSection(
+                    title=section_data.get("title", ""),
+                    content=section_data.get("content", ""),
+                    importance=section_data.get("importance", "medium")
+                ))
+            
+            # Coerce state to dict if it's a string
+            state = data.get("state", {})
+            if isinstance(state, str):
+                state = {"status": state}
+            elif not isinstance(state, dict):
+                state = {}
+            
+            # Coerce constraints to list if it's not
+            constraints = data.get("constraints", [])
+            if isinstance(constraints, dict):
+                constraints = [f"{k}: {v}" for k, v in constraints.items()]
+            elif not isinstance(constraints, list):
+                constraints = []
+            
+            # Determine strategy
+            if len(sections) == 0:
+                strategy = "compact"
+            elif len(sections) <= 5:
+                strategy = "detailed"
+            else:
+                strategy = "chunked"
+            
             return MinimalSignal(
+                version="2.0",
                 intent=intent,
                 target=data.get("target", ""),
-                params=data.get("params", {}),
-                constraints=data.get("constraints", []),
-                state=data.get("state", {}),
-                priority=priority
+                summary=data.get("summary", {}),
+                sections=sections,
+                constraints=constraints,
+                state=state,
+                priority=priority,
+                encoding_strategy=strategy,
+                total_sections=len(sections)
             )
         except json.JSONDecodeError as e:
             raise EncoderError(f"Failed to parse LLM response: {e}")

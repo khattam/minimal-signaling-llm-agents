@@ -12,19 +12,33 @@ from uuid import uuid4
 from pydantic import BaseModel, Field
 
 
+class ContentSection(BaseModel):
+    """A section of detailed content for long messages."""
+    
+    title: str = Field(..., description="Section title/category")
+    content: str = Field(..., description="Detailed content for this section")
+    importance: Literal["critical", "high", "medium", "low"] = "medium"
+
+
 class MinimalSignal(BaseModel):
     """Structured representation of agent communication.
     
-    This is the core MSP schema - a compact, human-readable format
-    that captures the essential semantics of agent messages.
+    Two-tier architecture:
+    - Tier 1 (summary): High-level structured metadata
+    - Tier 2 (sections): Detailed content sections for complex messages
+    
+    Encoding strategy adapts based on message length:
+    - compact (<500 tokens): Only summary, no sections
+    - detailed (500-1500 tokens): Summary + sections
+    - chunked (>1500 tokens): Summary + multiple detailed sections
     """
     
     model_config = {"extra": "forbid"}  # Strict validation
     
     # Protocol version for evolution
-    version: str = "1.0"
+    version: str = "2.0"
     
-    # What action is being requested/performed
+    # TIER 1: Structural metadata (always present)
     intent: Literal[
         "ANALYZE",
         "GENERATE", 
@@ -39,8 +53,20 @@ class MinimalSignal(BaseModel):
     # What the action targets
     target: str
     
-    # Key parameters for the task
-    params: Dict[str, Any] = Field(default_factory=dict)
+    # Priority level
+    priority: Literal["low", "medium", "high", "critical"] = "medium"
+    
+    # High-level summary (structured)
+    summary: Dict[str, Any] = Field(
+        default_factory=dict,
+        description="High-level structured summary of key information"
+    )
+    
+    # TIER 2: Detailed content sections (for complex messages)
+    sections: List[ContentSection] = Field(
+        default_factory=list,
+        description="Detailed content sections preserving full information"
+    )
     
     # Execution constraints
     constraints: List[str] = Field(default_factory=list)
@@ -48,8 +74,9 @@ class MinimalSignal(BaseModel):
     # Current state information
     state: Dict[str, Any] = Field(default_factory=dict)
     
-    # Priority level
-    priority: Literal["low", "medium", "high", "critical"] = "medium"
+    # Encoding metadata
+    encoding_strategy: Literal["compact", "detailed", "chunked"] = "compact"
+    total_sections: int = Field(default=0, ge=0)
     
     # Tracing metadata
     trace_id: str = Field(default_factory=lambda: str(uuid4()))
