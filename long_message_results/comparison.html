@@ -1,0 +1,395 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Iterative Compression Results</title>
+            <meta charset="utf-8">
+            <style>
+                * { margin: 0; padding: 0; box-sizing: border-box; }
+                body {
+                    font-family: 'Segoe UI', system-ui, sans-serif;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    padding: 40px 20px;
+                    min-height: 100vh;
+                }
+                .container {
+                    max-width: 1400px;
+                    margin: 0 auto;
+                }
+                .header {
+                    background: white;
+                    padding: 40px;
+                    border-radius: 16px;
+                    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+                    margin-bottom: 30px;
+                }
+                h1 {
+                    color: #2d3748;
+                    font-size: 36px;
+                    margin-bottom: 20px;
+                }
+                .summary {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                    gap: 20px;
+                    margin-top: 30px;
+                }
+                .summary-card {
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    color: white;
+                    padding: 20px;
+                    border-radius: 12px;
+                    text-align: center;
+                }
+                .summary-card .label {
+                    font-size: 14px;
+                    opacity: 0.9;
+                    margin-bottom: 8px;
+                }
+                .summary-card .value {
+                    font-size: 32px;
+                    font-weight: bold;
+                }
+                .iterations-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+                    gap: 20px;
+                }
+                .iteration-card {
+                    background: white;
+                    padding: 30px;
+                    border-radius: 16px;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                    transition: transform 0.2s, box-shadow 0.2s;
+                }
+                .iteration-card:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+                }
+                .iteration-card h3 {
+                    color: #2d3748;
+                    margin-bottom: 20px;
+                    font-size: 24px;
+                }
+                .metrics {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 15px;
+                    margin-bottom: 20px;
+                }
+                .metric {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                }
+                .metric .label {
+                    font-size: 12px;
+                    color: #718096;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                }
+                .metric .value {
+                    font-size: 20px;
+                    font-weight: bold;
+                    color: #2d3748;
+                }
+                .missing-concepts {
+                    background: #fff5f5;
+                    border-left: 4px solid #fc8181;
+                    padding: 15px;
+                    margin: 20px 0;
+                    border-radius: 4px;
+                }
+                .missing-concepts ul {
+                    margin-top: 10px;
+                    margin-left: 20px;
+                    font-size: 13px;
+                    color: #742a2a;
+                }
+                .missing-concepts li {
+                    margin: 5px 0;
+                }
+                .decoded-preview {
+                    background: #f7fafc;
+                    padding: 15px;
+                    border-radius: 8px;
+                    margin: 20px 0;
+                    font-size: 14px;
+                    color: #4a5568;
+                    line-height: 1.6;
+                }
+                .view-graph-btn {
+                    display: inline-block;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    color: white;
+                    padding: 12px 24px;
+                    border-radius: 8px;
+                    text-decoration: none;
+                    font-weight: 600;
+                    transition: transform 0.2s;
+                }
+                .view-graph-btn:hover {
+                    transform: scale(1.05);
+                }
+                .status-badge {
+                    display: inline-block;
+                    padding: 8px 16px;
+                    border-radius: 20px;
+                    font-weight: 600;
+                    font-size: 14px;
+                }
+                .status-success {
+                    background: #c6f6d5;
+                    color: #22543d;
+                }
+                .status-failed {
+                    background: #fed7d7;
+                    color: #742a2a;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <div class="header">
+                    <h1>🔬 Adaptive Iterative Graph Compression Results</h1>
+                    <span class="status-badge status-failed">
+                        ⚠️ MAX ITERATIONS REACHED
+                    </span>
+                    
+                    <div class="summary">
+                        <div class="summary-card">
+                            <div class="label">Total Iterations</div>
+                            <div class="value">5</div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="label">Final Similarity</div>
+                            <div class="value">61.2%</div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="label">Final Compression</div>
+                            <div class="value">64.7%</div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="label">Token Reduction</div>
+                            <div class="value">1763 → 1141</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="iterations-grid">
+                    
+            <div class="iteration-card">
+                <h3>🔄 Iteration 1</h3>
+                <div class="metrics">
+                    <div class="metric">
+                        <span class="label">Entropy Target:</span>
+                        <span class="value">40%</span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Nodes:</span>
+                        <span class="value">47/114</span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Similarity:</span>
+                        <span class="value" style="color: #dc3545">
+                            42.2%
+                        </span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Compression:</span>
+                        <span class="value">36.9%</span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Tokens:</span>
+                        <span class="value">651</span>
+                    </div>
+                </div>
+                <div class="missing-concepts">
+                    <strong>Missing Concepts (31):</strong>
+                    <ul>
+                        <li>Q4 2024 product roadmap details</li><li>Authentication service migration specifics</li><li>Session management layer issues</li><li>Redis cluster configuration problem</li><li>Sarah from DevOps</li>
+                        <li><em>...and 26 more</em></li>
+                    </ul>
+                </div>
+                <div class="decoded-preview">
+                    <strong>Decoded Message:</strong>
+                    <p>As we approach the end of the year, I would like to provide a Q4 2024 product roadmap update. Our current progress indicates that we are roughly 65% complete with our objectives, with approximately 3 ...</p>
+                </div>
+                <a href="visualizations/iteration_1.html" target="_blank" class="view-graph-btn">
+                    View Graph →
+                </a>
+            </div>
+            
+            <div class="iteration-card">
+                <h3>🔄 Iteration 2</h3>
+                <div class="metrics">
+                    <div class="metric">
+                        <span class="label">Entropy Target:</span>
+                        <span class="value">50%</span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Nodes:</span>
+                        <span class="value">62/114</span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Similarity:</span>
+                        <span class="value" style="color: #dc3545">
+                            48.0%
+                        </span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Compression:</span>
+                        <span class="value">43.8%</span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Tokens:</span>
+                        <span class="value">772</span>
+                    </div>
+                </div>
+                <div class="missing-concepts">
+                    <strong>Missing Concepts (12):</strong>
+                    <ul>
+                        <li>Q1 2025 budget planning details</li><li>Specific numbers for the marketing campaign budget ($450,000) and potential pipe...</li><li>Names of specific team members like Sarah from DevOps and the security team</li><li>Action items for each team (e.g., engineering leads, mobile team, data engineeri...</li><li>Critical deadlines like November 20th for budget proposals and December 6th for ...</li>
+                        <li><em>...and 7 more</em></li>
+                    </ul>
+                </div>
+                <div class="decoded-preview">
+                    <strong>Decoded Message:</strong>
+                    <p>I am pleased to provide an update on our Q4 2024 product roadmap. As of Friday, November 20th, we have made significant progress on several key initiatives. Our data warehouse migration to Snowflake i...</p>
+                </div>
+                <a href="visualizations/iteration_2.html" target="_blank" class="view-graph-btn">
+                    View Graph →
+                </a>
+            </div>
+            
+            <div class="iteration-card">
+                <h3>🔄 Iteration 3</h3>
+                <div class="metrics">
+                    <div class="metric">
+                        <span class="label">Entropy Target:</span>
+                        <span class="value">60%</span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Nodes:</span>
+                        <span class="value">68/114</span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Similarity:</span>
+                        <span class="value" style="color: #dc3545">
+                            55.3%
+                        </span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Compression:</span>
+                        <span class="value">37.9%</span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Tokens:</span>
+                        <span class="value">668</span>
+                    </div>
+                </div>
+                <div class="missing-concepts">
+                    <strong>Missing Concepts (30):</strong>
+                    <ul>
+                        <li>Q4 2024 product roadmap details</li><li>Authentication service migration 65% completion rate</li><li>12,000 enterprise users and 450,000 consumer accounts migration</li><li>Session management layer issues with Redis cluster configuration</li><li>Rollback vs hotfix decision for authentication service migration</li>
+                        <li><em>...and 25 more</em></li>
+                    </ul>
+                </div>
+                <div class="decoded-preview">
+                    <strong>Decoded Message:</strong>
+                    <p>I am pleased to provide a comprehensive update on our Q4 2024 product roadmap. As of Friday, November 20th, we have made significant progress, with our data warehouse migration to Snowflake being 67% ...</p>
+                </div>
+                <a href="visualizations/iteration_3.html" target="_blank" class="view-graph-btn">
+                    View Graph →
+                </a>
+            </div>
+            
+            <div class="iteration-card">
+                <h3>🔄 Iteration 4</h3>
+                <div class="metrics">
+                    <div class="metric">
+                        <span class="label">Entropy Target:</span>
+                        <span class="value">70%</span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Nodes:</span>
+                        <span class="value">76/114</span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Similarity:</span>
+                        <span class="value" style="color: #dc3545">
+                            58.6%
+                        </span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Compression:</span>
+                        <span class="value">49.9%</span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Tokens:</span>
+                        <span class="value">879</span>
+                    </div>
+                </div>
+                <div class="missing-concepts">
+                    <strong>Missing Concepts (31):</strong>
+                    <ul>
+                        <li>Q4 2024 product roadmap details</li><li>65% completion of authentication service migration</li><li>12,000 enterprise users and 450,000 consumer accounts migrated</li><li>Redis cluster configuration issue</li><li>Rollback cost of 3 weeks of development time and $75K in AWS migration costs</li>
+                        <li><em>...and 26 more</em></li>
+                    </ul>
+                </div>
+                <div class="decoded-preview">
+                    <strong>Decoded Message:</strong>
+                    <p>I am pleased to provide a comprehensive update on our Q4 2024 product roadmap. As of December 6th, we have made significant progress, with 31% of our objectives completed, and we are on track to meet ...</p>
+                </div>
+                <a href="visualizations/iteration_4.html" target="_blank" class="view-graph-btn">
+                    View Graph →
+                </a>
+            </div>
+            
+            <div class="iteration-card">
+                <h3>🔄 Iteration 5</h3>
+                <div class="metrics">
+                    <div class="metric">
+                        <span class="label">Entropy Target:</span>
+                        <span class="value">80%</span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Nodes:</span>
+                        <span class="value">81/114</span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Similarity:</span>
+                        <span class="value" style="color: #dc3545">
+                            61.2%
+                        </span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Compression:</span>
+                        <span class="value">64.7%</span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Tokens:</span>
+                        <span class="value">1141</span>
+                    </div>
+                </div>
+                <div class="missing-concepts">
+                    <strong>Missing Concepts (19):</strong>
+                    <ul>
+                        <li>Q1 2025 budget planning deadline of November 20th</li><li>Specific details about the authentication service migration rollback costs ($75K...</li><li>Name of the person sending the original message (Alex)</li><li>Specific details about the iOS app crash fix timeline and release strategy</li><li>Data engineering team's request for 2 additional contractors for 6 weeks</li>
+                        <li><em>...and 14 more</em></li>
+                    </ul>
+                </div>
+                <div class="decoded-preview">
+                    <strong>Decoded Message:</strong>
+                    <p>As we approach the end of the year, I would like to provide a Q4 2024 product roadmap update. Over the past two weeks, our team has made significant progress, with a customer satisfaction score of 4.2...</p>
+                </div>
+                <a href="visualizations/iteration_5.html" target="_blank" class="view-graph-btn">
+                    View Graph →
+                </a>
+            </div>
+            
+                </div>
+            </div>
+        </body>
+        </html>
+        

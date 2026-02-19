@@ -1,0 +1,5351 @@
+{
+  "success": false,
+  "final_similarity": 0.6115275621414185,
+  "final_compression": 0.6471922858763471,
+  "original_tokens": 1763,
+  "final_tokens": 1141,
+  "total_iterations": 5,
+  "iterations": [
+    {
+      "iteration": 1,
+      "entropy_target": 0.4,
+      "nodes_kept": 47,
+      "total_nodes": 114,
+      "compression_ratio": 0.3692569483834373,
+      "similarity_score": 0.42232608795166016,
+      "decoded_tokens": 651,
+      "missing_concepts": [
+        "Q4 2024 product roadmap details",
+        "Authentication service migration specifics",
+        "Session management layer issues",
+        "Redis cluster configuration problem",
+        "Sarah from DevOps",
+        "AWS support involvement",
+        "Rollback vs hotfix decision",
+        "Mobile app performance issues on iOS 17.2+",
+        "SDWebImage library version and memory leak",
+        "Data warehouse migration to Snowflake",
+        "Dual systems cost of $12,000 per month",
+        "Custom ETL pipelines migration complexity",
+        "Request for 2 additional contractors",
+        "Customer support ticket backlog of 2,847",
+        "Average response time increase to 18 hours",
+        "Customer satisfaction score drop to 3.1/5.0",
+        "Renewal rates impact",
+        "SOC 2 Type II audit findings",
+        "High-severity findings and remediation plan",
+        "Budget planning for Q1 2025",
+        "Infrastructure costs and AWS bill of $287,000",
+        "Marketing campaign budget of $450,000",
+        "Sales team capacity for lead handling",
+        "Action items for various teams",
+        "Specific deadlines such as November 20th, November 25th, November 27th, and December 6th",
+        "Engineering leads' recommendation on auth migration",
+        "Mobile team's iOS crash fix timeline",
+        "Data engineering's cost-benefit analysis",
+        "Support team's hiring plan",
+        "Security team's remediation plan",
+        "Alex's name and role"
+      ],
+      "decoded_message": "As we approach the end of the year, I would like to provide a Q4 2024 product roadmap update. Our current progress indicates that we are roughly 65% complete with our objectives, with approximately 3 weeks of development time remaining to meet our targets. Notably, we have made significant strides, with 67% of our key milestones already achieved, and we anticipate completing the remaining tasks within the next 3 months.\n\nIn terms of specific timelines, we are scheduled to complete our testing phase, which is expected to take around 4-5 days, by the week of November 27th. Additionally, we have a crucial meeting scheduled for Wednesday at 10 AM, which will be approximately 15-20 minutes long, to discuss our progress and outline the next steps.\n\nOur financial projections indicate that we have roughly $36,000 allocated for the current phase, while our overall budget for the next quarter is estimated to be around $2.3M, with a potential pipeline of $8-12M. However, we are also incurring some redundant infrastructure costs, which amount to $12,000 per month. Furthermore, we have invested $75K in AWS migration costs, which is expected to yield significant long-term benefits.\n\nIn other updates, we have successfully achieved SOC 2 Type II compliance, which is a major milestone for our organization. Our user base is also growing, with 12,000 enterprise users currently on board, and a satisfaction rating of 4.2/5.0. Interestingly, 8.3% of our users are already on iOS 17.2+, which is a positive indicator of our user base's adaptability to new technology.\n\nWe are also tracking our open tickets, which currently stand at 2,847, and we are working diligently to resolve these issues within the next 2 weeks. Our team has been working tirelessly, often putting in more than 48 hours of work per week, and we appreciate their dedication and commitment to our goals.\n\nLooking ahead, we have a major deadline on December 15th, and we are working to ensure that we meet this target. We also have a significant budget allocation of $65K for a specific project, and we are expecting to incur costs of approximately $4.5M in the near future.\n\nIn terms of our product roadmap, we are larger than 2 key milestones, and we are making steady progress towards our goals. We have a small window of only 23 days to complete some critical tasks, but we are confident that we can achieve this with our current resources. Our growth rate is impressive, with a 31% increase in some areas, and a 35% growth in others, which is a testament to our team's hard work and dedication.\n\nFinally, I would like to note that we have a meeting scheduled for November 20th at 2 PM, which will be a critical discussion of our progress and future plans. We also have a deadline of November 25th to complete some key tasks, and we are working to ensure that we meet this target. Overall, I am pleased with our progress, and I am confident that we will achieve our goals in the next quarter.",
+      "total_entropy": 921.9780393543756,
+      "retained_entropy": 368.54433213653965,
+      "entropy_retention": 0.39973222398509245,
+      "total_importance": 86.91158333333341,
+      "retained_importance": 42.01749999999999,
+      "importance_retention": 0.4834510934963593,
+      "nodes_by_type": {
+        "entity": 27,
+        "intent": 11,
+        "attribute": 9
+      },
+      "avg_node_importance": 0.8939893617021275,
+      "compression_stats": {
+        "original_nodes": 114,
+        "compressed_nodes": 47,
+        "nodes_removed": 67,
+        "node_retention": 0.41228070175438597,
+        "original_entropy": 921.9780393543756,
+        "compressed_entropy": 368.54433213653965,
+        "entropy_retention": 0.39973222398509245,
+        "original_importance": 86.91158333333341,
+        "compressed_importance": 42.01749999999999,
+        "importance_retention": 0.4834510934963593
+      },
+      "graph_data": {
+        "nodes": [
+          {
+            "id": "d1bb3de4-4e30-4063-9327-6182786a8711",
+            "content": "larger than 2",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 5.263214541979275,
+            "metadata": {
+              "spacy_label": "CARDINAL"
+            }
+          },
+          {
+            "id": "b8238d1e-67cb-439b-9410-82700b1d917e",
+            "content": "31%",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 0.5943609377704335,
+            "metadata": {
+              "spacy_label": "PERCENT"
+            }
+          },
+          {
+            "id": "b3aefbc1-a571-40a2-804c-2c904ab0cabe",
+            "content": "67%",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 0.5943609377704335,
+            "metadata": {
+              "spacy_label": "PERCENT"
+            }
+          },
+          {
+            "id": "cddd90fb-7f6f-4b5d-87e1-8590c59cf32d",
+            "content": "November 20th",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 5.763214541979275,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "de155959-8a88-4703-950d-f46f8948677a",
+            "content": "roughly $36,000",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 6.731058928995538,
+            "metadata": {
+              "spacy_label": "MONEY"
+            }
+          },
+          {
+            "id": "605c4635-6aa0-4c07-85c3-0b155699cc89",
+            "content": "15-20 minutes",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 6.013214541979275,
+            "metadata": {
+              "spacy_label": "TIME"
+            }
+          },
+          {
+            "id": "1",
+            "content": "Q4 2024 product roadmap update",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 14.117756920220645,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "36",
+            "content": "remediation plan",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 7.0,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "16",
+            "content": "4-5 days of testing",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 8.99446690665808,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "25",
+            "content": "2,847 open tickets",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 8.632331253245201,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "0465e67d-a5e5-4c6e-97df-60af12d10881",
+            "content": "the week of November 27th",
+            "type": "entity",
+            "importance": 0.81,
+            "entropy": 11.310845533741409,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "9531c3bc-1513-4a7d-b78d-8b6e15845c38",
+            "content": "approximately 3 weeks",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 10.18547229702381,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "4834e2c8-ab19-49b2-ad1a-bb2c4a113fa8",
+            "content": "700",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 0.3443609377704336,
+            "metadata": {
+              "spacy_label": "CARDINAL"
+            }
+          },
+          {
+            "id": "923f157d-8fae-4aa2-b92f-445eff3f9707",
+            "content": "SOC 2 Type II",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 5.1688536042088415,
+            "metadata": {
+              "spacy_label": "ORG"
+            }
+          },
+          {
+            "id": "774b1a15-73b8-4342-8103-b26309acadaa",
+            "content": "2-week",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 1.6887218755408673,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "10",
+            "content": "$75K in AWS migration costs",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 12.859023444260842,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "2ed34a1d-2208-426d-b60f-8bbcdde4a248",
+            "content": "Wednesday 10 AM",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 6.325419866765972,
+            "metadata": {
+              "spacy_label": "TIME"
+            }
+          },
+          {
+            "id": "8264c5ca-c384-4ada-80af-00f7e67e7abb",
+            "content": "$65K",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 1.0,
+            "metadata": {
+              "spacy_label": "MONEY"
+            }
+          },
+          {
+            "id": "ffff2b71-b3f4-41ca-af0b-998c2ffd30a2",
+            "content": "December 15th",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 5.4188536042088415,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "5b1b1e71-b169-4dc3-88f5-7c4fbff13739",
+            "content": "4.2/5.0",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 2.206435556800404,
+            "metadata": {
+              "spacy_label": "CARDINAL"
+            }
+          },
+          {
+            "id": "29",
+            "content": "request to hire 5 additional support engineers",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 22.09995468293479,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "22",
+            "content": "request for 2 additional contractors",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 17.17030156871997,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "12",
+            "content": "8.3% of users on iOS 17.2+",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 12.386502149113078,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "004b3b36-b33f-4cbe-a429-8e62895a53fb",
+            "content": "12%",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 0.5943609377704335,
+            "metadata": {
+              "spacy_label": "PERCENT"
+            }
+          },
+          {
+            "id": "5924a414-1073-4a5f-a247-807f6b27f476",
+            "content": "2 weeks",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 2.2064355568004035,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "53",
+            "content": "$8-12M in pipeline",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 7.787970315474769,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "b4ee8be8-4897-43fb-b3e2-8c1e57539a26",
+            "content": "November 25th\n8",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 7.075419866765971,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "9",
+            "content": "3 weeks of development time",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 12.359023444260844,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "54",
+            "content": "hiring 2-3 additional sales engineers",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 17.453794881188426,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "60bb5d23-1226-431f-9dc6-2f2b6ee145a1",
+            "content": "35%",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 0.5943609377704335,
+            "metadata": {
+              "spacy_label": "PERCENT"
+            }
+          },
+          {
+            "id": "84ffa146-4b9a-45cd-a328-19cf76864f30",
+            "content": "more than 48 hours",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 8.03797031547477,
+            "metadata": {
+              "spacy_label": "TIME"
+            }
+          },
+          {
+            "id": "cf8ade06-f1ec-4425-9bb4-9d3ec5744747",
+            "content": "the next 3 months",
+            "type": "entity",
+            "importance": 0.7875,
+            "entropy": 6.747136662116105,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "e4226803-4ddb-44ae-92a2-766c23355f8d",
+            "content": "only 23",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 2.4564355568004035,
+            "metadata": {
+              "spacy_label": "CARDINAL"
+            }
+          },
+          {
+            "id": "44",
+            "content": "cost monitoring and optimization strategies",
+            "type": "intent",
+            "importance": 0.9,
+            "entropy": 19.648802370596574,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "940b5e6e-ce10-45e2-a840-3d808cb49201",
+            "content": "1%",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 0.25,
+            "metadata": {
+              "spacy_label": "PERCENT"
+            }
+          },
+          {
+            "id": "6c7bcde5-e6be-4cf2-96b4-7f9817f5d773",
+            "content": "2 PM",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 1.0,
+            "metadata": {
+              "spacy_label": "TIME"
+            }
+          },
+          {
+            "id": "a2c2839c-0b61-4c76-bd84-134902834dcc",
+            "content": "approximately $2.3M",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 9.338827844428511,
+            "metadata": {
+              "spacy_label": "MONEY"
+            }
+          },
+          {
+            "id": "b4fec7fd-c280-4855-ac7c-a763dc57eab3",
+            "content": "$4.5M",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 1.4512050593046013,
+            "metadata": {
+              "spacy_label": "MONEY"
+            }
+          },
+          {
+            "id": "19",
+            "content": "$12,000 per month in redundant infrastructure",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 23.004975675629318,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "38",
+            "content": "Q1 2025 budget planning",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 11.316518748123046,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "50",
+            "content": "marketing campaign in Q1",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 10.877443751081735,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "4",
+            "content": "12,000 enterprise users",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 9.972157810352613,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "69db1c98-0827-425c-843d-e8cf60771ab3",
+            "content": "4 hours",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 2.4564355568004035,
+            "metadata": {
+              "spacy_label": "TIME"
+            }
+          },
+          {
+            "id": "17",
+            "content": "emergency patch release",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 10.066518748123046,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "8",
+            "content": "rollback vs hotfix decision",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 13.514662506490408,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "3",
+            "content": "65% complete",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 5.127443751081734,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "15",
+            "content": "upgrade to SDWebImage 5.18",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 13.33770720841768,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "source": "8",
+            "target": "9",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "8",
+            "target": "10",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "15",
+            "target": "16",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "38",
+            "target": "44",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "50",
+            "target": "53",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "50",
+            "target": "54",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "605c4635-6aa0-4c07-85c3-0b155699cc89",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "60bb5d23-1226-431f-9dc6-2f2b6ee145a1",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "9531c3bc-1513-4a7d-b78d-8b6e15845c38",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "b3aefbc1-a571-40a2-804c-2c904ab0cabe",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "d1bb3de4-4e30-4063-9327-6182786a8711",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "ffff2b71-b3f4-41ca-af0b-998c2ffd30a2",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "e4226803-4ddb-44ae-92a2-766c23355f8d",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "de155959-8a88-4703-950d-f46f8948677a",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "cf8ade06-f1ec-4425-9bb4-9d3ec5744747",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "4834e2c8-ab19-49b2-ad1a-bb2c4a113fa8",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "69db1c98-0827-425c-843d-e8cf60771ab3",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "5b1b1e71-b169-4dc3-88f5-7c4fbff13739",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "004b3b36-b33f-4cbe-a429-8e62895a53fb",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "84ffa146-4b9a-45cd-a328-19cf76864f30",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "8264c5ca-c384-4ada-80af-00f7e67e7abb",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "940b5e6e-ce10-45e2-a840-3d808cb49201",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "a2c2839c-0b61-4c76-bd84-134902834dcc",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "923f157d-8fae-4aa2-b92f-445eff3f9707",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "b4fec7fd-c280-4855-ac7c-a763dc57eab3",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "5924a414-1073-4a5f-a247-807f6b27f476",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "cddd90fb-7f6f-4b5d-87e1-8590c59cf32d",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "0465e67d-a5e5-4c6e-97df-60af12d10881",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "b8238d1e-67cb-439b-9410-82700b1d917e",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "2ed34a1d-2208-426d-b60f-8bbcdde4a248",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "774b1a15-73b8-4342-8103-b26309acadaa",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "b4ee8be8-4897-43fb-b3e2-8c1e57539a26",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "6c7bcde5-e6be-4cf2-96b4-7f9817f5d773",
+            "relation": "has_entity",
+            "weight": 1.0
+          }
+        ]
+      }
+    },
+    {
+      "iteration": 2,
+      "entropy_target": 0.5,
+      "nodes_kept": 62,
+      "total_nodes": 114,
+      "compression_ratio": 0.4378899602949518,
+      "similarity_score": 0.47982433438301086,
+      "decoded_tokens": 772,
+      "missing_concepts": [
+        "Q1 2025 budget planning details",
+        "Specific numbers for the marketing campaign budget ($450,000) and potential pipeline ($8-12M)",
+        "Names of specific team members like Sarah from DevOps and the security team",
+        "Action items for each team (e.g., engineering leads, mobile team, data engineering, support team, security team)",
+        "Critical deadlines like November 20th for budget proposals and December 6th for final budget approval",
+        "Detailed information about the SOC 2 Type II audit findings (8 medium-severity and 2 high-severity findings)",
+        "Customer churn rate increase (12%) and its impact on annual recurring revenue ($2.3M per 1% increase)",
+        "Specific metrics for the analytics dashboard (12,400 daily active users, 156% of initial target, 4.7/5.0 average rating)",
+        "AWS cost optimization review and findings",
+        "Leadership sync meeting on Friday at 2 PM",
+        "Rollback vs hotfix decision for authentication service migration and associated costs ($75K, 3 weeks of development time)",
+        "Emergency patch release for iOS app performance issues and associated testing time (4-5 days)"
+      ],
+      "decoded_message": "I am pleased to provide an update on our Q4 2024 product roadmap. As of Friday, November 20th, we have made significant progress on several key initiatives. Our data warehouse migration to Snowflake is approximately 65% complete, with an anticipated completion date of December 6th. This project is expected to take roughly 3 weeks to finish, with a total cost of around $36,000. Additionally, our authentication service migration is ongoing, with an expected completion time of 2 weeks, and we anticipate that this will be finished by the week of November 27th.\n\nIn terms of our DevOps efforts, we have been working to address mobile app performance issues, which have been a concern for some of our users. I am pleased to report that our team has made significant strides in this area, with a current rating of 4.2/5.0. However, we still have work to do, and we anticipate that it will take around 2 weeks to fully resolve these issues, with a projected completion date of December 15th.\n\nWe have also been focused on reducing our customer support ticket backlog, which currently stands at 2,847 open tickets. Our team has been working diligently to address these issues, and we anticipate that it will take around 4-5 days of testing to ensure that all tickets are properly resolved. In terms of costs, we anticipate that our AWS migration will cost around $75K, and we are also looking to eliminate around $12,000 per month in redundant infrastructure costs.\n\nIn other news, our session management layer issues have been a challenge, but we are making good progress in addressing these problems. We have also been working to improve our SOC 2 Type II compliance, and I am pleased to report that we are currently 31% complete with this initiative, with an anticipated completion date of around 2 weeks. Our WebP initiative is also ongoing, with around 35% of users currently on board, and we anticipate that this will be completed within the next 3 months.\n\nOur team has been working hard to address these challenges, and I would like to extend my appreciation to Sarah and Alex for their efforts in driving these initiatives forward. In terms of costs, we anticipate that our total spend for these initiatives will be around $2.3M, with a potential upside of around $4.5M if we are able to successfully execute on our plans.\n\nIn terms of upcoming milestones, we have a meeting scheduled for Wednesday at 10 AM to discuss our Q4 plans, and we also have a meeting scheduled for Monday at 2 PM to review our progress. We will also be conducting a TTL review on Friday, and we anticipate that this will take around 15-20 minutes to complete.\n\nFinally, I would like to note that we have around 12,000 enterprise users, with around 8.3% of users currently on iOS 17.2+. We also have around 1% of users who are experiencing issues with our authentication service, and we are working to address these problems as quickly as possible. Our customer support team has been working hard to address these issues, and we anticipate that it will take around more than 48 hours to fully resolve these problems. We will also be conducting around 3 weeks of development time to address these issues, and we anticipate that this will be completed by the end of the year.\n\nOverall, I am pleased with the progress that we have made so far, and I am confident that we will be able to deliver on our Q4 plans. If you have any questions or concerns, please do not hesitate to reach out to me or my team. We are always here to help, and we look forward to continuing to drive progress on these initiatives in the weeks and months ahead.",
+      "total_entropy": 921.9780393543756,
+      "retained_entropy": 460.9532291528256,
+      "entropy_retention": 0.4999611807192422,
+      "total_importance": 89.08595833333341,
+      "retained_importance": 55.273124999999986,
+      "importance_retention": 0.6204471056278503,
+      "nodes_by_type": {
+        "entity": 42,
+        "attribute": 9,
+        "intent": 11
+      },
+      "avg_node_importance": 0.891502016129032,
+      "compression_stats": {
+        "original_nodes": 114,
+        "compressed_nodes": 62,
+        "nodes_removed": 52,
+        "node_retention": 0.543859649122807,
+        "original_entropy": 921.9780393543756,
+        "compressed_entropy": 460.9532291528256,
+        "entropy_retention": 0.4999611807192422,
+        "original_importance": 89.08595833333341,
+        "compressed_importance": 55.273124999999986,
+        "importance_retention": 0.6204471056278503
+      },
+      "graph_data": {
+        "nodes": [
+          {
+            "id": "d1bb3de4-4e30-4063-9327-6182786a8711",
+            "content": "larger than 2",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 5.263214541979275,
+            "metadata": {
+              "spacy_label": "CARDINAL"
+            }
+          },
+          {
+            "id": "81e594f2-dad8-4019-91b7-023737784933",
+            "content": "EOD",
+            "type": "entity",
+            "importance": 0.75,
+            "entropy": 0.5943609377704335,
+            "metadata": {
+              "spacy_label": "ORG"
+            }
+          },
+          {
+            "id": "d6dedab9-a947-4828-8ba6-1e3dd47e9281",
+            "content": "December 6th",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 4.7830828133113,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "26",
+            "content": "340% higher than target",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 10.222157810352613,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "b8238d1e-67cb-439b-9410-82700b1d917e",
+            "content": "31%",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 0.5943609377704335,
+            "metadata": {
+              "spacy_label": "PERCENT"
+            }
+          },
+          {
+            "id": "18",
+            "content": "data warehouse migration to Snowflake",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 18.20379488118843,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "b3aefbc1-a571-40a2-804c-2c904ab0cabe",
+            "content": "67%",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 0.5943609377704335,
+            "metadata": {
+              "spacy_label": "PERCENT"
+            }
+          },
+          {
+            "id": "043aa019-6da1-44c7-a2cd-c59e66eb7994",
+            "content": "Friday",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 1.938721875540867,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "cddd90fb-7f6f-4b5d-87e1-8590c59cf32d",
+            "content": "November 20th",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 5.763214541979275,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "c7c097c6-e191-4157-b17a-531b77f47d90",
+            "content": "DevOps",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 1.938721875540867,
+            "metadata": {
+              "spacy_label": "ORG"
+            }
+          },
+          {
+            "id": "605c4635-6aa0-4c07-85c3-0b155699cc89",
+            "content": "15-20 minutes",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 6.013214541979275,
+            "metadata": {
+              "spacy_label": "TIME"
+            }
+          },
+          {
+            "id": "2",
+            "content": "authentication service migration",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 14.765712127384097,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "1",
+            "content": "Q4 2024 product roadmap update",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 14.117756920220645,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "36",
+            "content": "remediation plan",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 7.0,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "505d8c75-6ab3-489c-b3b4-eddc93bd1861",
+            "content": "Sarah",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 1.2012050593046015,
+            "metadata": {
+              "spacy_label": "PERSON"
+            }
+          },
+          {
+            "id": "de155959-8a88-4703-950d-f46f8948677a",
+            "content": "roughly $36,000",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 6.731058928995538,
+            "metadata": {
+              "spacy_label": "MONEY"
+            }
+          },
+          {
+            "id": "16",
+            "content": "4-5 days of testing",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 8.99446690665808,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "0465e67d-a5e5-4c6e-97df-60af12d10881",
+            "content": "the week of November 27th",
+            "type": "entity",
+            "importance": 0.81,
+            "entropy": 11.310845533741409,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "25",
+            "content": "2,847 open tickets",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 8.632331253245201,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "9531c3bc-1513-4a7d-b78d-8b6e15845c38",
+            "content": "approximately 3 weeks",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 10.18547229702381,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "4834e2c8-ab19-49b2-ad1a-bb2c4a113fa8",
+            "content": "700",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 0.3443609377704336,
+            "metadata": {
+              "spacy_label": "CARDINAL"
+            }
+          },
+          {
+            "id": "923f157d-8fae-4aa2-b92f-445eff3f9707",
+            "content": "SOC 2 Type II",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 5.1688536042088415,
+            "metadata": {
+              "spacy_label": "ORG"
+            }
+          },
+          {
+            "id": "774b1a15-73b8-4342-8103-b26309acadaa",
+            "content": "2-week",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 1.6887218755408673,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "39288a5b-7b3e-4925-8b0b-d5bb2ad49020",
+            "content": "WebP",
+            "type": "entity",
+            "importance": 0.75,
+            "entropy": 1.0,
+            "metadata": {
+              "spacy_label": "CARDINAL"
+            }
+          },
+          {
+            "id": "10",
+            "content": "$75K in AWS migration costs",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 12.859023444260842,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "2ed34a1d-2208-426d-b60f-8bbcdde4a248",
+            "content": "Wednesday 10 AM",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 6.325419866765972,
+            "metadata": {
+              "spacy_label": "TIME"
+            }
+          },
+          {
+            "id": "8264c5ca-c384-4ada-80af-00f7e67e7abb",
+            "content": "$65K",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 1.0,
+            "metadata": {
+              "spacy_label": "MONEY"
+            }
+          },
+          {
+            "id": "39f975d2-5318-442e-a7f6-e974e68dac1e",
+            "content": "Monday",
+            "type": "entity",
+            "importance": 0.75,
+            "entropy": 1.938721875540867,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "11",
+            "content": "mobile app performance issues",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 13.577098294026149,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "ffff2b71-b3f4-41ca-af0b-998c2ffd30a2",
+            "content": "December 15th",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 5.4188536042088415,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "5b1b1e71-b169-4dc3-88f5-7c4fbff13739",
+            "content": "4.2/5.0",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 2.206435556800404,
+            "metadata": {
+              "spacy_label": "CARDINAL"
+            }
+          },
+          {
+            "id": "29",
+            "content": "request to hire 5 additional support engineers",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 22.09995468293479,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "22",
+            "content": "request for 2 additional contractors",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 17.17030156871997,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "12",
+            "content": "8.3% of users on iOS 17.2+",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 12.386502149113078,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "004b3b36-b33f-4cbe-a429-8e62895a53fb",
+            "content": "12%",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 0.5943609377704335,
+            "metadata": {
+              "spacy_label": "PERCENT"
+            }
+          },
+          {
+            "id": "5924a414-1073-4a5f-a247-807f6b27f476",
+            "content": "2 weeks",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 2.2064355568004035,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "b4ee8be8-4897-43fb-b3e2-8c1e57539a26",
+            "content": "November 25th\n8",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 7.075419866765971,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "9",
+            "content": "3 weeks of development time",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 12.359023444260844,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "54",
+            "content": "hiring 2-3 additional sales engineers",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 17.453794881188426,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "60bb5d23-1226-431f-9dc6-2f2b6ee145a1",
+            "content": "35%",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 0.5943609377704335,
+            "metadata": {
+              "spacy_label": "PERCENT"
+            }
+          },
+          {
+            "id": "84ffa146-4b9a-45cd-a328-19cf76864f30",
+            "content": "more than 48 hours",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 8.03797031547477,
+            "metadata": {
+              "spacy_label": "TIME"
+            }
+          },
+          {
+            "id": "cf8ade06-f1ec-4425-9bb4-9d3ec5744747",
+            "content": "the next 3 months",
+            "type": "entity",
+            "importance": 0.7875,
+            "entropy": 6.747136662116105,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "e4226803-4ddb-44ae-92a2-766c23355f8d",
+            "content": "only 23",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 2.4564355568004035,
+            "metadata": {
+              "spacy_label": "CARDINAL"
+            }
+          },
+          {
+            "id": "44",
+            "content": "cost monitoring and optimization strategies",
+            "type": "intent",
+            "importance": 0.9,
+            "entropy": 19.648802370596574,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "e0d9f71b-31e5-47cd-9d52-67ea5d2e5c26",
+            "content": "Alex",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 1.0,
+            "metadata": {
+              "spacy_label": "PERSON"
+            }
+          },
+          {
+            "id": "940b5e6e-ce10-45e2-a840-3d808cb49201",
+            "content": "1%",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 0.25,
+            "metadata": {
+              "spacy_label": "PERCENT"
+            }
+          },
+          {
+            "id": "6c7bcde5-e6be-4cf2-96b4-7f9817f5d773",
+            "content": "2 PM",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 1.0,
+            "metadata": {
+              "spacy_label": "TIME"
+            }
+          },
+          {
+            "id": "20fbf7bb-b1dc-401b-8eff-84069a89805b",
+            "content": "TTL",
+            "type": "entity",
+            "importance": 0.75,
+            "entropy": 0.3443609377704336,
+            "metadata": {
+              "spacy_label": "ORG"
+            }
+          },
+          {
+            "id": "a2c2839c-0b61-4c76-bd84-134902834dcc",
+            "content": "approximately $2.3M",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 9.338827844428511,
+            "metadata": {
+              "spacy_label": "MONEY"
+            }
+          },
+          {
+            "id": "b4fec7fd-c280-4855-ac7c-a763dc57eab3",
+            "content": "$4.5M",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 1.4512050593046013,
+            "metadata": {
+              "spacy_label": "MONEY"
+            }
+          },
+          {
+            "id": "6",
+            "content": "session management layer issues",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 13.52450095459237,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "24",
+            "content": "customer support ticket backlog",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 14.914427889437839,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "19",
+            "content": "$12,000 per month in redundant infrastructure",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 23.004975675629318,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "38",
+            "content": "Q1 2025 budget planning",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 11.316518748123046,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "50",
+            "content": "marketing campaign in Q1",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 10.877443751081735,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "aa9ea485-9170-4f0b-97b7-2278c60f10e2",
+            "content": "QA",
+            "type": "entity",
+            "importance": 0.75,
+            "entropy": 0.25,
+            "metadata": {
+              "spacy_label": "ORG"
+            }
+          },
+          {
+            "id": "4",
+            "content": "12,000 enterprise users",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 9.972157810352613,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "69db1c98-0827-425c-843d-e8cf60771ab3",
+            "content": "4 hours",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 2.4564355568004035,
+            "metadata": {
+              "spacy_label": "TIME"
+            }
+          },
+          {
+            "id": "17",
+            "content": "emergency patch release",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 10.066518748123046,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "8",
+            "content": "rollback vs hotfix decision",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 13.514662506490408,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "3",
+            "content": "65% complete",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 5.127443751081734,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "15",
+            "content": "upgrade to SDWebImage 5.18",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 13.33770720841768,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "source": "1",
+            "target": "2",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "2",
+            "target": "3",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "2",
+            "target": "4",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "2",
+            "target": "6",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "2",
+            "target": "8",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "8",
+            "target": "9",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "8",
+            "target": "10",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "11",
+            "target": "12",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "11",
+            "target": "15",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "15",
+            "target": "16",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "11",
+            "target": "17",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "18",
+            "target": "19",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "18",
+            "target": "22",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "24",
+            "target": "25",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "24",
+            "target": "26",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "24",
+            "target": "29",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "38",
+            "target": "44",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "50",
+            "target": "54",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "605c4635-6aa0-4c07-85c3-0b155699cc89",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "20fbf7bb-b1dc-401b-8eff-84069a89805b",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "505d8c75-6ab3-489c-b3b4-eddc93bd1861",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "c7c097c6-e191-4157-b17a-531b77f47d90",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "043aa019-6da1-44c7-a2cd-c59e66eb7994",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "60bb5d23-1226-431f-9dc6-2f2b6ee145a1",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "9531c3bc-1513-4a7d-b78d-8b6e15845c38",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "39f975d2-5318-442e-a7f6-e974e68dac1e",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "b3aefbc1-a571-40a2-804c-2c904ab0cabe",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "39288a5b-7b3e-4925-8b0b-d5bb2ad49020",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "d1bb3de4-4e30-4063-9327-6182786a8711",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "aa9ea485-9170-4f0b-97b7-2278c60f10e2",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "ffff2b71-b3f4-41ca-af0b-998c2ffd30a2",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "e4226803-4ddb-44ae-92a2-766c23355f8d",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "de155959-8a88-4703-950d-f46f8948677a",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "cf8ade06-f1ec-4425-9bb4-9d3ec5744747",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "4834e2c8-ab19-49b2-ad1a-bb2c4a113fa8",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "69db1c98-0827-425c-843d-e8cf60771ab3",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "5b1b1e71-b169-4dc3-88f5-7c4fbff13739",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "004b3b36-b33f-4cbe-a429-8e62895a53fb",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "84ffa146-4b9a-45cd-a328-19cf76864f30",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "8264c5ca-c384-4ada-80af-00f7e67e7abb",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "940b5e6e-ce10-45e2-a840-3d808cb49201",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "a2c2839c-0b61-4c76-bd84-134902834dcc",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "923f157d-8fae-4aa2-b92f-445eff3f9707",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "b4fec7fd-c280-4855-ac7c-a763dc57eab3",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "5924a414-1073-4a5f-a247-807f6b27f476",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "cddd90fb-7f6f-4b5d-87e1-8590c59cf32d",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "0465e67d-a5e5-4c6e-97df-60af12d10881",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "d6dedab9-a947-4828-8ba6-1e3dd47e9281",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "b8238d1e-67cb-439b-9410-82700b1d917e",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "81e594f2-dad8-4019-91b7-023737784933",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "2ed34a1d-2208-426d-b60f-8bbcdde4a248",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "774b1a15-73b8-4342-8103-b26309acadaa",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "b4ee8be8-4897-43fb-b3e2-8c1e57539a26",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "6c7bcde5-e6be-4cf2-96b4-7f9817f5d773",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "e0d9f71b-31e5-47cd-9d52-67ea5d2e5c26",
+            "relation": "has_entity",
+            "weight": 1.0
+          }
+        ]
+      }
+    },
+    {
+      "iteration": 3,
+      "entropy_target": 0.6,
+      "nodes_kept": 68,
+      "total_nodes": 114,
+      "compression_ratio": 0.37889960294951786,
+      "similarity_score": 0.5529723167419434,
+      "decoded_tokens": 668,
+      "missing_concepts": [
+        "Q4 2024 product roadmap details",
+        "Authentication service migration 65% completion rate",
+        "12,000 enterprise users and 450,000 consumer accounts migration",
+        "Session management layer issues with Redis cluster configuration",
+        "Rollback vs hotfix decision for authentication service migration",
+        "Friday deadline for rollback or hotfix decision",
+        "3 weeks of development time and $75K in AWS migration costs for rollback",
+        "Mobile app performance issues with 8.3% crash rate on iOS 17.2+ devices",
+        "SDWebImage library version 5.12 and its memory management bug",
+        "Upgrade to SDWebImage 5.18 as a fix",
+        "4-5 days of testing required for image pipeline update",
+        "Emergency patch release as an option for mobile app fix",
+        "Data warehouse migration to Snowflake with 47 custom ETL pipelines",
+        "December 15th completion date for data warehouse migration",
+        "Request for 2 additional contractors for data engineering team",
+        "Customer support ticket backlog of 2,847 open tickets",
+        "340% higher than target ticket backlog",
+        "Average response time increase from 4 hours to 18 hours",
+        "Customer satisfaction scores drop from 4.2/5.0 to 3.1/5.0",
+        "Request to hire 5 additional support engineers",
+        "SOC 2 Type II audit findings with 8 medium-severity and 2 high-severity issues",
+        "Security team remediation plan and 2-week deadline for high-severity issues",
+        "Q1 2025 budget planning and submission deadline of November 20th",
+        "AWS cost optimization review and submission deadline of November 25th",
+        "Sales leadership assessment of capacity for Q1 marketing campaign",
+        "Marketing campaign budget of $450,000 and potential $8-12M in pipeline",
+        "Action items for engineering leads, mobile team, data engineering, support team, security team, and sales leadership",
+        "Leadership sync meeting on Friday at 2 PM",
+        "Specific names like Sarah and Alex",
+        "Detailed justifications for headcount increases, new tools or services, and capital expenditures over $10,000"
+      ],
+      "decoded_message": "I am pleased to provide a comprehensive update on our Q4 2024 product roadmap. As of Friday, November 20th, we have made significant progress, with our data warehouse migration to Snowflake being 67% complete, and the authentication service migration is also underway. Our team, led by Sarah, has been working diligently to ensure a seamless transition, with an estimated completion time of approximately 3 weeks, which is expected to be finished by the week of November 27th.\n\nIn terms of costs, we anticipate spending roughly $36,000 on the data warehouse migration, while the authentication service migration is expected to cost around $65K. Additionally, we have allocated approximately $2.3M for annual expenses and $4.5M for infrastructure development. It's worth noting that we have identified $12,000 per month in redundant infrastructure costs, which we plan to eliminate.\n\nOur customer support team has been working to address the existing ticket backlog, which currently stands at 2,847 open tickets. Despite the challenges, our customer satisfaction scores have dropped to 3.1/5.0, and we are committed to improving this metric. We have also experienced mobile app performance issues, which we are actively working to resolve. Our QA team has identified 8 medium-severity findings and 2 high-severity findings, which we are prioritizing.\n\nIn terms of user engagement, we have 12,400 daily active users, with 8.3% of users on iOS 17.2+. Our average response time has increased to 18 hours, which is higher than our target. We have also seen a significant increase in user complaints, with a 35% rise in issues reported. However, our team has been working efficiently, resolving issues in an average of 15-20 minutes, which is a 340% improvement over our initial target.\n\nWe have also made significant progress in our DevOps initiatives, with a 156% increase in efficiency compared to our initial target. Our session management layer issues have been largely resolved, and we are on track to complete the necessary testing within the next 4-5 days. Our TTL (time to live) has been optimized, resulting in improved performance.\n\nIn terms of security, we are on track to achieve SOC 2 Type II compliance, with an expected completion date of December 6th. We have also identified a need for improved security measures, particularly in light of the recent issues with our authentication service.\n\nLooking ahead to the next 3 months, we anticipate a busy quarter, with multiple projects and initiatives underway. We will be conducting a 2-week review of our progress on Wednesday, December 15th, at 10 AM, and we will provide a comprehensive update on our roadmap at that time. In the meantime, we will continue to work diligently to address the existing issues and ensure a smooth transition to our new infrastructure.\n\nI would like to extend my gratitude to our team, including Alex, for their hard work and dedication to our Q4 2024 product roadmap. If you have any questions or concerns, please do not hesitate to reach out to us. We appreciate your continued support and look forward to a successful quarter. Our next update is scheduled for Monday, December 15th, at 2 PM.",
+      "total_entropy": 921.9780393543756,
+      "retained_entropy": 553.0557557309575,
+      "entropy_retention": 0.5998578405601074,
+      "total_importance": 91.06945833333339,
+      "retained_importance": 61.780624999999986,
+      "importance_retention": 0.6783901664800717,
+      "nodes_by_type": {
+        "entity": 42,
+        "attribute": 15,
+        "intent": 11
+      },
+      "avg_node_importance": 0.9085386029411763,
+      "compression_stats": {
+        "original_nodes": 114,
+        "compressed_nodes": 68,
+        "nodes_removed": 46,
+        "node_retention": 0.5964912280701754,
+        "original_entropy": 921.9780393543756,
+        "compressed_entropy": 553.0557557309575,
+        "entropy_retention": 0.5998578405601074,
+        "original_importance": 91.06945833333339,
+        "compressed_importance": 61.780624999999986,
+        "importance_retention": 0.6783901664800717
+      },
+      "graph_data": {
+        "nodes": [
+          {
+            "id": "d1bb3de4-4e30-4063-9327-6182786a8711",
+            "content": "larger than 2",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 5.263214541979275,
+            "metadata": {
+              "spacy_label": "CARDINAL"
+            }
+          },
+          {
+            "id": "81e594f2-dad8-4019-91b7-023737784933",
+            "content": "EOD",
+            "type": "entity",
+            "importance": 0.75,
+            "entropy": 0.5943609377704335,
+            "metadata": {
+              "spacy_label": "ORG"
+            }
+          },
+          {
+            "id": "d6dedab9-a947-4828-8ba6-1e3dd47e9281",
+            "content": "December 6th",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 4.7830828133113,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "26",
+            "content": "340% higher than target",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 10.222157810352613,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "17",
+            "content": "emergency patch release",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 10.066518748123046,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "b8238d1e-67cb-439b-9410-82700b1d917e",
+            "content": "31%",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 0.5943609377704335,
+            "metadata": {
+              "spacy_label": "PERCENT"
+            }
+          },
+          {
+            "id": "18",
+            "content": "data warehouse migration to Snowflake",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 18.20379488118843,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "b3aefbc1-a571-40a2-804c-2c904ab0cabe",
+            "content": "67%",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 0.5943609377704335,
+            "metadata": {
+              "spacy_label": "PERCENT"
+            }
+          },
+          {
+            "id": "043aa019-6da1-44c7-a2cd-c59e66eb7994",
+            "content": "Friday",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 1.938721875540867,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "47",
+            "content": "156% of initial target",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 10.230354137941264,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "cddd90fb-7f6f-4b5d-87e1-8590c59cf32d",
+            "content": "November 20th",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 5.763214541979275,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "c7c097c6-e191-4157-b17a-531b77f47d90",
+            "content": "DevOps",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 1.938721875540867,
+            "metadata": {
+              "spacy_label": "ORG"
+            }
+          },
+          {
+            "id": "605c4635-6aa0-4c07-85c3-0b155699cc89",
+            "content": "15-20 minutes",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 6.013214541979275,
+            "metadata": {
+              "spacy_label": "TIME"
+            }
+          },
+          {
+            "id": "2",
+            "content": "authentication service migration",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 14.765712127384097,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "1",
+            "content": "Q4 2024 product roadmap update",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 14.117756920220645,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "36",
+            "content": "remediation plan",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 7.0,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "505d8c75-6ab3-489c-b3b4-eddc93bd1861",
+            "content": "Sarah",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 1.2012050593046015,
+            "metadata": {
+              "spacy_label": "PERSON"
+            }
+          },
+          {
+            "id": "de155959-8a88-4703-950d-f46f8948677a",
+            "content": "roughly $36,000",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 6.731058928995538,
+            "metadata": {
+              "spacy_label": "MONEY"
+            }
+          },
+          {
+            "id": "16",
+            "content": "4-5 days of testing",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 8.99446690665808,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "0465e67d-a5e5-4c6e-97df-60af12d10881",
+            "content": "the week of November 27th",
+            "type": "entity",
+            "importance": 0.81,
+            "entropy": 11.310845533741409,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "25",
+            "content": "2,847 open tickets",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 8.632331253245201,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "9531c3bc-1513-4a7d-b78d-8b6e15845c38",
+            "content": "approximately 3 weeks",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 10.18547229702381,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "4834e2c8-ab19-49b2-ad1a-bb2c4a113fa8",
+            "content": "700",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 0.3443609377704336,
+            "metadata": {
+              "spacy_label": "CARDINAL"
+            }
+          },
+          {
+            "id": "923f157d-8fae-4aa2-b92f-445eff3f9707",
+            "content": "SOC 2 Type II",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 5.1688536042088415,
+            "metadata": {
+              "spacy_label": "ORG"
+            }
+          },
+          {
+            "id": "774b1a15-73b8-4342-8103-b26309acadaa",
+            "content": "2-week",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 1.6887218755408673,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "10",
+            "content": "$75K in AWS migration costs",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 12.859023444260842,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "2ed34a1d-2208-426d-b60f-8bbcdde4a248",
+            "content": "Wednesday 10 AM",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 6.325419866765972,
+            "metadata": {
+              "spacy_label": "TIME"
+            }
+          },
+          {
+            "id": "8264c5ca-c384-4ada-80af-00f7e67e7abb",
+            "content": "$65K",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 1.0,
+            "metadata": {
+              "spacy_label": "MONEY"
+            }
+          },
+          {
+            "id": "46",
+            "content": "12,400 daily active users",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 12.667689655275577,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "28",
+            "content": "customer satisfaction scores dropped to 3.1/5.0",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 24.246511512381012,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "11",
+            "content": "mobile app performance issues",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 13.577098294026149,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "ffff2b71-b3f4-41ca-af0b-998c2ffd30a2",
+            "content": "December 15th",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 5.4188536042088415,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "5b1b1e71-b169-4dc3-88f5-7c4fbff13739",
+            "content": "4.2/5.0",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 2.206435556800404,
+            "metadata": {
+              "spacy_label": "CARDINAL"
+            }
+          },
+          {
+            "id": "39f975d2-5318-442e-a7f6-e974e68dac1e",
+            "content": "Monday",
+            "type": "entity",
+            "importance": 0.75,
+            "entropy": 1.938721875540867,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "29",
+            "content": "request to hire 5 additional support engineers",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 22.09995468293479,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "22",
+            "content": "request for 2 additional contractors",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 17.17030156871997,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "12",
+            "content": "8.3% of users on iOS 17.2+",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 12.386502149113078,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "004b3b36-b33f-4cbe-a429-8e62895a53fb",
+            "content": "12%",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 0.5943609377704335,
+            "metadata": {
+              "spacy_label": "PERCENT"
+            }
+          },
+          {
+            "id": "5924a414-1073-4a5f-a247-807f6b27f476",
+            "content": "2 weeks",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 2.2064355568004035,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "b4ee8be8-4897-43fb-b3e2-8c1e57539a26",
+            "content": "November 25th\n8",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 7.075419866765971,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "54",
+            "content": "hiring 2-3 additional sales engineers",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 17.453794881188426,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "60bb5d23-1226-431f-9dc6-2f2b6ee145a1",
+            "content": "35%",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 0.5943609377704335,
+            "metadata": {
+              "spacy_label": "PERCENT"
+            }
+          },
+          {
+            "id": "84ffa146-4b9a-45cd-a328-19cf76864f30",
+            "content": "more than 48 hours",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 8.03797031547477,
+            "metadata": {
+              "spacy_label": "TIME"
+            }
+          },
+          {
+            "id": "cf8ade06-f1ec-4425-9bb4-9d3ec5744747",
+            "content": "the next 3 months",
+            "type": "entity",
+            "importance": 0.7875,
+            "entropy": 6.747136662116105,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "e4226803-4ddb-44ae-92a2-766c23355f8d",
+            "content": "only 23",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 2.4564355568004035,
+            "metadata": {
+              "spacy_label": "CARDINAL"
+            }
+          },
+          {
+            "id": "44",
+            "content": "cost monitoring and optimization strategies",
+            "type": "intent",
+            "importance": 0.9,
+            "entropy": 19.648802370596574,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "32",
+            "content": "8 medium-severity findings",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 12.432068146188115,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "e0d9f71b-31e5-47cd-9d52-67ea5d2e5c26",
+            "content": "Alex",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 1.0,
+            "metadata": {
+              "spacy_label": "PERSON"
+            }
+          },
+          {
+            "id": "940b5e6e-ce10-45e2-a840-3d808cb49201",
+            "content": "1%",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 0.25,
+            "metadata": {
+              "spacy_label": "PERCENT"
+            }
+          },
+          {
+            "id": "6c7bcde5-e6be-4cf2-96b4-7f9817f5d773",
+            "content": "2 PM",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 1.0,
+            "metadata": {
+              "spacy_label": "TIME"
+            }
+          },
+          {
+            "id": "20fbf7bb-b1dc-401b-8eff-84069a89805b",
+            "content": "TTL",
+            "type": "entity",
+            "importance": 0.75,
+            "entropy": 0.3443609377704336,
+            "metadata": {
+              "spacy_label": "ORG"
+            }
+          },
+          {
+            "id": "a2c2839c-0b61-4c76-bd84-134902834dcc",
+            "content": "approximately $2.3M",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 9.338827844428511,
+            "metadata": {
+              "spacy_label": "MONEY"
+            }
+          },
+          {
+            "id": "27",
+            "content": "average response time increased to 18 hours",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 20.832293748641636,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "33",
+            "content": "2 high-severity findings",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 11.25488750216347,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "c23fe7a5-8cae-48d3-8cd8-b519de209b74",
+            "content": "annual",
+            "type": "entity",
+            "importance": 0.9750000000000001,
+            "entropy": 1.438721875540867,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "24",
+            "content": "customer support ticket backlog",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 14.914427889437839,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "b4fec7fd-c280-4855-ac7c-a763dc57eab3",
+            "content": "$4.5M",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 1.4512050593046013,
+            "metadata": {
+              "spacy_label": "MONEY"
+            }
+          },
+          {
+            "id": "6",
+            "content": "session management layer issues",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 13.52450095459237,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "19",
+            "content": "$12,000 per month in redundant infrastructure",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 23.004975675629318,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "38",
+            "content": "Q1 2025 budget planning",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 11.316518748123046,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "50",
+            "content": "marketing campaign in Q1",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 10.877443751081735,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "aa9ea485-9170-4f0b-97b7-2278c60f10e2",
+            "content": "QA",
+            "type": "entity",
+            "importance": 0.75,
+            "entropy": 0.25,
+            "metadata": {
+              "spacy_label": "ORG"
+            }
+          },
+          {
+            "id": "4",
+            "content": "12,000 enterprise users",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 9.972157810352613,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "69db1c98-0827-425c-843d-e8cf60771ab3",
+            "content": "4 hours",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 2.4564355568004035,
+            "metadata": {
+              "spacy_label": "TIME"
+            }
+          },
+          {
+            "id": "9",
+            "content": "3 weeks of development time",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 12.359023444260844,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "8",
+            "content": "rollback vs hotfix decision",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 13.514662506490408,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "3",
+            "content": "65% complete",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 5.127443751081734,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "15",
+            "content": "upgrade to SDWebImage 5.18",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 13.33770720841768,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "source": "1",
+            "target": "2",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "2",
+            "target": "3",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "2",
+            "target": "4",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "2",
+            "target": "6",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "2",
+            "target": "8",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "8",
+            "target": "9",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "8",
+            "target": "10",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "11",
+            "target": "12",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "11",
+            "target": "15",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "15",
+            "target": "16",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "11",
+            "target": "17",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "18",
+            "target": "19",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "18",
+            "target": "22",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "24",
+            "target": "25",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "24",
+            "target": "26",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "24",
+            "target": "27",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "24",
+            "target": "28",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "24",
+            "target": "29",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "38",
+            "target": "44",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "50",
+            "target": "54",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "605c4635-6aa0-4c07-85c3-0b155699cc89",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "20fbf7bb-b1dc-401b-8eff-84069a89805b",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "505d8c75-6ab3-489c-b3b4-eddc93bd1861",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "c7c097c6-e191-4157-b17a-531b77f47d90",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "043aa019-6da1-44c7-a2cd-c59e66eb7994",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "60bb5d23-1226-431f-9dc6-2f2b6ee145a1",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "9531c3bc-1513-4a7d-b78d-8b6e15845c38",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "39f975d2-5318-442e-a7f6-e974e68dac1e",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "b3aefbc1-a571-40a2-804c-2c904ab0cabe",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "d1bb3de4-4e30-4063-9327-6182786a8711",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "aa9ea485-9170-4f0b-97b7-2278c60f10e2",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "ffff2b71-b3f4-41ca-af0b-998c2ffd30a2",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "e4226803-4ddb-44ae-92a2-766c23355f8d",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "de155959-8a88-4703-950d-f46f8948677a",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "cf8ade06-f1ec-4425-9bb4-9d3ec5744747",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "4834e2c8-ab19-49b2-ad1a-bb2c4a113fa8",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "69db1c98-0827-425c-843d-e8cf60771ab3",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "5b1b1e71-b169-4dc3-88f5-7c4fbff13739",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "004b3b36-b33f-4cbe-a429-8e62895a53fb",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "84ffa146-4b9a-45cd-a328-19cf76864f30",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "8264c5ca-c384-4ada-80af-00f7e67e7abb",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "c23fe7a5-8cae-48d3-8cd8-b519de209b74",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "940b5e6e-ce10-45e2-a840-3d808cb49201",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "a2c2839c-0b61-4c76-bd84-134902834dcc",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "923f157d-8fae-4aa2-b92f-445eff3f9707",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "b4fec7fd-c280-4855-ac7c-a763dc57eab3",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "5924a414-1073-4a5f-a247-807f6b27f476",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "cddd90fb-7f6f-4b5d-87e1-8590c59cf32d",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "0465e67d-a5e5-4c6e-97df-60af12d10881",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "d6dedab9-a947-4828-8ba6-1e3dd47e9281",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "b8238d1e-67cb-439b-9410-82700b1d917e",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "81e594f2-dad8-4019-91b7-023737784933",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "2ed34a1d-2208-426d-b60f-8bbcdde4a248",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "774b1a15-73b8-4342-8103-b26309acadaa",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "b4ee8be8-4897-43fb-b3e2-8c1e57539a26",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "6c7bcde5-e6be-4cf2-96b4-7f9817f5d773",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "e0d9f71b-31e5-47cd-9d52-67ea5d2e5c26",
+            "relation": "has_entity",
+            "weight": 1.0
+          }
+        ]
+      }
+    },
+    {
+      "iteration": 4,
+      "entropy_target": 0.7,
+      "nodes_kept": 76,
+      "total_nodes": 114,
+      "compression_ratio": 0.4985819625638117,
+      "similarity_score": 0.5863137245178223,
+      "decoded_tokens": 879,
+      "missing_concepts": [
+        "Q4 2024 product roadmap details",
+        "65% completion of authentication service migration",
+        "12,000 enterprise users and 450,000 consumer accounts migrated",
+        "Redis cluster configuration issue",
+        "Rollback cost of 3 weeks of development time and $75K in AWS migration costs",
+        "Hotfix approach and associated risks",
+        "iOS app crash rate of 8.3% for users on iOS 17.2+",
+        "Memory leak in image caching layer due to outdated SDWebImage library",
+        "Upgrade to SDWebImage 5.18",
+        "4-5 days of testing required for image-related features",
+        "Emergency patch release option",
+        "Data warehouse migration completion date of December 15th",
+        "47 different data pipelines and 23 successfully migrated",
+        "Request for 2 additional contractors for 6 weeks",
+        "Cost of $45,000 for contractors and potential savings of $36,000",
+        "Customer support ticket backlog of 2,847 open tickets",
+        "Target of 700 tickets and average response time increase to 18 hours",
+        "Customer satisfaction score drop to 3.1/5.0",
+        "Renewal rate impact and potential loss of high-value customers",
+        "Request to hire 5 additional support engineers",
+        "SOC 2 Type II audit findings and required remediation",
+        "High-severity findings of insufficient access logging and lack of automated security scanning",
+        "Conditional certification option and required remediation plan",
+        "Budget planning for Q1 2025 and submission deadline of November 20th",
+        "Infrastructure cost escalation and AWS bill of $287,000",
+        "Marketing campaign budget of $450,000 and potential lead generation",
+        "Sales team capacity assessment and potential hiring of 2-3 sales engineers",
+        "Action items and responsibilities for various teams",
+        "Specific names such as Alex and Sarah",
+        "Leadership sync meeting on Friday at 2 PM",
+        "Detailed justifications for headcount increases and capital expenditures"
+      ],
+      "decoded_message": "I am pleased to provide a comprehensive update on our Q4 2024 product roadmap. As of December 6th, we have made significant progress, with 31% of our objectives completed, and we are on track to meet our targets. Notably, our data warehouse migration to Snowflake is nearing completion, with 67% of the work done. This milestone is a crucial step towards enhancing our data management capabilities.\n\nIn terms of specific initiatives, our DevOps team has been working diligently to address mobile app performance issues, which have been a concern for some time. We have allocated approximately $36,000 to tackle this problem, and I am confident that we will see significant improvements in the coming weeks. Furthermore, we have scheduled a session to discuss the authentication service migration on Friday, November 20th, which will be led by Sarah. This session is expected to last around 15-20 minutes and will be a crucial step in ensuring a seamless transition.\n\nLooking ahead to the next few weeks, we have several key milestones on the horizon. On Wednesday, November 25th, at 10 AM, we will be conducting a review of our SOC 2 Type II compliance, which is a critical aspect of our operational framework. We have also planned a meeting for Monday, December 15th, to discuss our customer support ticket backlog, which currently stands at 2,847 open tickets. This meeting will be an opportunity for us to review our progress and identify areas for improvement.\n\nIn terms of financials, our annual recurring revenue (ARR) is approximately $4.5M, with a growth rate of 23% higher than our budgeted amount. However, we have also incurred some additional costs, including $325K in additional headcount costs and $75K in AWS migration costs. Despite these expenses, we are confident that our investments will yield long-term benefits and drive growth.\n\nOur customer satisfaction scores have been a concern, having dropped to 3.1/5.0, which is below our target of 4.2/5.0. To address this, we have allocated approximately $2.3M to enhance our customer experience, which includes improvements to our session management layer and addressing the issues that have led to increased response times. We have also seen an increase in our daily active users, with 12,400 users engaging with our platform on a daily basis.\n\nIn the next 3 months, we anticipate generating 200-250 qualified leads, with a pipeline value of $8-12M. Our sales team is working diligently to convert these leads into revenue, and we are confident that our efforts will yield positive results. We have also identified some areas for cost savings, including the elimination of redundant infrastructure, which is currently costing us $12,000 per month.\n\nFrom a technical perspective, we have been working to address some critical issues, including the migration of our authentication service and the enhancement of our data warehouse capabilities. We have also been focused on improving our mobile app performance, which has been a challenge due to the high percentage of users on iOS 17.2+, with 8.3% of our user base currently on this platform.\n\nIn terms of security, we have recently completed a review of our systems and identified 8 medium-severity findings and 2 high-severity findings. We are working to implement a remediation plan, which is expected to take around 6 weeks to complete. We have also seen an increase in our EC2 usage, which has resulted in higher costs, and we are working to optimize our infrastructure to reduce these expenses.\n\nOur QA team has been working diligently to test our systems, with 4-5 days of testing scheduled for the upcoming week. We have also identified some areas for improvement in our TTL and session management layer, which we will be addressing in the coming weeks.\n\nIn conclusion, I am pleased with the progress we have made on our Q4 2024 product roadmap, and I am confident that we will continue to make significant strides in the coming weeks. We have a number of key milestones on the horizon, including the completion of our data warehouse migration and the enhancement of our customer experience. I would like to thank Alex and Sarah for their hard work and dedication to our team, and I look forward to providing further updates in the coming weeks.",
+      "total_entropy": 921.9780393543756,
+      "retained_entropy": 645.2537935751678,
+      "entropy_retention": 0.6998580942633008,
+      "total_importance": 93.59383333333338,
+      "retained_importance": 69.8,
+      "importance_retention": 0.7457756298046698,
+      "nodes_by_type": {
+        "attribute": 22,
+        "entity": 43,
+        "intent": 11
+      },
+      "avg_node_importance": 0.9184210526315789,
+      "compression_stats": {
+        "original_nodes": 114,
+        "compressed_nodes": 76,
+        "nodes_removed": 38,
+        "node_retention": 0.6666666666666666,
+        "original_entropy": 921.9780393543756,
+        "compressed_entropy": 645.2537935751678,
+        "entropy_retention": 0.6998580942633008,
+        "original_importance": 93.59383333333338,
+        "compressed_importance": 69.8,
+        "importance_retention": 0.7457756298046698
+      },
+      "graph_data": {
+        "nodes": [
+          {
+            "id": "40",
+            "content": "23% higher than budgeted amount",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 15.164427889437839,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "d1bb3de4-4e30-4063-9327-6182786a8711",
+            "content": "larger than 2",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 5.263214541979275,
+            "metadata": {
+              "spacy_label": "CARDINAL"
+            }
+          },
+          {
+            "id": "d6dedab9-a947-4828-8ba6-1e3dd47e9281",
+            "content": "December 6th",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 4.7830828133113,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "26",
+            "content": "340% higher than target",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 10.222157810352613,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "17",
+            "content": "emergency patch release",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 10.066518748123046,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "b8238d1e-67cb-439b-9410-82700b1d917e",
+            "content": "31%",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 0.5943609377704335,
+            "metadata": {
+              "spacy_label": "PERCENT"
+            }
+          },
+          {
+            "id": "18",
+            "content": "data warehouse migration to Snowflake",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 18.20379488118843,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "b3aefbc1-a571-40a2-804c-2c904ab0cabe",
+            "content": "67%",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 0.5943609377704335,
+            "metadata": {
+              "spacy_label": "PERCENT"
+            }
+          },
+          {
+            "id": "043aa019-6da1-44c7-a2cd-c59e66eb7994",
+            "content": "Friday",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 1.938721875540867,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "47",
+            "content": "156% of initial target",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 10.230354137941264,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "cddd90fb-7f6f-4b5d-87e1-8590c59cf32d",
+            "content": "November 20th",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 5.763214541979275,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "c7c097c6-e191-4157-b17a-531b77f47d90",
+            "content": "DevOps",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 1.938721875540867,
+            "metadata": {
+              "spacy_label": "ORG"
+            }
+          },
+          {
+            "id": "605c4635-6aa0-4c07-85c3-0b155699cc89",
+            "content": "15-20 minutes",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 6.013214541979275,
+            "metadata": {
+              "spacy_label": "TIME"
+            }
+          },
+          {
+            "id": "2",
+            "content": "authentication service migration",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 14.765712127384097,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "1",
+            "content": "Q4 2024 product roadmap update",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 14.117756920220645,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "36",
+            "content": "remediation plan",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 7.0,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "505d8c75-6ab3-489c-b3b4-eddc93bd1861",
+            "content": "Sarah",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 1.2012050593046015,
+            "metadata": {
+              "spacy_label": "PERSON"
+            }
+          },
+          {
+            "id": "de155959-8a88-4703-950d-f46f8948677a",
+            "content": "roughly $36,000",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 6.731058928995538,
+            "metadata": {
+              "spacy_label": "MONEY"
+            }
+          },
+          {
+            "id": "25",
+            "content": "2,847 open tickets",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 8.632331253245201,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "0465e67d-a5e5-4c6e-97df-60af12d10881",
+            "content": "the week of November 27th",
+            "type": "entity",
+            "importance": 0.81,
+            "entropy": 11.310845533741409,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "9531c3bc-1513-4a7d-b78d-8b6e15845c38",
+            "content": "approximately 3 weeks",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 10.18547229702381,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "30",
+            "content": "$325K in additional headcount costs",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 17.374447572511624,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "4834e2c8-ab19-49b2-ad1a-bb2c4a113fa8",
+            "content": "700",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 0.3443609377704336,
+            "metadata": {
+              "spacy_label": "CARDINAL"
+            }
+          },
+          {
+            "id": "923f157d-8fae-4aa2-b92f-445eff3f9707",
+            "content": "SOC 2 Type II",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 5.1688536042088415,
+            "metadata": {
+              "spacy_label": "ORG"
+            }
+          },
+          {
+            "id": "774b1a15-73b8-4342-8103-b26309acadaa",
+            "content": "2-week",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 1.6887218755408673,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "52",
+            "content": "200-250 qualified leads",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 10.660879685893482,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "10",
+            "content": "$75K in AWS migration costs",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 12.859023444260842,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "2ed34a1d-2208-426d-b60f-8bbcdde4a248",
+            "content": "Wednesday 10 AM",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 6.325419866765972,
+            "metadata": {
+              "spacy_label": "TIME"
+            }
+          },
+          {
+            "id": "8264c5ca-c384-4ada-80af-00f7e67e7abb",
+            "content": "$65K",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 1.0,
+            "metadata": {
+              "spacy_label": "MONEY"
+            }
+          },
+          {
+            "id": "46",
+            "content": "12,400 daily active users",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 12.667689655275577,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "28",
+            "content": "customer satisfaction scores dropped to 3.1/5.0",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 24.246511512381012,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "11",
+            "content": "mobile app performance issues",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 13.577098294026149,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "ffff2b71-b3f4-41ca-af0b-998c2ffd30a2",
+            "content": "December 15th",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 5.4188536042088415,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "5b1b1e71-b169-4dc3-88f5-7c4fbff13739",
+            "content": "4.2/5.0",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 2.206435556800404,
+            "metadata": {
+              "spacy_label": "CARDINAL"
+            }
+          },
+          {
+            "id": "39f975d2-5318-442e-a7f6-e974e68dac1e",
+            "content": "Monday",
+            "type": "entity",
+            "importance": 0.75,
+            "entropy": 1.938721875540867,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "29",
+            "content": "request to hire 5 additional support engineers",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 22.09995468293479,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "22",
+            "content": "request for 2 additional contractors",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 17.17030156871997,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "12",
+            "content": "8.3% of users on iOS 17.2+",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 12.386502149113078,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "004b3b36-b33f-4cbe-a429-8e62895a53fb",
+            "content": "12%",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 0.5943609377704335,
+            "metadata": {
+              "spacy_label": "PERCENT"
+            }
+          },
+          {
+            "id": "53",
+            "content": "$8-12M in pipeline",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 7.787970315474769,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "5924a414-1073-4a5f-a247-807f6b27f476",
+            "content": "2 weeks",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 2.2064355568004035,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "9",
+            "content": "3 weeks of development time",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 12.359023444260844,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "b4ee8be8-4897-43fb-b3e2-8c1e57539a26",
+            "content": "November 25th\n8",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 7.075419866765971,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "54",
+            "content": "hiring 2-3 additional sales engineers",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 17.453794881188426,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "60bb5d23-1226-431f-9dc6-2f2b6ee145a1",
+            "content": "35%",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 0.5943609377704335,
+            "metadata": {
+              "spacy_label": "PERCENT"
+            }
+          },
+          {
+            "id": "84ffa146-4b9a-45cd-a328-19cf76864f30",
+            "content": "more than 48 hours",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 8.03797031547477,
+            "metadata": {
+              "spacy_label": "TIME"
+            }
+          },
+          {
+            "id": "5f976880-5ec4-466c-8fb8-cf34d72b4beb",
+            "content": "over $10,000",
+            "type": "entity",
+            "importance": 0.8775,
+            "entropy": 4.377443751081734,
+            "metadata": {
+              "spacy_label": "MONEY"
+            }
+          },
+          {
+            "id": "cf8ade06-f1ec-4425-9bb4-9d3ec5744747",
+            "content": "the next 3 months",
+            "type": "entity",
+            "importance": 0.7875,
+            "entropy": 6.747136662116105,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "5",
+            "content": "450,000 consumer accounts",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 11.667689655275579,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "e4226803-4ddb-44ae-92a2-766c23355f8d",
+            "content": "only 23",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 2.4564355568004035,
+            "metadata": {
+              "spacy_label": "CARDINAL"
+            }
+          },
+          {
+            "id": "44",
+            "content": "cost monitoring and optimization strategies",
+            "type": "intent",
+            "importance": 0.9,
+            "entropy": 19.648802370596574,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "32",
+            "content": "8 medium-severity findings",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 12.432068146188115,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "37",
+            "content": "6 weeks to implement remediation plan",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 17.326351130106694,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "e0d9f71b-31e5-47cd-9d52-67ea5d2e5c26",
+            "content": "Alex",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 1.0,
+            "metadata": {
+              "spacy_label": "PERSON"
+            }
+          },
+          {
+            "id": "940b5e6e-ce10-45e2-a840-3d808cb49201",
+            "content": "1%",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 0.25,
+            "metadata": {
+              "spacy_label": "PERCENT"
+            }
+          },
+          {
+            "id": "6c7bcde5-e6be-4cf2-96b4-7f9817f5d773",
+            "content": "2 PM",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 1.0,
+            "metadata": {
+              "spacy_label": "TIME"
+            }
+          },
+          {
+            "id": "41",
+            "content": "increased EC2 usage",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 8.088827844428513,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "a2c2839c-0b61-4c76-bd84-134902834dcc",
+            "content": "approximately $2.3M",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 9.338827844428511,
+            "metadata": {
+              "spacy_label": "MONEY"
+            }
+          },
+          {
+            "id": "20fbf7bb-b1dc-401b-8eff-84069a89805b",
+            "content": "TTL",
+            "type": "entity",
+            "importance": 0.75,
+            "entropy": 0.3443609377704336,
+            "metadata": {
+              "spacy_label": "ORG"
+            }
+          },
+          {
+            "id": "27",
+            "content": "average response time increased to 18 hours",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 20.832293748641636,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "6",
+            "content": "session management layer issues",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 13.52450095459237,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "33",
+            "content": "2 high-severity findings",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 11.25488750216347,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "24",
+            "content": "customer support ticket backlog",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 14.914427889437839,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "c23fe7a5-8cae-48d3-8cd8-b519de209b74",
+            "content": "annual",
+            "type": "entity",
+            "importance": 0.9750000000000001,
+            "entropy": 1.438721875540867,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "b4fec7fd-c280-4855-ac7c-a763dc57eab3",
+            "content": "$4.5M",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 1.4512050593046013,
+            "metadata": {
+              "spacy_label": "MONEY"
+            }
+          },
+          {
+            "id": "19",
+            "content": "$12,000 per month in redundant infrastructure",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 23.004975675629318,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "38",
+            "content": "Q1 2025 budget planning",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 11.316518748123046,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "d546aeab-9171-4ceb-b0af-50c55f8e673c",
+            "content": "ARR",
+            "type": "entity",
+            "importance": 0.375,
+            "entropy": 0.3443609377704336,
+            "metadata": {
+              "spacy_label": "ORG"
+            }
+          },
+          {
+            "id": "50",
+            "content": "marketing campaign in Q1",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 10.877443751081735,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "aa9ea485-9170-4f0b-97b7-2278c60f10e2",
+            "content": "QA",
+            "type": "entity",
+            "importance": 0.75,
+            "entropy": 0.25,
+            "metadata": {
+              "spacy_label": "ORG"
+            }
+          },
+          {
+            "id": "4",
+            "content": "12,000 enterprise users",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 9.972157810352613,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "69db1c98-0827-425c-843d-e8cf60771ab3",
+            "content": "4 hours",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 2.4564355568004035,
+            "metadata": {
+              "spacy_label": "TIME"
+            }
+          },
+          {
+            "id": "16",
+            "content": "4-5 days of testing",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 8.99446690665808,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "8",
+            "content": "rollback vs hotfix decision",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 13.514662506490408,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "3",
+            "content": "65% complete",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 5.127443751081734,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "15",
+            "content": "upgrade to SDWebImage 5.18",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 13.33770720841768,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "source": "1",
+            "target": "2",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "2",
+            "target": "3",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "2",
+            "target": "4",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "2",
+            "target": "5",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "2",
+            "target": "6",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "2",
+            "target": "8",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "8",
+            "target": "9",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "8",
+            "target": "10",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "11",
+            "target": "12",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "11",
+            "target": "15",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "15",
+            "target": "16",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "11",
+            "target": "17",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "18",
+            "target": "19",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "18",
+            "target": "22",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "24",
+            "target": "25",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "24",
+            "target": "26",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "24",
+            "target": "27",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "24",
+            "target": "28",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "24",
+            "target": "29",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "29",
+            "target": "30",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "36",
+            "target": "37",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "38",
+            "target": "40",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "38",
+            "target": "41",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "38",
+            "target": "44",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "50",
+            "target": "52",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "50",
+            "target": "53",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "50",
+            "target": "54",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "605c4635-6aa0-4c07-85c3-0b155699cc89",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "20fbf7bb-b1dc-401b-8eff-84069a89805b",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "505d8c75-6ab3-489c-b3b4-eddc93bd1861",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "c7c097c6-e191-4157-b17a-531b77f47d90",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "043aa019-6da1-44c7-a2cd-c59e66eb7994",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "60bb5d23-1226-431f-9dc6-2f2b6ee145a1",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "9531c3bc-1513-4a7d-b78d-8b6e15845c38",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "39f975d2-5318-442e-a7f6-e974e68dac1e",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "b3aefbc1-a571-40a2-804c-2c904ab0cabe",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "d1bb3de4-4e30-4063-9327-6182786a8711",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "aa9ea485-9170-4f0b-97b7-2278c60f10e2",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "ffff2b71-b3f4-41ca-af0b-998c2ffd30a2",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "e4226803-4ddb-44ae-92a2-766c23355f8d",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "de155959-8a88-4703-950d-f46f8948677a",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "cf8ade06-f1ec-4425-9bb4-9d3ec5744747",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "4834e2c8-ab19-49b2-ad1a-bb2c4a113fa8",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "69db1c98-0827-425c-843d-e8cf60771ab3",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "5b1b1e71-b169-4dc3-88f5-7c4fbff13739",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "004b3b36-b33f-4cbe-a429-8e62895a53fb",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "84ffa146-4b9a-45cd-a328-19cf76864f30",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "8264c5ca-c384-4ada-80af-00f7e67e7abb",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "c23fe7a5-8cae-48d3-8cd8-b519de209b74",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "940b5e6e-ce10-45e2-a840-3d808cb49201",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "a2c2839c-0b61-4c76-bd84-134902834dcc",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "923f157d-8fae-4aa2-b92f-445eff3f9707",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "b4fec7fd-c280-4855-ac7c-a763dc57eab3",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "d546aeab-9171-4ceb-b0af-50c55f8e673c",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "5924a414-1073-4a5f-a247-807f6b27f476",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "cddd90fb-7f6f-4b5d-87e1-8590c59cf32d",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "5f976880-5ec4-466c-8fb8-cf34d72b4beb",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "0465e67d-a5e5-4c6e-97df-60af12d10881",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "d6dedab9-a947-4828-8ba6-1e3dd47e9281",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "b8238d1e-67cb-439b-9410-82700b1d917e",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "2ed34a1d-2208-426d-b60f-8bbcdde4a248",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "774b1a15-73b8-4342-8103-b26309acadaa",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "b4ee8be8-4897-43fb-b3e2-8c1e57539a26",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "6c7bcde5-e6be-4cf2-96b4-7f9817f5d773",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "e0d9f71b-31e5-47cd-9d52-67ea5d2e5c26",
+            "relation": "has_entity",
+            "weight": 1.0
+          }
+        ]
+      }
+    },
+    {
+      "iteration": 5,
+      "entropy_target": 0.7999999999999999,
+      "nodes_kept": 81,
+      "total_nodes": 114,
+      "compression_ratio": 0.6471922858763471,
+      "similarity_score": 0.6115275621414185,
+      "decoded_tokens": 1141,
+      "missing_concepts": [
+        "Q1 2025 budget planning deadline of November 20th",
+        "Specific details about the authentication service migration rollback costs ($75K) and development time (3 weeks)",
+        "Name of the person sending the original message (Alex)",
+        "Specific details about the iOS app crash fix timeline and release strategy",
+        "Data engineering team's request for 2 additional contractors for 6 weeks",
+        "Support team's request to hire 5 additional support engineers",
+        "Security team's remediation plan for high-severity findings",
+        "SOC 2 Type II audit conditional certification deadline of 2 weeks",
+        "Leadership sync meeting on Friday at 2 PM",
+        "Action items for engineering leads, mobile team, data engineering, support team, security team, and sales leadership",
+        "Detailed justifications for headcount increases, new tools or services, and capital expenditures over $10,000",
+        "AWS cost optimization review deadline of November 25th",
+        "Sales leadership's assessment of capacity for Q1 marketing campaign",
+        "Marketing team's proposed budget of $450,000 for Q1 campaign",
+        "Projected annual revenue of $2.3M and potential upside of $4.5M",
+        "Customer satisfaction score target",
+        "Daily active users growth metric (156% of initial target)",
+        "Average response time target (4 hours)",
+        "Renewal rates and churn analysis"
+      ],
+      "decoded_message": "As we approach the end of the year, I would like to provide a Q4 2024 product roadmap update. Over the past two weeks, our team has made significant progress, with a customer satisfaction score of 4.2/5.0, which is a notable improvement. However, we have also encountered some challenges, including mobile app performance issues and session management layer issues, which have resulted in a customer satisfaction score drop to 3.1/5.0 in some areas.\n\nIn terms of our product roadmap, we are on track to complete our data warehouse migration to Snowflake by the week of November 27th, with an estimated cost of roughly $36,000. This migration is expected to take approximately 3 weeks to complete, and we anticipate that it will have a significant impact on our operations. We have also made progress on our authentication service migration, which is now approximately 65% complete.\n\nOur DevOps team has been working diligently to address some of the technical issues we have been facing, including a Redis cluster configuration issue and a memory leak in our image caching layer. We have also been working to implement a remediation plan to address these issues, which is expected to take around 6 weeks to complete.\n\nIn terms of our customer support, we have been experiencing a significant backlog of tickets, with 2,847 open tickets currently pending. Our team has been working to address this backlog, and we have made some progress, but we still have a way to go. We have also seen an increase in our average response time, which is now around 18 hours.\n\nFrom a financial perspective, we have seen some significant expenses, including $325K in additional headcount costs and $75K in AWS migration costs. We have also identified some areas where we can reduce costs, including $12,000 per month in redundant infrastructure.\n\nIn terms of our sales pipeline, we are looking strong, with $8-12M in pipeline and 200-250 qualified leads. We have also seen a significant increase in our daily active users, with 12,400 users currently active. Our customer base is also growing, with 450,000 consumer accounts and 12,000 enterprise users.\n\nWe have also been working to address some of the security concerns that have been raised, including insufficient access logging and a lack of automated security scanning. We have identified 2 high-severity findings and 8 medium-severity findings, which we are working to address.\n\nLooking ahead to the next 3 months, we have a number of key milestones that we are working towards, including the completion of our data warehouse migration and the implementation of our remediation plan. We are also expecting to see some significant revenue growth, with a projected annual revenue of approximately $2.3M and a potential upside of $4.5M.\n\nIn terms of our team, we have been working to ensure that we have the right people in place to drive our growth and success. We have recently hired Sarah and Alex, who will be joining our team on November 25th and December 15th, respectively. We are also expecting to see some significant growth in our headcount, with a projected increase of 23% in the next quarter.\n\nOverall, I am pleased with the progress that we have made so far, but I am also aware of the challenges that we still face. I am confident that with the right team and the right strategy in place, we can overcome these challenges and achieve our goals.\n\nWe will be holding a meeting on Wednesday at 10 AM to discuss our Q4 roadmap and provide an update on our progress. We will also be holding a meeting on Friday, November 20th, at 2 PM to discuss our customer support strategy and provide an update on our progress.\n\nI would like to thank everyone for their hard work and dedication to our company. I am excited to see what the future holds, and I am confident that we will continue to grow and succeed.\n\nIn the week of November 27th, we will be starting our 2-week SOC 2 Type II audit, which will be a significant milestone for our company. We have been working diligently to ensure that we are compliant with all of the necessary regulations, and we are confident that we will pass the audit.\n\nWe have also been working to address some of the technical debt that we have accumulated, including an outdated SDWebImage library and increased EC2 usage. We have identified 47 different data pipelines that need to be updated, and we are working to implement a plan to address these issues.\n\nOur customer satisfaction scores have been impacted by some of the technical issues that we have been facing, but we are working to address these issues and improve our customer satisfaction scores. We have seen a significant increase in our customer satisfaction scores over the past quarter, with a score of 4.2/5.0, but we still have a way to go to reach our target score.\n\nI would like to remind everyone that we have a meeting scheduled on Monday at 2 PM to discuss our product roadmap and provide an update on our progress. We will also be holding a meeting on December 6th to discuss our sales strategy and provide an update on our progress.\n\nIn conclusion, I am pleased with the progress that we have made so far, but I am also aware of the challenges that we still face. I am confident that with the right team and the right strategy in place, we can overcome these challenges and achieve our goals. I would like to thank everyone for their hard work and dedication to our company, and I look forward to seeing what the future holds.",
+      "total_entropy": 921.9780393543756,
+      "retained_entropy": 737.3726711143661,
+      "entropy_retention": 0.7997724887576702,
+      "total_importance": 95.01233333333337,
+      "retained_importance": 74.72183333333335,
+      "importance_retention": 0.7864435143507683,
+      "nodes_by_type": {
+        "entity": 42,
+        "intent": 11,
+        "attribute": 28
+      },
+      "avg_node_importance": 0.9224917695473254,
+      "compression_stats": {
+        "original_nodes": 114,
+        "compressed_nodes": 81,
+        "nodes_removed": 33,
+        "node_retention": 0.7105263157894737,
+        "original_entropy": 921.9780393543756,
+        "compressed_entropy": 737.3726711143661,
+        "entropy_retention": 0.7997724887576702,
+        "original_importance": 95.01233333333337,
+        "compressed_importance": 74.72183333333335,
+        "importance_retention": 0.7864435143507683
+      },
+      "graph_data": {
+        "nodes": [
+          {
+            "id": "b8238d1e-67cb-439b-9410-82700b1d917e",
+            "content": "31%",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 0.5943609377704335,
+            "metadata": {
+              "spacy_label": "PERCENT"
+            }
+          },
+          {
+            "id": "18",
+            "content": "data warehouse migration to Snowflake",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 18.20379488118843,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "043aa019-6da1-44c7-a2cd-c59e66eb7994",
+            "content": "Friday",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 1.938721875540867,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "cddd90fb-7f6f-4b5d-87e1-8590c59cf32d",
+            "content": "November 20th",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 5.763214541979275,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "de155959-8a88-4703-950d-f46f8948677a",
+            "content": "roughly $36,000",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 6.731058928995538,
+            "metadata": {
+              "spacy_label": "MONEY"
+            }
+          },
+          {
+            "id": "36",
+            "content": "remediation plan",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 7.0,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "52",
+            "content": "200-250 qualified leads",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 10.660879685893482,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "46",
+            "content": "12,400 daily active users",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 12.667689655275577,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "0fb3940d-3831-42eb-96ae-28eb7fbaf4f7",
+            "content": "the past two weeks",
+            "type": "entity",
+            "importance": 0.75,
+            "entropy": 7.099248439933902,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "5b1b1e71-b169-4dc3-88f5-7c4fbff13739",
+            "content": "4.2/5.0",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 2.206435556800404,
+            "metadata": {
+              "spacy_label": "CARDINAL"
+            }
+          },
+          {
+            "id": "29",
+            "content": "request to hire 5 additional support engineers",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 22.09995468293479,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "12",
+            "content": "8.3% of users on iOS 17.2+",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 12.386502149113078,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "b4ee8be8-4897-43fb-b3e2-8c1e57539a26",
+            "content": "November 25th\n8",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 7.075419866765971,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "84ffa146-4b9a-45cd-a328-19cf76864f30",
+            "content": "more than 48 hours",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 8.03797031547477,
+            "metadata": {
+              "spacy_label": "TIME"
+            }
+          },
+          {
+            "id": "5",
+            "content": "450,000 consumer accounts",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 11.667689655275579,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "44",
+            "content": "cost monitoring and optimization strategies",
+            "type": "intent",
+            "importance": 0.9,
+            "entropy": 19.648802370596574,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "38",
+            "content": "Q1 2025 budget planning",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 11.316518748123046,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "8",
+            "content": "rollback vs hotfix decision",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 13.514662506490408,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "40",
+            "content": "23% higher than budgeted amount",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 15.164427889437839,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "26",
+            "content": "340% higher than target",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 10.222157810352613,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "c7c097c6-e191-4157-b17a-531b77f47d90",
+            "content": "DevOps",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 1.938721875540867,
+            "metadata": {
+              "spacy_label": "ORG"
+            }
+          },
+          {
+            "id": "605c4635-6aa0-4c07-85c3-0b155699cc89",
+            "content": "15-20 minutes",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 6.013214541979275,
+            "metadata": {
+              "spacy_label": "TIME"
+            }
+          },
+          {
+            "id": "0465e67d-a5e5-4c6e-97df-60af12d10881",
+            "content": "the week of November 27th",
+            "type": "entity",
+            "importance": 0.81,
+            "entropy": 11.310845533741409,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "9531c3bc-1513-4a7d-b78d-8b6e15845c38",
+            "content": "approximately 3 weeks",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 10.18547229702381,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "30",
+            "content": "$325K in additional headcount costs",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 17.374447572511624,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "4834e2c8-ab19-49b2-ad1a-bb2c4a113fa8",
+            "content": "700",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 0.3443609377704336,
+            "metadata": {
+              "spacy_label": "CARDINAL"
+            }
+          },
+          {
+            "id": "923f157d-8fae-4aa2-b92f-445eff3f9707",
+            "content": "SOC 2 Type II",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 5.1688536042088415,
+            "metadata": {
+              "spacy_label": "ORG"
+            }
+          },
+          {
+            "id": "774b1a15-73b8-4342-8103-b26309acadaa",
+            "content": "2-week",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 1.6887218755408673,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "10",
+            "content": "$75K in AWS migration costs",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 12.859023444260842,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "22",
+            "content": "request for 2 additional contractors",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 17.17030156871997,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "20",
+            "content": "47 different data pipelines",
+            "type": "attribute",
+            "importance": 0.88725,
+            "entropy": 12.35902344426084,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "14",
+            "content": "outdated SDWebImage library",
+            "type": "attribute",
+            "importance": 0.8450000000000001,
+            "entropy": 13.01466250649041,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "54",
+            "content": "hiring 2-3 additional sales engineers",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 17.453794881188426,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "5f976880-5ec4-466c-8fb8-cf34d72b4beb",
+            "content": "over $10,000",
+            "type": "entity",
+            "importance": 0.8775,
+            "entropy": 4.377443751081734,
+            "metadata": {
+              "spacy_label": "MONEY"
+            }
+          },
+          {
+            "id": "37",
+            "content": "6 weeks to implement remediation plan",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 17.326351130106694,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "41",
+            "content": "increased EC2 usage",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 8.088827844428513,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "33",
+            "content": "2 high-severity findings",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 11.25488750216347,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "c23fe7a5-8cae-48d3-8cd8-b519de209b74",
+            "content": "annual",
+            "type": "entity",
+            "importance": 0.9750000000000001,
+            "entropy": 1.438721875540867,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "34",
+            "content": "insufficient access logging",
+            "type": "attribute",
+            "importance": 0.8450000000000001,
+            "entropy": 11.920301568719974,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "69db1c98-0827-425c-843d-e8cf60771ab3",
+            "content": "4 hours",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 2.4564355568004035,
+            "metadata": {
+              "spacy_label": "TIME"
+            }
+          },
+          {
+            "id": "9",
+            "content": "3 weeks of development time",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 12.359023444260844,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "15",
+            "content": "upgrade to SDWebImage 5.18",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 13.33770720841768,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "d6dedab9-a947-4828-8ba6-1e3dd47e9281",
+            "content": "December 6th",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 4.7830828133113,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "b3aefbc1-a571-40a2-804c-2c904ab0cabe",
+            "content": "67%",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 0.5943609377704335,
+            "metadata": {
+              "spacy_label": "PERCENT"
+            }
+          },
+          {
+            "id": "1",
+            "content": "Q4 2024 product roadmap update",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 14.117756920220645,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "505d8c75-6ab3-489c-b3b4-eddc93bd1861",
+            "content": "Sarah",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 1.2012050593046015,
+            "metadata": {
+              "spacy_label": "PERSON"
+            }
+          },
+          {
+            "id": "7",
+            "content": "Redis cluster configuration issue",
+            "type": "attribute",
+            "importance": 0.8450000000000001,
+            "entropy": 15.430681991271886,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "8264c5ca-c384-4ada-80af-00f7e67e7abb",
+            "content": "$65K",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 1.0,
+            "metadata": {
+              "spacy_label": "MONEY"
+            }
+          },
+          {
+            "id": "28",
+            "content": "customer satisfaction scores dropped to 3.1/5.0",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 24.246511512381012,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "ffff2b71-b3f4-41ca-af0b-998c2ffd30a2",
+            "content": "December 15th",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 5.4188536042088415,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "39f975d2-5318-442e-a7f6-e974e68dac1e",
+            "content": "Monday",
+            "type": "entity",
+            "importance": 0.75,
+            "entropy": 1.938721875540867,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "004b3b36-b33f-4cbe-a429-8e62895a53fb",
+            "content": "12%",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 0.5943609377704335,
+            "metadata": {
+              "spacy_label": "PERCENT"
+            }
+          },
+          {
+            "id": "60bb5d23-1226-431f-9dc6-2f2b6ee145a1",
+            "content": "35%",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 0.5943609377704335,
+            "metadata": {
+              "spacy_label": "PERCENT"
+            }
+          },
+          {
+            "id": "e0d9f71b-31e5-47cd-9d52-67ea5d2e5c26",
+            "content": "Alex",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 1.0,
+            "metadata": {
+              "spacy_label": "PERSON"
+            }
+          },
+          {
+            "id": "940b5e6e-ce10-45e2-a840-3d808cb49201",
+            "content": "1%",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 0.25,
+            "metadata": {
+              "spacy_label": "PERCENT"
+            }
+          },
+          {
+            "id": "13",
+            "content": "memory leak in image caching layer",
+            "type": "attribute",
+            "importance": 0.7745833333333335,
+            "entropy": 15.481790140468474,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "6",
+            "content": "session management layer issues",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 13.52450095459237,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "4",
+            "content": "12,000 enterprise users",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 9.972157810352613,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "17",
+            "content": "emergency patch release",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 10.066518748123046,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "6c7bcde5-e6be-4cf2-96b4-7f9817f5d773",
+            "content": "2 PM",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 1.0,
+            "metadata": {
+              "spacy_label": "TIME"
+            }
+          },
+          {
+            "id": "3",
+            "content": "65% complete",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 5.127443751081734,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "d1bb3de4-4e30-4063-9327-6182786a8711",
+            "content": "larger than 2",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 5.263214541979275,
+            "metadata": {
+              "spacy_label": "CARDINAL"
+            }
+          },
+          {
+            "id": "47",
+            "content": "156% of initial target",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 10.230354137941264,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "2",
+            "content": "authentication service migration",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 14.765712127384097,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "25",
+            "content": "2,847 open tickets",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 8.632331253245201,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "2ed34a1d-2208-426d-b60f-8bbcdde4a248",
+            "content": "Wednesday 10 AM",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 6.325419866765972,
+            "metadata": {
+              "spacy_label": "TIME"
+            }
+          },
+          {
+            "id": "11",
+            "content": "mobile app performance issues",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 13.577098294026149,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "53",
+            "content": "$8-12M in pipeline",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 7.787970315474769,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "5924a414-1073-4a5f-a247-807f6b27f476",
+            "content": "2 weeks",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 2.2064355568004035,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "35",
+            "content": "lack of automated security scanning",
+            "type": "attribute",
+            "importance": 0.8450000000000001,
+            "entropy": 17.40753038582292,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "cf8ade06-f1ec-4425-9bb4-9d3ec5744747",
+            "content": "the next 3 months",
+            "type": "entity",
+            "importance": 0.7875,
+            "entropy": 6.747136662116105,
+            "metadata": {
+              "spacy_label": "DATE"
+            }
+          },
+          {
+            "id": "e4226803-4ddb-44ae-92a2-766c23355f8d",
+            "content": "only 23",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 2.4564355568004035,
+            "metadata": {
+              "spacy_label": "CARDINAL"
+            }
+          },
+          {
+            "id": "32",
+            "content": "8 medium-severity findings",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 12.432068146188115,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "20fbf7bb-b1dc-401b-8eff-84069a89805b",
+            "content": "TTL",
+            "type": "entity",
+            "importance": 0.75,
+            "entropy": 0.3443609377704336,
+            "metadata": {
+              "spacy_label": "ORG"
+            }
+          },
+          {
+            "id": "a2c2839c-0b61-4c76-bd84-134902834dcc",
+            "content": "approximately $2.3M",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 9.338827844428511,
+            "metadata": {
+              "spacy_label": "MONEY"
+            }
+          },
+          {
+            "id": "27",
+            "content": "average response time increased to 18 hours",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 20.832293748641636,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "b4fec7fd-c280-4855-ac7c-a763dc57eab3",
+            "content": "$4.5M",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 1.4512050593046013,
+            "metadata": {
+              "spacy_label": "MONEY"
+            }
+          },
+          {
+            "id": "24",
+            "content": "customer support ticket backlog",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 14.914427889437839,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "19",
+            "content": "$12,000 per month in redundant infrastructure",
+            "type": "attribute",
+            "importance": 0.78,
+            "entropy": 23.004975675629318,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "50",
+            "content": "marketing campaign in Q1",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 10.877443751081735,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "16",
+            "content": "4-5 days of testing",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 8.99446690665808,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "source": "1",
+            "target": "2",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "2",
+            "target": "3",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "2",
+            "target": "4",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "2",
+            "target": "5",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "2",
+            "target": "6",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "6",
+            "target": "7",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "2",
+            "target": "8",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "8",
+            "target": "9",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "8",
+            "target": "10",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "11",
+            "target": "12",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "11",
+            "target": "13",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "11",
+            "target": "14",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "11",
+            "target": "15",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "15",
+            "target": "16",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "11",
+            "target": "17",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "18",
+            "target": "19",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "18",
+            "target": "20",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "18",
+            "target": "22",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "24",
+            "target": "25",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "24",
+            "target": "26",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "24",
+            "target": "27",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "24",
+            "target": "28",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "24",
+            "target": "29",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "29",
+            "target": "30",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "36",
+            "target": "37",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "38",
+            "target": "40",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "38",
+            "target": "41",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "38",
+            "target": "44",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "50",
+            "target": "52",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "50",
+            "target": "53",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "50",
+            "target": "54",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "0fb3940d-3831-42eb-96ae-28eb7fbaf4f7",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "605c4635-6aa0-4c07-85c3-0b155699cc89",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "20fbf7bb-b1dc-401b-8eff-84069a89805b",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "505d8c75-6ab3-489c-b3b4-eddc93bd1861",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "c7c097c6-e191-4157-b17a-531b77f47d90",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "043aa019-6da1-44c7-a2cd-c59e66eb7994",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "60bb5d23-1226-431f-9dc6-2f2b6ee145a1",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "9531c3bc-1513-4a7d-b78d-8b6e15845c38",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "39f975d2-5318-442e-a7f6-e974e68dac1e",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "b3aefbc1-a571-40a2-804c-2c904ab0cabe",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "d1bb3de4-4e30-4063-9327-6182786a8711",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "ffff2b71-b3f4-41ca-af0b-998c2ffd30a2",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "e4226803-4ddb-44ae-92a2-766c23355f8d",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "de155959-8a88-4703-950d-f46f8948677a",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "cf8ade06-f1ec-4425-9bb4-9d3ec5744747",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "4834e2c8-ab19-49b2-ad1a-bb2c4a113fa8",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "69db1c98-0827-425c-843d-e8cf60771ab3",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "5b1b1e71-b169-4dc3-88f5-7c4fbff13739",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "004b3b36-b33f-4cbe-a429-8e62895a53fb",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "84ffa146-4b9a-45cd-a328-19cf76864f30",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "8264c5ca-c384-4ada-80af-00f7e67e7abb",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "c23fe7a5-8cae-48d3-8cd8-b519de209b74",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "940b5e6e-ce10-45e2-a840-3d808cb49201",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "a2c2839c-0b61-4c76-bd84-134902834dcc",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "923f157d-8fae-4aa2-b92f-445eff3f9707",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "b4fec7fd-c280-4855-ac7c-a763dc57eab3",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "5924a414-1073-4a5f-a247-807f6b27f476",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "cddd90fb-7f6f-4b5d-87e1-8590c59cf32d",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "5f976880-5ec4-466c-8fb8-cf34d72b4beb",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "0465e67d-a5e5-4c6e-97df-60af12d10881",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "d6dedab9-a947-4828-8ba6-1e3dd47e9281",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "b8238d1e-67cb-439b-9410-82700b1d917e",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "2ed34a1d-2208-426d-b60f-8bbcdde4a248",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "774b1a15-73b8-4342-8103-b26309acadaa",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "b4ee8be8-4897-43fb-b3e2-8c1e57539a26",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "6c7bcde5-e6be-4cf2-96b4-7f9817f5d773",
+            "relation": "has_entity",
+            "weight": 1.0
+          },
+          {
+            "source": "1",
+            "target": "e0d9f71b-31e5-47cd-9d52-67ea5d2e5c26",
+            "relation": "has_entity",
+            "weight": 1.0
+          }
+        ]
+      }
+    }
+  ]
+}
