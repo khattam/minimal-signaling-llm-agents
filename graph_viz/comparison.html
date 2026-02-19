@@ -1,0 +1,50 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Graph Compression Comparison</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 20px; }
+                .container { display: flex; gap: 20px; }
+                .graph { flex: 1; }
+                .stats { background: #f0f0f0; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+                .stat { margin: 10px 0; }
+                .stat-label { font-weight: bold; }
+                iframe { width: 100%; height: 600px; border: 1px solid #ccc; }
+            </style>
+        </head>
+        <body>
+            <h1>Semantic Graph Compression Comparison</h1>
+            
+            <div class="stats">
+                <h2>Compression Statistics</h2>
+                <div class="stat">
+                    <span class="stat-label">Nodes:</span> 
+                    34 → 13 
+                    (38.2% retained)
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Entropy:</span> 
+                    441.73 → 176.43 bits
+                    (39.9% retained)
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Importance:</span> 
+                    24.430 → 10.401
+                    (42.6% retained)
+                </div>
+            </div>
+            
+            <div class="container">
+                <div class="graph">
+                    <h2>Original Graph</h2>
+                    <iframe src="graph_original.html"></iframe>
+                </div>
+                <div class="graph">
+                    <h2>Compressed Graph</h2>
+                    <iframe src="graph_compressed.html"></iframe>
+                </div>
+            </div>
+        </body>
+        </html>
+        

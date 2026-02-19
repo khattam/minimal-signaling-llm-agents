@@ -11,25 +11,25 @@ minimal-signaling = "minimal_signaling.cli:main"
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.13"
-# Core ML/NLP
+groq = "^1.0.0"
+pydantic = "^2.9.2"
+pydantic-settings = "^2.6.1"
+pyyaml = "^6.0.2"
+sentence-transformers = "^3.3.1"
+fastapi = "^0.115.5"
+uvicorn = "^0.32.1"
+websockets = "^14.1"
+networkx = "^3.4.2"
+pyvis = "^0.3.2"
+matplotlib = "^3.9.3"
+spacy = "^3.7.0"
 transformers = ">=4.36.0"
 torch = ">=2.1.0"
 tiktoken = ">=0.5.0"
-# Data & Config
-pydantic = ">=2.5.0"
-pydantic-settings = ">=2.1.0"
-pyyaml = ">=6.0"
-# Logging & Tracing
 structlog = ">=23.2.0"
 rich = ">=13.7.0"
-# Async & Utils
 httpx = ">=0.25.0"
 tenacity = ">=8.2.0"
-fastapi = "^0.124.4"
-uvicorn = "^0.38.0"
-websockets = "^15.0.1"
-groq = "^1.0.0"
-sentence-transformers = "^5.2.0"
 python-dotenv = "^1.2.1"
 
 [tool.poetry.group.dev.dependencies]
