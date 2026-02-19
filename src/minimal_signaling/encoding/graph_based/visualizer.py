@@ -164,51 +164,174 @@ class GraphVisualizer:
         # Get stats
         stats = self.compressor.get_compression_stats(original, compressed)
         
-        # Create comparison HTML
+        # Create comparison HTML with legend
         comparison_html = f"""
         <!DOCTYPE html>
         <html>
         <head>
             <title>Graph Compression Comparison</title>
             <style>
-                body {{ font-family: Arial, sans-serif; margin: 20px; }}
-                .container {{ display: flex; gap: 20px; }}
-                .graph {{ flex: 1; }}
-                .stats {{ background: #f0f0f0; padding: 20px; border-radius: 8px; margin-bottom: 20px; }}
-                .stat {{ margin: 10px 0; }}
-                .stat-label {{ font-weight: bold; }}
-                iframe {{ width: 100%; height: 600px; border: 1px solid #ccc; }}
+                body {{ 
+                    font-family: 'Segoe UI', Arial, sans-serif; 
+                    margin: 20px;
+                    background: #f5f5f5;
+                }}
+                .header {{
+                    background: white;
+                    padding: 30px;
+                    border-radius: 8px;
+                    margin-bottom: 20px;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                }}
+                h1 {{
+                    margin: 0 0 20px 0;
+                    color: #333;
+                }}
+                .stats {{ 
+                    background: #f8f9fa; 
+                    padding: 20px; 
+                    border-radius: 8px; 
+                    margin-bottom: 20px;
+                    border-left: 4px solid #4ECDC4;
+                }}
+                .stat {{ 
+                    margin: 10px 0;
+                    font-size: 16px;
+                }}
+                .stat-label {{ 
+                    font-weight: bold; 
+                    color: #555;
+                }}
+                .legend {{
+                    background: white;
+                    padding: 20px;
+                    border-radius: 8px;
+                    margin-bottom: 20px;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                }}
+                .legend h2 {{
+                    margin-top: 0;
+                    color: #333;
+                }}
+                .legend-items {{
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 20px;
+                }}
+                .legend-item {{
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }}
+                .legend-color {{
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    border: 2px solid #ddd;
+                }}
+                .legend-label {{
+                    font-weight: 500;
+                    color: #555;
+                }}
+                .container {{ 
+                    display: flex; 
+                    gap: 20px;
+                    background: white;
+                    padding: 20px;
+                    border-radius: 8px;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                }}
+                .graph {{ 
+                    flex: 1;
+                }}
+                .graph h2 {{
+                    margin-top: 0;
+                    color: #333;
+                    border-bottom: 2px solid #4ECDC4;
+                    padding-bottom: 10px;
+                }}
+                iframe {{ 
+                    width: 100%; 
+                    height: 700px; 
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                    background: white;
+                }}
+                .note {{
+                    background: #fff3cd;
+                    border-left: 4px solid #ffc107;
+                    padding: 15px;
+                    margin-top: 20px;
+                    border-radius: 4px;
+                }}
             </style>
         </head>
         <body>
-            <h1>Semantic Graph Compression Comparison</h1>
-            
-            <div class="stats">
-                <h2>Compression Statistics</h2>
-                <div class="stat">
-                    <span class="stat-label">Nodes:</span> 
-                    {stats['original_nodes']} → {stats['compressed_nodes']} 
-                    ({stats['node_retention']:.1%} retained)
+            <div class="header">
+                <h1>🔬 Semantic Graph Compression Analysis</h1>
+                
+                <div class="stats">
+                    <h2>Compression Statistics</h2>
+                    <div class="stat">
+                        <span class="stat-label">Nodes:</span> 
+                        {stats['original_nodes']} → {stats['compressed_nodes']} 
+                        ({stats['node_retention']:.1%} retained, {stats['nodes_removed']} removed)
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Entropy (Information Content):</span> 
+                        {stats['original_entropy']:.2f} → {stats['compressed_entropy']:.2f} bits
+                        ({stats['entropy_retention']:.1%} retained)
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Importance Score:</span> 
+                        {stats['original_importance']:.3f} → {stats['compressed_importance']:.3f}
+                        ({stats['importance_retention']:.1%} retained)
+                    </div>
                 </div>
-                <div class="stat">
-                    <span class="stat-label">Entropy:</span> 
-                    {stats['original_entropy']:.2f} → {stats['compressed_entropy']:.2f} bits
-                    ({stats['entropy_retention']:.1%} retained)
+                
+                <div class="legend">
+                    <h2>Node Type Legend</h2>
+                    <div class="legend-items">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #FF6B6B;"></div>
+                            <span class="legend-label">INTENT - Actions requested</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #4ECDC4;"></div>
+                            <span class="legend-label">ENTITY - Who/what is involved</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #45B7D1;"></div>
+                            <span class="legend-label">ATTRIBUTE - Properties, numbers, dates</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #96CEB4;"></div>
+                            <span class="legend-label">DETAIL - Context and explanations</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #FFEAA7;"></div>
+                            <span class="legend-label">CONSTRAINT - Requirements, limits</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #DFE6E9;"></div>
+                            <span class="legend-label">OUTCOME - Expected results</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="stat">
-                    <span class="stat-label">Importance:</span> 
-                    {stats['original_importance']:.3f} → {stats['compressed_importance']:.3f}
-                    ({stats['importance_retention']:.1%} retained)
+                
+                <div class="note">
+                    <strong>💡 How to use:</strong> Hover over nodes to see full content. Larger nodes = higher importance. 
+                    Arrows show relationships between concepts. Compression removes low-importance nodes while preserving structure.
                 </div>
             </div>
             
             <div class="container">
                 <div class="graph">
-                    <h2>Original Graph</h2>
+                    <h2>📊 Original Graph ({stats['original_nodes']} nodes)</h2>
                     <iframe src="graph_original.html"></iframe>
                 </div>
                 <div class="graph">
-                    <h2>Compressed Graph</h2>
+                    <h2>🗜️ Compressed Graph ({stats['compressed_nodes']} nodes)</h2>
                     <iframe src="graph_compressed.html"></iframe>
                 </div>
             </div>

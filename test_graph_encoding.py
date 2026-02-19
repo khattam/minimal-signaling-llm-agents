@@ -15,29 +15,24 @@ from minimal_signaling.encoding.graph_based.visualizer import GraphVisualizer
 from minimal_signaling.tokenization import TiktokenTokenizer
 
 async def test_graph():
-    # Test message - realistic agent communication scenario (~350 tokens)
-    message = """I need you to conduct a comprehensive analysis of our Q3 2024 sales performance data, 
-    with particular focus on the enterprise segment which has shown concerning trends. The preliminary 
-    data indicates a 23% decline in enterprise sales compared to Q2, representing approximately $2.3M 
-    in lost revenue. This decline is particularly concentrated in the financial services vertical, 
-    where we've seen three major clients reduce their contract values.
+    # Test message - completely different domain (technical debugging scenario)
+    message = """Hey team, we're experiencing critical performance issues in production. 
+    The API response times have spiked to 8-12 seconds for the /users/search endpoint, 
+    which is completely unacceptable. This started happening around 3 AM UTC this morning.
     
-    The board of directors has scheduled an emergency meeting for next Friday, November 15th at 2 PM EST, 
-    where we need to present a detailed analysis with actionable recommendations. The CEO specifically 
-    requested that we identify the root causes of this decline, assess whether it's a temporary market 
-    fluctuation or a systemic issue with our product-market fit, and provide at least 3 concrete action 
-    items we can implement immediately.
+    Looking at the logs, I can see we're hitting the database connection pool limit of 50 
+    connections, and there are 200+ queries queued up. The Redis cache hit rate has also 
+    dropped from 95% to 23%, which suggests something is bypassing the cache layer.
     
-    For context, our main competitors TechCorp and DataSolutions have both reported growth in the same 
-    period, so this appears to be a company-specific issue rather than a market-wide trend. Our customer 
-    success team has noted increased churn risk flags from 12 enterprise accounts, and our NPS score 
-    dropped from 42 to 31 in the last quarter.
+    I need someone to investigate this ASAP. Priority tasks:
+    1. Check if there was a recent deployment that might have introduced this regression
+    2. Analyze the slow query logs to identify which queries are causing the bottleneck  
+    3. Verify that the Redis cluster is healthy and not experiencing any network issues
+    4. Review the connection pool configuration - we might need to increase it temporarily
     
-    Budget constraints are important here - we have $500K allocated for remediation efforts this quarter, 
-    but any initiatives requiring more than that will need board approval. The CFO wants to see ROI 
-    projections for any proposed solutions. This is being treated as critical priority, so please 
-    prioritize this analysis over other ongoing projects. I need the initial findings by Wednesday EOD 
-    so we can review before the board presentation."""
+    Customer support is getting flooded with complaints, and we have 3 enterprise clients 
+    threatening to churn if this isn't fixed by EOD. The SLA breach is going to cost us 
+    $50K in credits. Please update me every 30 minutes with progress. This is P0."""
     
     print("=" * 80)
     print("GRAPH-BASED SEMANTIC COMPRESSION TEST")
