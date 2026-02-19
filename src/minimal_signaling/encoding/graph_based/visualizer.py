@@ -53,20 +53,28 @@ class GraphVisualizer:
             notebook=False
         )
         
-        # Configure physics
+        # Configure physics for hierarchical layout
         net.set_options("""
         {
+          "layout": {
+            "hierarchical": {
+              "enabled": true,
+              "direction": "UD",
+              "sortMethod": "directed",
+              "nodeSpacing": 150,
+              "levelSeparation": 200
+            }
+          },
           "physics": {
-            "forceAtlas2Based": {
-              "gravitationalConstant": -50,
-              "centralGravity": 0.01,
+            "hierarchicalRepulsion": {
+              "centralGravity": 0.0,
               "springLength": 100,
-              "springConstant": 0.08
+              "springConstant": 0.01,
+              "nodeDistance": 120,
+              "damping": 0.09
             },
-            "maxVelocity": 50,
-            "solver": "forceAtlas2Based",
-            "timestep": 0.35,
-            "stabilization": {"iterations": 150}
+            "solver": "hierarchicalRepulsion",
+            "stabilization": {"iterations": 200}
           }
         }
         """)
