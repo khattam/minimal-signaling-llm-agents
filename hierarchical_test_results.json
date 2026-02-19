@@ -1,0 +1,24 @@
+{
+  "success": true,
+  "iterations": 2,
+  "original_tokens": 1763,
+  "final_tokens": 1295,
+  "compression_ratio": 0.7345433919455474,
+  "final_similarity": 0.8061772584915161,
+  "target_similarity": 0.8,
+  "sections": 8,
+  "iteration_history": [
+    {
+      "iteration": 1,
+      "similarity": 0.7967484593391418,
+      "tokens": 778,
+      "compression": 0.44129325014180376
+    },
+    {
+      "iteration": 2,
+      "similarity": 0.8061772584915161,
+      "tokens": 1295,
+      "compression": 0.7345433919455474
+    }
+  ]
+}
