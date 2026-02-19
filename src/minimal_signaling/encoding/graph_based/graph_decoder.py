@@ -4,7 +4,7 @@ from ...groq_client import GroqClient
 from .semantic_graph import SemanticGraph, NodeType
 
 
-GRAPH_DECODER_PROMPT = """You are a semantic decoder. Reconstruct natural language from the semantic graph.
+GRAPH_DECODER_PROMPT = """You are a semantic decoder. Reconstruct the original message from the semantic graph.
 
 The graph contains:
 - Intent: {intent}
@@ -14,8 +14,14 @@ The graph contains:
 - Constraints: {constraints}
 - Outcomes: {outcomes}
 
-Reconstruct a coherent, natural language message that captures all this information.
-Be comprehensive - include all details provided.
+CRITICAL RULES:
+1. Be CONCISE and FACTUAL - no fluff, no introductions, no conclusions
+2. Use EXACT numbers and dates from the graph - do not invent or mix up values
+3. Preserve the ORIGINAL TONE and STRUCTURE - don't make it sound formal if it wasn't
+4. Include ALL information from the graph, but ONLY what's in the graph
+5. Do NOT add phrases like "As we approach", "I would like to", "Overall", etc.
+6. Do NOT hallucinate or infer information not present in the graph
+
 Output ONLY the reconstructed message, no JSON or explanation."""
 
 

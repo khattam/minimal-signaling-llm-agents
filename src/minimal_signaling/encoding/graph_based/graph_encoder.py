@@ -92,9 +92,9 @@ class GraphEncoder:
         # Build graph from structure
         self._build_graph(graph, structure, text)
         
-        # Enhance with spaCy if available
-        if self.use_spacy and self.nlp:
-            self._enhance_with_spacy(graph, text)
+        # DISABLED: SpaCy enhancement adds too many isolated numbers/acronyms
+        # if self.use_spacy and self.nlp:
+        #     self._enhance_with_spacy(graph, text)
         
         # Calculate importance scores
         self._calculate_importance(graph, text)
