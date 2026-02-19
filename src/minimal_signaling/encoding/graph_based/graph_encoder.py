@@ -9,6 +9,7 @@ Uses:
 
 import json
 import math
+import uuid
 from collections import Counter
 from typing import List, Dict, Any
 import spacy
@@ -18,29 +19,34 @@ from ...tokenization import TiktokenTokenizer
 from .semantic_graph import SemanticGraph, SemanticNode, NodeType
 
 
-GRAPH_EXTRACTION_PROMPT = """You are a semantic graph extractor. Analyze the message and extract semantic nodes.
+GRAPH_EXTRACTION_PROMPT = """You are a semantic graph extractor. Analyze the message and extract semantic nodes with their relationships.
 
 Output JSON with this structure:
 {
-  "intent": "What action is being requested (ANALYZE/GENERATE/EVALUATE/TRANSFORM/QUERY/RESPOND/DELEGATE/REPORT)",
-  "entities": [
-    {"content": "...", "type": "person/organization/system/document", "importance": "critical/high/medium/low"}
+  "nodes": [
+    {
+      "id": "unique_id",
+      "content": "the actual content",
+      "type": "intent/entity/attribute/detail/constraint/outcome",
+      "importance": "critical/high/medium/low"
+    }
   ],
-  "attributes": [
-    {"content": "...", "type": "quantity/timeframe/status/priority", "importance": "critical/high/medium/low"}
-  ],
-  "details": [
-    {"content": "...", "type": "context/explanation/requirement", "importance": "critical/high/medium/low"}
-  ],
-  "constraints": [
-    {"content": "...", "importance": "critical/high/medium/low"}
-  ],
-  "outcomes": [
-    {"content": "expected result or goal", "importance": "critical/high/medium/low"}
+  "edges": [
+    {
+      "source": "node_id",
+      "target": "node_id", 
+      "relation": "requires/causes/relates_to/has_attribute/constrains/leads_to"
+    }
   ]
 }
 
-Extract ALL important information. Be thorough.
+IMPORTANT:
+- Create multiple intent nodes if there are multiple actions requested
+- Connect related nodes to EACH OTHER, not just to intent
+- Example: "23% decline" (attribute) should connect to "enterprise segment" (entity)
+- Example: "$500K budget" (constraint) should connect to "remediation plan" (outcome)
+- Be thorough and capture ALL relationships between concepts
+
 Output ONLY valid JSON."""
 
 
@@ -111,77 +117,62 @@ class GraphEncoder:
         except json.JSONDecodeError:
             # Fallback
             return {
-                "intent": "QUERY",
-                "entities": [],
-                "attributes": [],
-                "details": [],
-                "constraints": [],
-                "outcomes": []
+                "nodes": [
+                    {"id": "intent_1", "content": "QUERY", "type": "intent", "importance": "high"}
+                ],
+                "edges": []
             }
     
     def _build_graph(self, graph: SemanticGraph, structure: Dict[str, Any], original_text: str):
         """Build graph from extracted structure."""
-        # Create intent node (root)
-        intent_node = SemanticNode(
-            content=structure.get("intent", "QUERY"),
-            node_type=NodeType.INTENT,
-            entropy=self._calculate_entropy(structure.get("intent", "QUERY"))
-        )
-        intent_id = graph.add_node(intent_node)
-        graph.root_id = intent_id
+        # Map to track node IDs
+        node_map = {}
         
-        # Add entities
-        for entity in structure.get("entities", []):
+        # Valid node types
+        valid_types = {t.value for t in NodeType}
+        
+        # Add all nodes
+        for node_data in structure.get("nodes", []):
+            node_type_str = node_data.get("type", "detail")
+            
+            # Map common variations to valid types
+            if node_type_str not in valid_types:
+                type_mapping = {
+                    "action": "intent",
+                    "event": "detail",
+                    "requirement": "constraint",
+                    "goal": "outcome",
+                    "metric": "attribute",
+                    "person": "entity",
+                    "organization": "entity",
+                    "system": "entity"
+                }
+                node_type_str = type_mapping.get(node_type_str, "detail")
+            
             node = SemanticNode(
-                content=entity.get("content", ""),
-                node_type=NodeType.ENTITY,
-                entropy=self._calculate_entropy(entity.get("content", "")),
-                metadata={"subtype": entity.get("type", "unknown")}
+                id=node_data.get("id", str(uuid.uuid4())),
+                content=node_data.get("content", ""),
+                node_type=NodeType(node_type_str),
+                entropy=self._calculate_entropy(node_data.get("content", "")),
+                metadata={"llm_importance": node_data.get("importance", "medium")}
             )
             node_id = graph.add_node(node)
-            graph.add_edge(intent_id, node_id, "has_entity")
+            node_map[node_data.get("id")] = node_id
+            
+            # Set root to first intent node
+            if node.node_type == NodeType.INTENT and not graph.root_id:
+                graph.root_id = node_id
         
-        # Add attributes
-        for attr in structure.get("attributes", []):
-            node = SemanticNode(
-                content=attr.get("content", ""),
-                node_type=NodeType.ATTRIBUTE,
-                entropy=self._calculate_entropy(attr.get("content", "")),
-                metadata={"subtype": attr.get("type", "unknown")}
-            )
-            node_id = graph.add_node(node)
-            graph.add_edge(intent_id, node_id, "has_attribute")
-        
-        # Add details
-        for detail in structure.get("details", []):
-            node = SemanticNode(
-                content=detail.get("content", ""),
-                node_type=NodeType.DETAIL,
-                entropy=self._calculate_entropy(detail.get("content", "")),
-                metadata={"subtype": detail.get("type", "unknown")}
-            )
-            node_id = graph.add_node(node)
-            graph.add_edge(intent_id, node_id, "has_detail")
-        
-        # Add constraints
-        for constraint in structure.get("constraints", []):
-            node = SemanticNode(
-                content=constraint.get("content", ""),
-                node_type=NodeType.CONSTRAINT,
-                entropy=self._calculate_entropy(constraint.get("content", "")),
-            )
-            node_id = graph.add_node(node)
-            graph.add_edge(intent_id, node_id, "constrained_by")
-        
-        # Add outcomes
-        for outcome in structure.get("outcomes", []):
-            node = SemanticNode(
-                content=outcome.get("content", ""),
-                node_type=NodeType.OUTCOME,
-                entropy=self._calculate_entropy(outcome.get("content", "")),
-            )
-            node_id = graph.add_node(node)
-            graph.add_edge(intent_id, node_id, "leads_to")
+        # Add all edges
+        for edge_data in structure.get("edges", []):
+            source_id = node_map.get(edge_data.get("source"))
+            target_id = node_map.get(edge_data.get("target"))
+            if source_id and target_id:
+                graph.add_edge(
+                    source_id, 
+                    target_id, 
+                    edge_data.get("relation", "related_to")
+                )
     
     def _enhance_with_spacy(self, graph: SemanticGraph, text: str):
         """Enhance graph with spaCy NLP analysis."""

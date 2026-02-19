@@ -71,9 +71,9 @@ async def test_graph():
                 print(f"      - {node.content[:60]} (importance: {node.importance:.2f})")
     
     # Compress graph
-    print("\n🗜️  Compressing graph to 40% of original...")
+    print("\n🗜️  Compressing graph to 60% of original...")
     compressor = GraphCompressor()
-    compressed = compressor.compress(graph, target_ratio=0.4)
+    compressed = compressor.compress(graph, target_ratio=0.6)
     
     stats = compressor.get_compression_stats(graph, compressed)
     print(f"\n   Compression stats:")

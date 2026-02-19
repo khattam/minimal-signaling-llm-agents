@@ -43,9 +43,9 @@ class GraphVisualizer:
         # Convert to NetworkX
         G = self.compressor.to_networkx(graph)
         
-        # Create pyvis network
+        # Create pyvis network with better sizing
         net = Network(
-            height="750px",
+            height="900px",
             width="100%",
             bgcolor="#ffffff",
             font_color="#000000",
@@ -61,47 +61,50 @@ class GraphVisualizer:
               "enabled": true,
               "direction": "UD",
               "sortMethod": "directed",
-              "nodeSpacing": 150,
-              "levelSeparation": 200
+              "nodeSpacing": 200,
+              "levelSeparation": 250
             }
           },
           "physics": {
             "hierarchicalRepulsion": {
               "centralGravity": 0.0,
-              "springLength": 100,
+              "springLength": 150,
               "springConstant": 0.01,
-              "nodeDistance": 120,
+              "nodeDistance": 150,
               "damping": 0.09
             },
             "solver": "hierarchicalRepulsion",
             "stabilization": {"iterations": 200}
+          },
+          "nodes": {
+            "font": {
+              "size": 16,
+              "face": "arial"
+            }
           }
         }
         """)
         
-        # Add nodes
+        # Add nodes with better sizing
         for node_id, node_data in G.nodes(data=True):
             node_type = NodeType(node_data["type"])
             color = self.colors.get(node_type, "#95A5A6")
             
-            # Size based on importance if enabled
+            # Larger size based on importance
             if show_importance:
-                size = 10 + (node_data["importance"] * 40)  # 10-50 range
+                size = 20 + (node_data["importance"] * 60)  # 20-80 range
             else:
-                size = 25
+                size = 40
             
-            # Create label
-            label = f"{node_data['type']}\n{node_data['content'][:50]}"
-            if len(node_data['content']) > 50:
-                label += "..."
+            # Shorter, cleaner label
+            content = node_data['content']
+            if len(content) > 40:
+                label = content[:37] + "..."
+            else:
+                label = content
             
             # Create title (hover text)
-            title_text = f"""
-            Type: {node_data['type']}
-            Content: {node_data['content']}
-            Importance: {node_data['importance']:.3f}
-            Entropy: {node_data['entropy']:.2f} bits
-            """
+            title_text = f"Type: {node_data['type']}\nContent: {node_data['content']}\nImportance: {node_data['importance']:.3f}\nEntropy: {node_data['entropy']:.2f} bits"
             
             net.add_node(
                 node_id,
@@ -109,7 +112,7 @@ class GraphVisualizer:
                 title=title_text,
                 color=color,
                 size=size,
-                font={"size": 12}
+                font={"size": 14, "face": "arial", "color": "#000000"}
             )
         
         # Add edges
