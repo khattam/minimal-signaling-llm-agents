@@ -59,43 +59,28 @@ class GraphDecoder:
         # Get all intents (not just root)
         all_intents = [node.content for node in graph.get_nodes_by_type(NodeType.INTENT)]
         
-        # Calculate target output based on graph complexity
-        # Aim for ~25-30 tokens per node (balanced between detail and conciseness)
-        target_tokens = graph.node_count() * 28
+        # Get ALL node contents to force the model to address each one
+        all_nodes_text = []
+        for node in graph.nodes.values():
+            all_nodes_text.append(f"- {node.content} ({node.node_type.value})")
         
-        # Build prompt with emphasis on balanced output
-        completeness_instruction = f"""
-CRITICAL OUTPUT REQUIREMENTS:
-- Target output length: approximately {target_tokens} tokens
-- Include ALL key information from each node
-- Provide necessary context for numbers and metrics
-- Use complete, well-formed sentences
-- Be direct and factual - no verbose explanations
-- Don't repeat information
-- Balance detail with conciseness"""
-        
-        prompt = f"""You are reconstructing a message from a semantic graph. Convert the structured information back into natural language.
+        # Build prompt with explicit node list
+        prompt = f"""You are reconstructing a message from a semantic graph with {graph.node_count()} nodes.
 
-The graph contains these semantic elements:
-- Intents/Actions: {', '.join(all_intents) if all_intents else intent}
-- Entities: {', '.join(entities) if entities else 'None'}
-- Attributes: {', '.join(attributes) if attributes else 'None'}
-- Details: {', '.join(details) if details else 'None'}
-- Constraints: {', '.join(constraints) if constraints else 'None'}
-- Outcomes: {', '.join(outcomes) if outcomes else 'None'}
+Here are ALL the nodes you MUST include in your reconstruction:
 
-{completeness_instruction}
+{chr(10).join(all_nodes_text)}
 
 CRITICAL RULES:
-1. Be FACTUAL - only state what's in the graph
-2. Keep numbers EXACT - if graph says "23% decline", say exactly that
+1. You MUST address EVERY node listed above in your reconstruction
+2. Keep numbers EXACT - if a node says "23% decline", say exactly that
 3. NO fluff phrases like "I would like to", "As we approach"
-4. NO hallucinations - don't invent details
-5. Provide ADEQUATE DETAIL for each element - don't just list, explain
-6. Maintain ORIGINAL tone
-7. Write in complete, well-formed paragraphs with proper context
+4. NO hallucinations - only use information from the nodes above
+5. Write in complete, well-formed paragraphs that flow naturally
+6. Provide context for each piece of information
+7. Explain relationships between concepts
 
-Reconstruct the message using the information provided above. Aim for approximately {target_tokens} tokens.
+Reconstruct the complete message ensuring you include information from ALL {graph.node_count()} nodes listed above.
 Output ONLY the reconstructed message."""
         
         # Decode using LLM

@@ -1,0 +1,1259 @@
+{
+  "success": false,
+  "final_similarity": 0.44719967246055603,
+  "final_compression": 0.37946681792399317,
+  "original_tokens": 1763,
+  "final_tokens": 669,
+  "total_iterations": 5,
+  "iterations": [
+    {
+      "iteration": 1,
+      "entropy_target": 0.9,
+      "nodes_kept": 12,
+      "total_nodes": 14,
+      "compression_ratio": 0.3533749290981282,
+      "similarity_score": 0.2847122550010681,
+      "decoded_tokens": 623,
+      "missing_concepts": [
+        "Alex, the sender of the original message",
+        "November 1st, the start date of the authentication service migration",
+        "6 nodes in the Redis cluster",
+        "Friday, the deadline for deciding on the auth migration",
+        "Monday, the potential deployment date for the hotfix",
+        "3 weeks of development time and $75K in AWS costs for the rollback option",
+        "4-5 days of testing for the mobile app fix",
+        "Wednesday, the deadline for the mobile team to submit the iOS crash fix timeline",
+        "5,000 beta users for the standard beta testing phase",
+        "December 15th, the completion date for the data warehouse migration",
+        "47 different data pipelines, with only 23 successfully migrated and validated",
+        "2 additional contractors for 6 weeks to accelerate the migration, at a cost of $45,000",
+        "6 weeks for the security remediation plan implementation",
+        "2 weeks for addressing the high-severity findings",
+        "November 20th, the deadline for department heads to submit Q1 budget proposals",
+        "November 27th, the week for the executive team to review budget proposals",
+        "December 6th, the final budget approval date",
+        "287,000, the AWS bill for October, which is 23% higher than the budgeted amount of $233,000",
+        "31% month-over-month increase in EC2 usage",
+        "$18K increase in data transfer costs due to expanded CDN usage",
+        "12,400 daily active users of the analytics dashboard, exceeding the initial target by 156%",
+        "4.7/5.0 average rating for the analytics dashboard",
+        "340% higher than the target of 700 tickets for the customer support ticket backlog",
+        "18 hours, the average response time for customer support tickets",
+        "3.1/5.0, the customer satisfaction score",
+        "12% increase in churn among customers who had support tickets open for more than 48 hours",
+        "2.3M, the annual recurring revenue loss per 1% increase in churn",
+        "5 additional support engineers, at an annual salary of $65K each, to mitigate the customer support ticket backlog",
+        "Thursday EOD, the deadline for engineering leads to provide a recommendation on the auth migration",
+        "Tuesday, the deadline for the support team to present the hiring plan and interim solutions for the ticket backlog",
+        "Monday, the deadline for the security team to prioritize high-severity findings and provide a 2-week remediation plan",
+        "November 25th, the deadline for engineering teams to conduct an AWS cost optimization review and submit findings",
+        "Friday at 2 PM, the scheduled leadership sync to discuss critical decisions"
+      ],
+      "decoded_message": "The company is currently planning its marketing campaign for Q1, which has a budget of $450,000 and is targeting enterprise customers, with the potential to generate 200-250 qualified leads and an $8-12M pipeline. This campaign is a key part of the company's overall strategy, and its success will be closely monitored. In parallel, the company is also focusing on budget planning for Q1 2025, with department heads required to submit their proposals by November 20th, followed by an executive team review on November 27th, and final budgets approved on December 6th.\n\nIn terms of technical priorities, the company is addressing mobile app performance issues, where the iOS app is crashing for 8.3% of users on iOS 17.2+, affecting 67% of the active mobile user base, due to a memory leak in the image caching layer. To resolve this, the company plans to implement a mobile app fix, which involves upgrading to SDWebImage 5.18, updating the image pipeline, and conducting 4-5 days of testing, with the possibility of an emergency patch release. Additionally, the company is dealing with security audit findings, which have identified 8 medium-severity findings and 2 high-severity findings, including insufficient access logging and a lack of automated security scanning.\n\nThe company is also in the process of migrating its data warehouse to Snowflake, with dual systems currently running, resulting in $12,000/month of redundant infrastructure, and 47 data pipelines, of which 23 have been migrated, with a completion date set for December 15th. Furthermore, the authentication service migration is 65% complete, with 12,000 enterprise users and 450,000 consumer accounts migrated since November 1st, although the company is experiencing issues with the session management layer. A decision on the auth migration is pending, with two options being considered: a rollback, which would require 3 weeks of development time and $75K in AWS costs, or a hotfix, which is risky and would require the entire backend team to deploy by Monday.\n\nThe company's security remediation plan aims to address the high-severity findings within 2 weeks, which would make conditional certification possible, and the overall implementation is expected to take 6 weeks. In other areas, the analytics dashboard is performing well, with 12,400 daily active users, exceeding the initial target by 156%, and an average rating of 4.7/5.0, indicating increased engagement. However, the customer support ticket backlog is a concern, with 2,847 open tickets, which is 340% higher than the target, an average response time of 18 hours, and a customer satisfaction score of 3.1/5.0. To mitigate this, the company is planning to hire 5 additional support engineers, at an annual salary of $325K, to prevent the potential loss of high-value customers, which could result in a $2.3M annual recurring revenue loss per 1% increase in churn.",
+      "total_entropy": 1088.6179561023264,
+      "retained_entropy": 948.3907945898919,
+      "entropy_retention": 0.8711879032250194,
+      "total_importance": 12.211648531422139,
+      "retained_importance": 10.746878794580033,
+      "importance_retention": 0.8800514334266119,
+      "nodes_by_type": {
+        "intent": 4,
+        "outcome": 2,
+        "constraint": 2,
+        "entity": 4
+      },
+      "avg_node_importance": 0.8955732328816693,
+      "compression_stats": {
+        "original_nodes": 14,
+        "compressed_nodes": 12,
+        "nodes_removed": 2,
+        "node_retention": 0.8571428571428571,
+        "original_entropy": 1088.6179561023264,
+        "compressed_entropy": 948.3907945898919,
+        "entropy_retention": 0.8711879032250194,
+        "original_importance": 12.211648531422139,
+        "compressed_importance": 10.746878794580033,
+        "importance_retention": 0.8800514334266119
+      },
+      "graph_data": {
+        "nodes": [
+          {
+            "id": "marketing_campaign_q1",
+            "content": "Marketing Campaign Q1: $450,000 budget, targeting enterprise customers, potential 200-250 qualified leads, $8-12M pipeline",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 68.99862949778363,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "mobile_app_fix",
+            "content": "Mobile App Fix: upgrade to SDWebImage 5.18, update image pipeline, 4-5 days testing, emergency patch release possible",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 63.66614734090504,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "budget_planning_q1_2025",
+            "content": "Budget Planning Q1 2025: department heads submit proposals by November 20th, executive team review November 27th, final budgets approved December 6th",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 83.02550552676817,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "auth_migration_decision",
+            "content": "Decision on auth migration: rollback (3 weeks development time, $75K AWS costs) or hotfix (risky, deploy by Monday with entire backend team)",
+            "type": "constraint",
+            "importance": 1.0,
+            "entropy": 78.13093839913515,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "mobile_app_performance",
+            "content": "Mobile App Performance Issues: iOS app crashing for 8.3% of users on iOS 17.2+, 67% of active mobile user base, memory leak in image caching layer",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 79.50397272333225,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "security_audit_findings",
+            "content": "Security Audit Findings: 8 medium-severity findings, 2 high-severity findings, insufficient access logging, lack of automated security scanning",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 75.3193906740761,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "data_warehouse_migration",
+            "content": "Data Warehouse Migration to Snowflake: dual systems running, $12,000/month redundant infrastructure, 47 data pipelines, 23 migrated, completion date December 15th",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 90.95339659223508,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "auth_migration",
+            "content": "Authentication Service Migration: 65% complete, 12,000 enterprise users migrated, 450,000 consumer accounts migrated, started November 1st, experiencing session management layer issues",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 98.87187656090235,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "security_remediation_plan",
+            "content": "Security Remediation Plan: 6 weeks to implement, conditional certification possible if high-severity findings addressed within 2 weeks",
+            "type": "constraint",
+            "importance": 1.0,
+            "entropy": 71.14556009733383,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "analytics_dashboard",
+            "content": "Analytics Dashboard: 12,400 daily active users, 156% of initial target, 4.7/5.0 average rating, increased engagement",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 64.84285641535787,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "customer_support_hiring",
+            "content": "Customer Support Hiring: 5 additional support engineers, $325K annual salary, potential loss of high-value customers, $2.3M annual recurring revenue per 1% churn increase",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 93.2279394090382,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "customer_support_ticket_backlog",
+            "content": "Customer Support Ticket Backlog: 2,847 open tickets, 340% higher than target, 18 hour average response time, 3.1/5.0 customer satisfaction score",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 80.70458135302422,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "source": "auth_migration",
+            "target": "auth_migration_decision",
+            "relation": "requires",
+            "weight": 1.0
+          },
+          {
+            "source": "mobile_app_performance",
+            "target": "mobile_app_fix",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "customer_support_ticket_backlog",
+            "target": "customer_support_hiring",
+            "relation": "leads_to",
+            "weight": 1.0
+          },
+          {
+            "source": "security_audit_findings",
+            "target": "security_remediation_plan",
+            "relation": "constrains",
+            "weight": 1.0
+          },
+          {
+            "source": "marketing_campaign_q1",
+            "target": "customer_support_hiring",
+            "relation": "relates_to",
+            "weight": 1.0
+          }
+        ]
+      }
+    },
+    {
+      "iteration": 2,
+      "entropy_target": 0.95,
+      "nodes_kept": 13,
+      "total_nodes": 14,
+      "compression_ratio": 0.4361883153715258,
+      "similarity_score": 0.261663019657135,
+      "decoded_tokens": 769,
+      "missing_concepts": [
+        "Alex as the sender of the message",
+        "Q4 2024 product roadmap",
+        "November 1st as the start date of the authentication service migration",
+        "65% completion rate of the authentication service migration",
+        "12,000 enterprise users and 450,000 consumer accounts already migrated",
+        "Redis cluster configuration issue",
+        "Sarah from DevOps working with AWS support",
+        "Friday deadline for deciding on rollback or hotfix",
+        "3 weeks of development time and $75K in AWS costs for rollback",
+        "Entire backend team required for hotfix deployment by Monday",
+        "8.3% iOS app crash rate on devices running iOS 17.2 or later",
+        "67% of active mobile user base using iOS 17.2+",
+        "SDWebImage library version 5.12 and its memory management bug",
+        "4-5 days of testing required for the fix",
+        "Emergency patch release as an option",
+        "5,000 beta users for standard beta testing phase",
+        "Wednesday as the deadline for the mobile team to submit the iOS crash fix timeline and release strategy",
+        "December 15th as the completion date for the data warehouse migration to Snowflake",
+        "47 different data pipelines and only 23 successfully migrated and validated",
+        "2 additional contractors requested for 6 weeks to accelerate the migration",
+        "Approximately $45,000 cost for the contractors",
+        "Roughly $36,000 savings in redundant infrastructure costs over 3 months",
+        "2,847 open customer support tickets",
+        "340% higher than the target of 700 tickets",
+        "18 hours average response time",
+        "3.1/5.0 customer satisfaction score",
+        "12% increase in churn among customers with support tickets open for more than 48 hours",
+        "Approximately $2.3M in annual recurring revenue lost per 1% increase in churn",
+        "SOC 2 Type II audit and the need for certification",
+        "8 medium-severity and 2 high-severity findings from the audit",
+        "Insufficient access logging for production database access and lack of automated security scanning in the CI/CD pipeline as high-severity findings",
+        "6 weeks required for full remediation plan implementation",
+        "2 weeks deadline for addressing high-severity findings",
+        "Conditional certification from the auditors",
+        "November 20th deadline for department heads to submit Q1 2025 budget proposals",
+        "November 27th for the executive team to review proposals",
+        "December 6th for final budget approval",
+        "Leadership sync on Friday at 2 PM to discuss critical decisions"
+      ],
+      "decoded_message": "The company is currently planning its marketing campaign for Q1, which has a budget of $450,000 and is targeting enterprise customers, with the potential to generate 200-250 qualified leads and an $8-12M pipeline. This campaign is a key part of the company's overall strategy, and its success will be closely tied to the performance of the mobile app, which is currently experiencing performance issues, including crashes for 8.3% of users on iOS 17.2+ due to a memory leak in the image caching layer. To address this issue, a fix is being implemented, which involves upgrading to SDWebImage 5.18 and updating the image pipeline, and will require 4-5 days of testing, with the possibility of an emergency patch release.\n\nIn addition to the marketing campaign and mobile app fix, the company is also in the process of planning its budget for Q1 2025, with department heads submitting proposals by November 20th, and the executive team reviewing them on November 27th, with final budgets to be approved by December 6th. As part of this budget planning process, the company is considering the costs associated with the data warehouse migration to Snowflake, which is currently dual-running with the existing system, at a cost of $12,000 per month in redundant infrastructure, and has already migrated 23 out of 47 data pipelines, with a completion date of December 15th. The migration is expected to save the company $36,000 in redundant infrastructure costs, with a total cost of $45,000 for 2 contractors over 6 weeks.\n\nThe company is also facing a decision on how to proceed with the auth migration, with two options being considered: a rollback, which would require 3 weeks of development time and $75K in AWS costs, or a hotfix, which is riskier but could be deployed by Monday with the entire backend team. This decision is critical, as the authentication service migration is currently 65% complete, with 12,000 enterprise users and 450,000 consumer accounts already migrated, but is experiencing issues with the session management layer. Furthermore, the company is facing a security remediation plan, which must be implemented within 6 weeks, and is conditional on addressing high-severity findings within 2 weeks.\n\nThe company's AWS cost optimization efforts are also a key area of focus, as the October bill was $287,000, which is 23% higher than budget, due to increased EC2 usage and higher data transfer costs, largely driven by the dual data warehouse setup. To address this issue, the company is working to complete the data warehouse migration to Snowflake, which will help to reduce costs. In addition, the company is experiencing high usage of its analytics dashboard, with 12,400 daily active users, which is 156% of the initial target, and an average rating of 4.7/5.0, indicating high engagement.\n\nHowever, the company is also facing challenges in its customer support operations, with a current backlog of 2,847 open tickets, which is 340% higher than the target, and an average response time of 18 hours, resulting in a customer satisfaction score of 3.1/5.0. To address this issue, the company is planning to hire 5 additional support engineers, at an annual salary of $325K, which is necessary to prevent the potential loss of high-value customers, and to protect the $2.3M in annual recurring revenue that is at risk for every 1% increase in churn. Overall, the company is working to address a range of technical, operational, and financial challenges, and is taking steps to ensure the success of its marketing campaign, mobile app, and customer support operations.",
+      "total_entropy": 1088.6179561023264,
+      "retained_entropy": 1013.2985654282503,
+      "entropy_retention": 0.9308119159234258,
+      "total_importance": 13.953818181818182,
+      "retained_importance": 12.98181818181818,
+      "importance_retention": 0.9303416464701743,
+      "nodes_by_type": {
+        "intent": 4,
+        "outcome": 2,
+        "constraint": 2,
+        "entity": 4,
+        "attribute": 1
+      },
+      "avg_node_importance": 0.9986013986013985,
+      "compression_stats": {
+        "original_nodes": 14,
+        "compressed_nodes": 13,
+        "nodes_removed": 1,
+        "node_retention": 0.9285714285714286,
+        "original_entropy": 1088.6179561023264,
+        "compressed_entropy": 1013.2985654282503,
+        "entropy_retention": 0.9308119159234258,
+        "original_importance": 13.953818181818182,
+        "compressed_importance": 12.98181818181818,
+        "importance_retention": 0.9303416464701743
+      },
+      "graph_data": {
+        "nodes": [
+          {
+            "id": "marketing_campaign_q1",
+            "content": "Marketing Campaign Q1: $450,000 budget, targeting enterprise customers, potential 200-250 qualified leads, $8-12M pipeline",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 68.99862949778363,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "mobile_app_fix",
+            "content": "Mobile App Fix: upgrade to SDWebImage 5.18, update image pipeline, 4-5 days testing, emergency patch release possible",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 63.66614734090504,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "budget_planning_q1_2025",
+            "content": "Budget Planning Q1 2025: department heads submit proposals by November 20th, executive team review November 27th, final budgets approved December 6th",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 83.02550552676817,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "auth_migration_decision",
+            "content": "Decision on auth migration: rollback (3 weeks development time, $75K AWS costs) or hotfix (risky, deploy by Monday with entire backend team)",
+            "type": "constraint",
+            "importance": 1.0,
+            "entropy": 78.13093839913515,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "mobile_app_performance",
+            "content": "Mobile App Performance Issues: iOS app crashing for 8.3% of users on iOS 17.2+, 67% of active mobile user base, memory leak in image caching layer",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 79.50397272333225,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "data_warehouse_migration",
+            "content": "Data Warehouse Migration to Snowflake: dual systems running, $12,000/month redundant infrastructure, 47 data pipelines, 23 migrated, completion date December 15th",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 90.95339659223508,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "data_warehouse_migration_cost",
+            "content": "Data Warehouse Migration Cost: $45,000 for 2 contractors, 6 weeks, save $36,000 in redundant infrastructure costs",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 61.041395862345794,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "aws_cost_optimization",
+            "content": "AWS Cost Optimization: $287,000 October bill, 23% higher than budget, increased EC2 usage, higher data transfer costs, dual data warehouse setup",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 79.18576565008864,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "auth_migration",
+            "content": "Authentication Service Migration: 65% complete, 12,000 enterprise users migrated, 450,000 consumer accounts migrated, started November 1st, experiencing session management layer issues",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 98.87187656090235,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "security_remediation_plan",
+            "content": "Security Remediation Plan: 6 weeks to implement, conditional certification possible if high-severity findings addressed within 2 weeks",
+            "type": "constraint",
+            "importance": 1.0,
+            "entropy": 71.14556009733383,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "analytics_dashboard",
+            "content": "Analytics Dashboard: 12,400 daily active users, 156% of initial target, 4.7/5.0 average rating, increased engagement",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 64.84285641535787,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "customer_support_hiring",
+            "content": "Customer Support Hiring: 5 additional support engineers, $325K annual salary, potential loss of high-value customers, $2.3M annual recurring revenue per 1% churn increase",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 93.2279394090382,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "customer_support_ticket_backlog",
+            "content": "Customer Support Ticket Backlog: 2,847 open tickets, 340% higher than target, 18 hour average response time, 3.1/5.0 customer satisfaction score",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 80.70458135302422,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "source": "auth_migration",
+            "target": "auth_migration_decision",
+            "relation": "requires",
+            "weight": 1.0
+          },
+          {
+            "source": "mobile_app_performance",
+            "target": "mobile_app_fix",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "data_warehouse_migration",
+            "target": "data_warehouse_migration_cost",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "customer_support_ticket_backlog",
+            "target": "customer_support_hiring",
+            "relation": "leads_to",
+            "weight": 1.0
+          },
+          {
+            "source": "budget_planning_q1_2025",
+            "target": "aws_cost_optimization",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "analytics_dashboard",
+            "target": "aws_cost_optimization",
+            "relation": "causes",
+            "weight": 1.0
+          },
+          {
+            "source": "marketing_campaign_q1",
+            "target": "customer_support_hiring",
+            "relation": "relates_to",
+            "weight": 1.0
+          }
+        ]
+      }
+    },
+    {
+      "iteration": 3,
+      "entropy_target": 0.95,
+      "nodes_kept": 13,
+      "total_nodes": 14,
+      "compression_ratio": 0.38627339761769713,
+      "similarity_score": 0.44370236992836,
+      "decoded_tokens": 681,
+      "missing_concepts": [
+        "Alex, the sender of the original message",
+        "Specific details about the Q4 2024 product roadmap",
+        "Action items for multiple teams",
+        "November 1st as the start date for the authentication service migration",
+        "6 nodes in the Redis cluster",
+        "AWS support involvement in resolving the Redis cluster issue",
+        "Friday deadline for deciding on the auth migration approach",
+        "Monday deployment deadline for the hotfix",
+        "3 weeks of development time required for rollback",
+        "4-5 days of testing required for the iOS crash fix",
+        "Emergency patch release as an option for the iOS crash fix",
+        "5,000 beta users for standard beta testing phase",
+        "Wednesday deadline for the mobile team to submit the iOS crash fix timeline",
+        "October 31st as the original completion date for the data warehouse migration",
+        "December 15th as the revised completion date for the data warehouse migration",
+        "47 different data pipelines for the data warehouse migration",
+        "23 successfully migrated and validated data pipelines",
+        "6 weeks duration for the contractor request",
+        "Thursday EOD deadline for engineering leads to provide recommendation on auth migration",
+        "Tuesday deadline for the support team to present hiring plan and interim solutions",
+        "Monday deadline for the security team to prioritize high-severity findings and provide 2-week remediation plan",
+        "November 20th deadline for department heads to submit Q1 2025 budget proposals",
+        "November 25th deadline for engineering teams to conduct AWS cost optimization review",
+        "November 27th week for executive team review of budget proposals",
+        "December 6th deadline for final budget approval",
+        "Leadership sync on Friday at 2 PM to discuss critical decisions",
+        "4.2/5.0 as the previous customer satisfaction score",
+        "12% increase in churn among customers with support tickets open for more than 48 hours",
+        "SOC 2 Type II audit and certification requirements",
+        "Conditional certification eligibility based on addressing high-severity findings within 2 weeks",
+        "4.7/5.0 average rating for the new analytics dashboard",
+        "12,400 daily active users for the new analytics dashboard",
+        "156% growth in usage compared to the initial target",
+        "Increased engagement across the board due to the new analytics dashboard",
+        "Strain on backend infrastructure due to the success of the new analytics dashboard",
+        "Sales team capacity to handle influx of leads from the marketing campaign"
+      ],
+      "decoded_message": "The company is currently planning its marketing campaign for Q1, which has a budget of $450,000 and is targeting enterprise customers, with the potential to generate 200-250 qualified leads and an $8-12M pipeline. This campaign is a key part of the company's overall strategy, and its success will be closely tied to the company's ability to deliver high-quality products and services. In this regard, the company is working to address mobile app performance issues, particularly with the iOS app, which is crashing for 8.3% of users on iOS 17.2+ due to a memory leak in the image caching layer. To fix this issue, the company plans to upgrade to SDWebImage 5.18 and update the image pipeline, with 4-5 days of testing and a possible emergency patch release.\n\nThe company's budget planning for Q1 2025 is also underway, with department heads required to submit their proposals by November 20th, followed by an executive team review on November 27th, and final budgets approved on December 6th. As part of this planning process, the company is considering its options for addressing authentication service migration issues, which are currently 65% complete, with 12,000 enterprise users and 450,000 consumer accounts migrated since November 1st. However, the company is experiencing session management layer issues and must decide whether to proceed with a rollback, which would require 3 weeks of development time and $75K in AWS costs, or a hotfix, which is riskier but could be deployed by Monday with the entire backend team.\n\nThe company's data warehouse migration to Snowflake is another key initiative, with dual systems currently running, resulting in $12,000/month in redundant infrastructure costs. The migration involves 47 data pipelines, with 23 already migrated, and is scheduled for completion by December 15th. The company expects to save $36,000 in redundant infrastructure costs as a result of the migration, which will be undertaken by 2 contractors at a cost of $45,000 over 6 weeks. The company is also working to optimize its AWS costs, which were $287,000 in October, 23% higher than budget, due to increased EC2 usage and higher data transfer costs, largely resulting from the dual data warehouse setup.\n\nIn addition to these initiatives, the company is addressing security concerns, including the findings of a recent security audit, which identified 8 medium-severity findings and 2 high-severity findings, as well as insufficient access logging and a lack of automated security scanning. The company has developed a security remediation plan, which will take 6 weeks to implement, and is conditional on addressing the high-severity findings within 2 weeks, which would make the company eligible for conditional certification. The company is also considering the impact of its customer support ticket backlog, which currently stands at 2,847 open tickets, 340% higher than the target, with an average response time of 18 hours and a customer satisfaction score of 3.1/5.0. To address this issue, the company plans to hire 5 additional support engineers at an annual salary of $325K, which is necessary to prevent the loss of high-value customers and protect the company's $2.3M annual recurring revenue per 1% churn increase.",
+      "total_entropy": 1088.6179561023264,
+      "retained_entropy": 1023.7750996869685,
+      "entropy_retention": 0.9404356174249409,
+      "total_importance": 14.0,
+      "retained_importance": 13.0,
+      "importance_retention": 0.9285714285714286,
+      "nodes_by_type": {
+        "intent": 4,
+        "outcome": 2,
+        "constraint": 2,
+        "entity": 4,
+        "attribute": 1
+      },
+      "avg_node_importance": 1.0,
+      "compression_stats": {
+        "original_nodes": 14,
+        "compressed_nodes": 13,
+        "nodes_removed": 1,
+        "node_retention": 0.9285714285714286,
+        "original_entropy": 1088.6179561023264,
+        "compressed_entropy": 1023.7750996869685,
+        "entropy_retention": 0.9404356174249409,
+        "original_importance": 14.0,
+        "compressed_importance": 13.0,
+        "importance_retention": 0.9285714285714286
+      },
+      "graph_data": {
+        "nodes": [
+          {
+            "id": "marketing_campaign_q1",
+            "content": "Marketing Campaign Q1: $450,000 budget, targeting enterprise customers, potential 200-250 qualified leads, $8-12M pipeline",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 68.99862949778363,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "mobile_app_fix",
+            "content": "Mobile App Fix: upgrade to SDWebImage 5.18, update image pipeline, 4-5 days testing, emergency patch release possible",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 63.66614734090504,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "budget_planning_q1_2025",
+            "content": "Budget Planning Q1 2025: department heads submit proposals by November 20th, executive team review November 27th, final budgets approved December 6th",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 83.02550552676817,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "auth_migration_decision",
+            "content": "Decision on auth migration: rollback (3 weeks development time, $75K AWS costs) or hotfix (risky, deploy by Monday with entire backend team)",
+            "type": "constraint",
+            "importance": 1.0,
+            "entropy": 78.13093839913515,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "mobile_app_performance",
+            "content": "Mobile App Performance Issues: iOS app crashing for 8.3% of users on iOS 17.2+, 67% of active mobile user base, memory leak in image caching layer",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 79.50397272333225,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "security_audit_findings",
+            "content": "Security Audit Findings: 8 medium-severity findings, 2 high-severity findings, insufficient access logging, lack of automated security scanning",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 75.3193906740761,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "data_warehouse_migration",
+            "content": "Data Warehouse Migration to Snowflake: dual systems running, $12,000/month redundant infrastructure, 47 data pipelines, 23 migrated, completion date December 15th",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 90.95339659223508,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "data_warehouse_migration_cost",
+            "content": "Data Warehouse Migration Cost: $45,000 for 2 contractors, 6 weeks, save $36,000 in redundant infrastructure costs",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 61.041395862345794,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "aws_cost_optimization",
+            "content": "AWS Cost Optimization: $287,000 October bill, 23% higher than budget, increased EC2 usage, higher data transfer costs, dual data warehouse setup",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 79.18576565008864,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "auth_migration",
+            "content": "Authentication Service Migration: 65% complete, 12,000 enterprise users migrated, 450,000 consumer accounts migrated, started November 1st, experiencing session management layer issues",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 98.87187656090235,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "security_remediation_plan",
+            "content": "Security Remediation Plan: 6 weeks to implement, conditional certification possible if high-severity findings addressed within 2 weeks",
+            "type": "constraint",
+            "importance": 1.0,
+            "entropy": 71.14556009733383,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "customer_support_hiring",
+            "content": "Customer Support Hiring: 5 additional support engineers, $325K annual salary, potential loss of high-value customers, $2.3M annual recurring revenue per 1% churn increase",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 93.2279394090382,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "customer_support_ticket_backlog",
+            "content": "Customer Support Ticket Backlog: 2,847 open tickets, 340% higher than target, 18 hour average response time, 3.1/5.0 customer satisfaction score",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 80.70458135302422,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "source": "auth_migration",
+            "target": "auth_migration_decision",
+            "relation": "requires",
+            "weight": 1.0
+          },
+          {
+            "source": "mobile_app_performance",
+            "target": "mobile_app_fix",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "data_warehouse_migration",
+            "target": "data_warehouse_migration_cost",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "customer_support_ticket_backlog",
+            "target": "customer_support_hiring",
+            "relation": "leads_to",
+            "weight": 1.0
+          },
+          {
+            "source": "security_audit_findings",
+            "target": "security_remediation_plan",
+            "relation": "constrains",
+            "weight": 1.0
+          },
+          {
+            "source": "budget_planning_q1_2025",
+            "target": "aws_cost_optimization",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "marketing_campaign_q1",
+            "target": "customer_support_hiring",
+            "relation": "relates_to",
+            "weight": 1.0
+          }
+        ]
+      }
+    },
+    {
+      "iteration": 4,
+      "entropy_target": 0.95,
+      "nodes_kept": 13,
+      "total_nodes": 14,
+      "compression_ratio": 0.37379466817923995,
+      "similarity_score": 0.44719967246055603,
+      "decoded_tokens": 659,
+      "missing_concepts": [
+        "Alex, the sender of the original message",
+        "Q4 2024 product roadmap",
+        "November 1st as the start date for authentication service migration",
+        "65% completion rate of authentication service migration",
+        "12,000 enterprise users and 450,000 consumer accounts migrated",
+        "8 hours as the configured session timeout",
+        "6 nodes in the Redis cluster",
+        "Sarah from DevOps working with AWS support",
+        "Friday deadline for deciding on rollback or hotfix",
+        "3 weeks of development time and $75K in AWS costs for rollback",
+        "Entire backend team required for hotfix deployment by Monday",
+        "8.3% crash rate of iOS app on devices running iOS 17.2+",
+        "67% of active mobile user base using iOS 17.2+",
+        "SDWebImage library version 5.12 and its known memory management bug",
+        "4-5 days of testing required for iOS crash fix",
+        "Emergency patch release as an option for iOS crash fix",
+        "5,000 beta users for standard beta testing phase",
+        "Wednesday as the potential deployment date for emergency patch release",
+        "December 15th as the completion date for data warehouse migration",
+        "47 different data pipelines, with only 23 successfully migrated and validated",
+        "2 additional contractors requested for 6 weeks to accelerate data warehouse migration",
+        "$45,000 cost for contractors, with potential savings of $36,000 in redundant infrastructure costs",
+        "2,847 open customer support tickets, 340% higher than the target",
+        "18 hours as the average response time, and 3.1/5.0 as the customer satisfaction score",
+        "12% increase in churn among customers with support tickets open for more than 48 hours",
+        "$2.3M in annual recurring revenue lost per 1% increase in churn",
+        "SOC 2 Type II audit and the need for certification",
+        "8 medium-severity findings and 2 high-severity findings from the security audit",
+        "Insufficient access logging and lack of automated security scanning as high-severity findings",
+        "6 weeks required for full implementation of security remediation plan",
+        "Conditional certification possible if high-severity findings are addressed within 2 weeks",
+        "November 20th as the deadline for department heads to submit Q1 2025 budget proposals",
+        "November 27th as the date for executive team review of budget proposals",
+        "December 6th as the date for final budget approval",
+        "Leadership sync on Friday at 2 PM to discuss critical decisions",
+        "Action items for engineering leads, mobile team, data engineering, support team, security team, and sales leadership"
+      ],
+      "decoded_message": "The company is currently planning its marketing campaign for Q1, which has a budget of $450,000 and is targeting enterprise customers, with the potential to generate 200-250 qualified leads and an $8-12M pipeline. This campaign is a key part of the company's overall strategy, and its success will be closely tied to the company's ability to deliver high-quality products and services. In this regard, the company is working to address mobile app performance issues, particularly with the iOS app, which is crashing for 8.3% of users on iOS 17.2+ due to a memory leak in the image caching layer. To fix this issue, the company plans to upgrade to SDWebImage 5.18 and update the image pipeline, with 4-5 days of testing and the possibility of an emergency patch release.\n\nThe company's budget planning for Q1 2025 is also underway, with department heads required to submit their proposals by November 20th, followed by an executive team review on November 27th, and final budgets approved on December 6th. As part of this planning process, the company is considering its options for addressing authentication service migration issues, which are currently 65% complete, with 12,000 enterprise users and 450,000 consumer accounts migrated since November 1st. However, the company is experiencing session management layer issues and must decide whether to proceed with a rollback, which would require 3 weeks of development time and $75K in AWS costs, or a hotfix, which is riskier but could be deployed by Monday with the entire backend team.\n\nThe company's security audit findings have highlighted several areas of concern, including 8 medium-severity findings and 2 high-severity findings, as well as insufficient access logging and a lack of automated security scanning. To address these issues, the company has developed a security remediation plan, which will take 6 weeks to implement and could potentially lead to conditional certification if the high-severity findings are addressed within 2 weeks. The company is also working to optimize its AWS costs, which were $287,000 in October, 23% higher than budget, due to increased EC2 usage and higher data transfer costs, largely resulting from the dual data warehouse setup.\n\nThe data warehouse migration to Snowflake is currently underway, with dual systems running, resulting in $12,000/month in redundant infrastructure costs, and 47 data pipelines, of which 23 have been migrated, with a completion date of December 15th. The migration is expected to cost $45,000 for 2 contractors over 6 weeks, but will save the company $36,000 in redundant infrastructure costs. The company is also considering the impact of its customer support ticket backlog, which currently stands at 2,847 open tickets, 340% higher than the target, with an average response time of 18 hours and a customer satisfaction score of 3.1/5.0. To address this issue, the company plans to hire 5 additional support engineers at an annual salary of $325K, which will help to reduce the risk of losing high-value customers and the associated $2.3M in annual recurring revenue per 1% churn increase.",
+      "total_entropy": 1088.6179561023264,
+      "retained_entropy": 1023.7750996869685,
+      "entropy_retention": 0.9404356174249409,
+      "total_importance": 14.0,
+      "retained_importance": 13.0,
+      "importance_retention": 0.9285714285714286,
+      "nodes_by_type": {
+        "intent": 4,
+        "outcome": 2,
+        "constraint": 2,
+        "entity": 4,
+        "attribute": 1
+      },
+      "avg_node_importance": 1.0,
+      "compression_stats": {
+        "original_nodes": 14,
+        "compressed_nodes": 13,
+        "nodes_removed": 1,
+        "node_retention": 0.9285714285714286,
+        "original_entropy": 1088.6179561023264,
+        "compressed_entropy": 1023.7750996869685,
+        "entropy_retention": 0.9404356174249409,
+        "original_importance": 14.0,
+        "compressed_importance": 13.0,
+        "importance_retention": 0.9285714285714286
+      },
+      "graph_data": {
+        "nodes": [
+          {
+            "id": "marketing_campaign_q1",
+            "content": "Marketing Campaign Q1: $450,000 budget, targeting enterprise customers, potential 200-250 qualified leads, $8-12M pipeline",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 68.99862949778363,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "mobile_app_fix",
+            "content": "Mobile App Fix: upgrade to SDWebImage 5.18, update image pipeline, 4-5 days testing, emergency patch release possible",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 63.66614734090504,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "budget_planning_q1_2025",
+            "content": "Budget Planning Q1 2025: department heads submit proposals by November 20th, executive team review November 27th, final budgets approved December 6th",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 83.02550552676817,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "auth_migration_decision",
+            "content": "Decision on auth migration: rollback (3 weeks development time, $75K AWS costs) or hotfix (risky, deploy by Monday with entire backend team)",
+            "type": "constraint",
+            "importance": 1.0,
+            "entropy": 78.13093839913515,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "mobile_app_performance",
+            "content": "Mobile App Performance Issues: iOS app crashing for 8.3% of users on iOS 17.2+, 67% of active mobile user base, memory leak in image caching layer",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 79.50397272333225,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "security_audit_findings",
+            "content": "Security Audit Findings: 8 medium-severity findings, 2 high-severity findings, insufficient access logging, lack of automated security scanning",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 75.3193906740761,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "data_warehouse_migration",
+            "content": "Data Warehouse Migration to Snowflake: dual systems running, $12,000/month redundant infrastructure, 47 data pipelines, 23 migrated, completion date December 15th",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 90.95339659223508,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "data_warehouse_migration_cost",
+            "content": "Data Warehouse Migration Cost: $45,000 for 2 contractors, 6 weeks, save $36,000 in redundant infrastructure costs",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 61.041395862345794,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "aws_cost_optimization",
+            "content": "AWS Cost Optimization: $287,000 October bill, 23% higher than budget, increased EC2 usage, higher data transfer costs, dual data warehouse setup",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 79.18576565008864,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "auth_migration",
+            "content": "Authentication Service Migration: 65% complete, 12,000 enterprise users migrated, 450,000 consumer accounts migrated, started November 1st, experiencing session management layer issues",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 98.87187656090235,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "security_remediation_plan",
+            "content": "Security Remediation Plan: 6 weeks to implement, conditional certification possible if high-severity findings addressed within 2 weeks",
+            "type": "constraint",
+            "importance": 1.0,
+            "entropy": 71.14556009733383,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "customer_support_hiring",
+            "content": "Customer Support Hiring: 5 additional support engineers, $325K annual salary, potential loss of high-value customers, $2.3M annual recurring revenue per 1% churn increase",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 93.2279394090382,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "customer_support_ticket_backlog",
+            "content": "Customer Support Ticket Backlog: 2,847 open tickets, 340% higher than target, 18 hour average response time, 3.1/5.0 customer satisfaction score",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 80.70458135302422,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "source": "auth_migration",
+            "target": "auth_migration_decision",
+            "relation": "requires",
+            "weight": 1.0
+          },
+          {
+            "source": "mobile_app_performance",
+            "target": "mobile_app_fix",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "data_warehouse_migration",
+            "target": "data_warehouse_migration_cost",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "customer_support_ticket_backlog",
+            "target": "customer_support_hiring",
+            "relation": "leads_to",
+            "weight": 1.0
+          },
+          {
+            "source": "security_audit_findings",
+            "target": "security_remediation_plan",
+            "relation": "constrains",
+            "weight": 1.0
+          },
+          {
+            "source": "budget_planning_q1_2025",
+            "target": "aws_cost_optimization",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "marketing_campaign_q1",
+            "target": "customer_support_hiring",
+            "relation": "relates_to",
+            "weight": 1.0
+          }
+        ]
+      }
+    },
+    {
+      "iteration": 5,
+      "entropy_target": 0.95,
+      "nodes_kept": 13,
+      "total_nodes": 14,
+      "compression_ratio": 0.37946681792399317,
+      "similarity_score": 0.44719967246055603,
+      "decoded_tokens": 669,
+      "missing_concepts": [
+        "Alex, the sender of the original message",
+        "Q4 2024 product roadmap",
+        "November 1st as the start date for authentication service migration",
+        "6 nodes in the Redis cluster",
+        "AWS support involvement",
+        "Friday deadline for deciding on auth migration rollback or hotfix",
+        "3 weeks of development time and $75K in AWS costs for rollback",
+        "Monday deployment for hotfix",
+        "Entire backend team dedication for hotfix",
+        "67% of active mobile user base on iOS 17.2+",
+        "SDWebImage library version 5.12 and 5.18",
+        "4-5 days of testing for iOS crash fix",
+        "Emergency patch release possibility",
+        "5,000 beta users for standard beta testing phase",
+        "Wednesday deadline for mobile team to submit iOS crash fix timeline",
+        "October 31st as original completion date for data warehouse migration",
+        "December 15th as revised completion date for data warehouse migration",
+        "47 different data pipelines for migration",
+        "23 successfully migrated and validated data pipelines",
+        "6 weeks for contractor work on data warehouse migration",
+        "2 additional contractors for data warehouse migration",
+        "Approximately $45,000 cost for contractors",
+        "Roughly $36,000 savings in redundant infrastructure costs",
+        "3 months of redundant infrastructure costs",
+        "Data inconsistencies risk between dual warehouses",
+        "Business intelligence dashboards and executive reporting impact",
+        "2,847 open customer support tickets",
+        "340% higher than target for open tickets",
+        "4 hours to 18 hours increase in average response time",
+        "4.2/5.0 to 3.1/5.0 decrease in customer satisfaction scores",
+        "12% increase in churn among customers with open tickets over 48 hours",
+        "Approximately $2.3M in annual recurring revenue per 1% churn increase",
+        "5 additional support engineers hiring request",
+        "$65K annual salary for support engineers",
+        "$325K total cost for additional support engineers",
+        "SOC 2 Type II audit and certification",
+        "8 medium-severity findings and 2 high-severity findings",
+        "Insufficient access logging and lack of automated security scanning as high-severity findings",
+        "6 weeks for security remediation plan implementation",
+        "2 weeks for addressing high-severity findings",
+        "Conditional certification possibility",
+        "November 20th deadline for Q1 2025 budget proposals",
+        "November 27th executive team review of budget proposals",
+        "December 6th final budget approval",
+        "Leadership sync on Friday at 2 PM",
+        "Q1 marketing campaign details and budget",
+        "Enterprise customers in healthcare and financial services verticals as marketing targets",
+        "200-250 qualified leads and $8-12M pipeline potential",
+        "Sales team capacity assessment for marketing campaign"
+      ],
+      "decoded_message": "The company is currently planning its marketing campaign for Q1, which has a budget of $450,000 and is targeting enterprise customers, with the potential to generate 200-250 qualified leads and an $8-12M pipeline. This campaign is a key part of the company's overall strategy, and its success will be closely tied to the company's ability to deliver high-quality products and services. In this regard, the company is working to address mobile app performance issues, particularly with the iOS app, which is crashing for 8.3% of users on iOS 17.2+ due to a memory leak in the image caching layer. To fix this issue, the company plans to upgrade to SDWebImage 5.18 and update the image pipeline, with 4-5 days of testing and the possibility of an emergency patch release.\n\nThe company's budget planning for Q1 2025 is also underway, with department heads required to submit their proposals by November 20th, followed by an executive team review on November 27th, and final budgets approved on December 6th. As part of this planning process, the company is considering its options for addressing authentication service migration issues, which are currently 65% complete, with 12,000 enterprise users and 450,000 consumer accounts migrated since November 1st. However, the company is experiencing session management layer issues and must decide whether to proceed with a rollback, which would require 3 weeks of development time and $75K in AWS costs, or a hotfix, which is riskier but could be deployed by Monday with the entire backend team.\n\nThe company's data warehouse migration to Snowflake is another key initiative, with dual systems currently running, resulting in $12,000/month in redundant infrastructure costs. The migration involves 47 data pipelines, with 23 already migrated, and is scheduled for completion by December 15th. The company expects to save $36,000 in redundant infrastructure costs as a result of the migration, which will be undertaken by 2 contractors at a cost of $45,000 over 6 weeks. The company is also working to optimize its AWS costs, which were $287,000 in October, 23% higher than budget, due to increased EC2 usage and higher data transfer costs, largely resulting from the dual data warehouse setup.\n\nIn addition to these technical initiatives, the company is also focused on customer support, with a current backlog of 2,847 open tickets, which is 340% higher than the target, and an average response time of 18 hours, resulting in a customer satisfaction score of 3.1/5.0. To address this issue, the company plans to hire 5 additional support engineers at an annual salary of $325K, which will help to reduce the risk of losing high-value customers and the associated annual recurring revenue of $2.3M per 1% churn increase. The company's security audit findings have also highlighted the need for improved security measures, with 8 medium-severity findings and 2 high-severity findings, including insufficient access logging and a lack of automated security scanning. The company has 6 weeks to implement a security remediation plan, and conditional certification is possible if the high-severity findings are addressed within 2 weeks.",
+      "total_entropy": 1088.6179561023264,
+      "retained_entropy": 1023.7750996869685,
+      "entropy_retention": 0.9404356174249409,
+      "total_importance": 14.0,
+      "retained_importance": 13.0,
+      "importance_retention": 0.9285714285714286,
+      "nodes_by_type": {
+        "intent": 4,
+        "outcome": 2,
+        "constraint": 2,
+        "entity": 4,
+        "attribute": 1
+      },
+      "avg_node_importance": 1.0,
+      "compression_stats": {
+        "original_nodes": 14,
+        "compressed_nodes": 13,
+        "nodes_removed": 1,
+        "node_retention": 0.9285714285714286,
+        "original_entropy": 1088.6179561023264,
+        "compressed_entropy": 1023.7750996869685,
+        "entropy_retention": 0.9404356174249409,
+        "original_importance": 14.0,
+        "compressed_importance": 13.0,
+        "importance_retention": 0.9285714285714286
+      },
+      "graph_data": {
+        "nodes": [
+          {
+            "id": "marketing_campaign_q1",
+            "content": "Marketing Campaign Q1: $450,000 budget, targeting enterprise customers, potential 200-250 qualified leads, $8-12M pipeline",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 68.99862949778363,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "mobile_app_fix",
+            "content": "Mobile App Fix: upgrade to SDWebImage 5.18, update image pipeline, 4-5 days testing, emergency patch release possible",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 63.66614734090504,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "budget_planning_q1_2025",
+            "content": "Budget Planning Q1 2025: department heads submit proposals by November 20th, executive team review November 27th, final budgets approved December 6th",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 83.02550552676817,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "auth_migration_decision",
+            "content": "Decision on auth migration: rollback (3 weeks development time, $75K AWS costs) or hotfix (risky, deploy by Monday with entire backend team)",
+            "type": "constraint",
+            "importance": 1.0,
+            "entropy": 78.13093839913515,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "mobile_app_performance",
+            "content": "Mobile App Performance Issues: iOS app crashing for 8.3% of users on iOS 17.2+, 67% of active mobile user base, memory leak in image caching layer",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 79.50397272333225,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "security_audit_findings",
+            "content": "Security Audit Findings: 8 medium-severity findings, 2 high-severity findings, insufficient access logging, lack of automated security scanning",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 75.3193906740761,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "data_warehouse_migration",
+            "content": "Data Warehouse Migration to Snowflake: dual systems running, $12,000/month redundant infrastructure, 47 data pipelines, 23 migrated, completion date December 15th",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 90.95339659223508,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "data_warehouse_migration_cost",
+            "content": "Data Warehouse Migration Cost: $45,000 for 2 contractors, 6 weeks, save $36,000 in redundant infrastructure costs",
+            "type": "attribute",
+            "importance": 1.0,
+            "entropy": 61.041395862345794,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "aws_cost_optimization",
+            "content": "AWS Cost Optimization: $287,000 October bill, 23% higher than budget, increased EC2 usage, higher data transfer costs, dual data warehouse setup",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 79.18576565008864,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "auth_migration",
+            "content": "Authentication Service Migration: 65% complete, 12,000 enterprise users migrated, 450,000 consumer accounts migrated, started November 1st, experiencing session management layer issues",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 98.87187656090235,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "security_remediation_plan",
+            "content": "Security Remediation Plan: 6 weeks to implement, conditional certification possible if high-severity findings addressed within 2 weeks",
+            "type": "constraint",
+            "importance": 1.0,
+            "entropy": 71.14556009733383,
+            "metadata": {
+              "llm_importance": "critical"
+            }
+          },
+          {
+            "id": "customer_support_hiring",
+            "content": "Customer Support Hiring: 5 additional support engineers, $325K annual salary, potential loss of high-value customers, $2.3M annual recurring revenue per 1% churn increase",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 93.2279394090382,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "customer_support_ticket_backlog",
+            "content": "Customer Support Ticket Backlog: 2,847 open tickets, 340% higher than target, 18 hour average response time, 3.1/5.0 customer satisfaction score",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 80.70458135302422,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "source": "auth_migration",
+            "target": "auth_migration_decision",
+            "relation": "requires",
+            "weight": 1.0
+          },
+          {
+            "source": "mobile_app_performance",
+            "target": "mobile_app_fix",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "data_warehouse_migration",
+            "target": "data_warehouse_migration_cost",
+            "relation": "has_attribute",
+            "weight": 1.0
+          },
+          {
+            "source": "customer_support_ticket_backlog",
+            "target": "customer_support_hiring",
+            "relation": "leads_to",
+            "weight": 1.0
+          },
+          {
+            "source": "security_audit_findings",
+            "target": "security_remediation_plan",
+            "relation": "constrains",
+            "weight": 1.0
+          },
+          {
+            "source": "budget_planning_q1_2025",
+            "target": "aws_cost_optimization",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "marketing_campaign_q1",
+            "target": "customer_support_hiring",
+            "relation": "relates_to",
+            "weight": 1.0
+          }
+        ]
+      }
+    }
+  ]
+}

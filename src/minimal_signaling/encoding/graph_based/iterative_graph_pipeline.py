@@ -112,8 +112,8 @@ class IterativeGraphPipeline:
         # Adaptive initial entropy based on message length
         # For long messages, we need to preserve more information to hit 30% compression with 80% similarity
         if original_tokens > 1000:
-            current_entropy_target = 0.80  # Start at 80% for long messages (preserve more)
-            print(f"   📊 Long message detected - starting at 80% entropy for better fidelity")
+            current_entropy_target = 0.90  # Start at 90% for long messages (preserve almost everything)
+            print(f"   📊 Long message detected - starting at 90% entropy to preserve fidelity")
         else:
             current_entropy_target = self.initial_entropy_target
         

@@ -26,7 +26,7 @@ You MUST output ONLY valid JSON in this exact structure (no other text):
   "nodes": [
     {
       "id": "unique_id",
-      "content": "the actual content",
+      "content": "the actual content WITH ALL SPECIFIC DATA AND CONTEXT",
       "type": "intent/entity/attribute/detail/constraint/outcome",
       "importance": "critical/high/medium/low"
     }
@@ -40,15 +40,17 @@ You MUST output ONLY valid JSON in this exact structure (no other text):
   ]
 }
 
-CRITICAL RULES:
-- Output MUST be valid JSON only
-- No markdown, no code blocks, no explanations
-- Start with { and end with }
-- Create multiple intent nodes if there are multiple actions requested
-- Connect related nodes to EACH OTHER, not just to intent
-- Example: "23% decline" (attribute) should connect to "enterprise segment" (entity)
-- Example: "$500K budget" (constraint) should connect to "remediation plan" (outcome)
-- Be thorough and capture ALL relationships between concepts"""
+CRITICAL RULES FOR NODE EXTRACTION:
+- Extract MANY nodes (aim for 40-60 nodes for long messages) to preserve narrative flow
+- Each node should be a COMPLETE thought with full context
+- Include ALL specific numbers, dates, percentages, dollar amounts, deadlines
+- Capture explanatory context, not just facts
+- Example: "Authentication Service Migration: started November 1st, 65% complete with 12,000 enterprise users and 450,000 consumer accounts migrated. Currently experiencing session management issues where users are logged out after 15-20 minutes despite 8-hour timeout configuration. Root cause is Redis cluster TTL propagation issue across 6 nodes. Decision needed by Friday: rollback (costs 3 weeks + $75K) vs hotfix (risky, needs full backend team weekend work, deploy Monday)"
+- Break down complex topics into multiple detailed nodes
+- Preserve the narrative structure and flow of the original message
+- Don't over-summarize - keep the richness of the original content
+
+Output MUST be valid JSON only (no markdown, no code blocks)."""
 
 
 class GraphEncoder:

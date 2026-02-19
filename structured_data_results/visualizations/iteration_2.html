@@ -1,0 +1,127 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 900px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#FFEAA7", "font": {"color": "#000000"}, "id": "disk-space-alert", "label": "Disk Space Alert: 3 instances, thresh...", "shape": "dot", "size": 80.0, "title": "Type: constraint\nContent: Disk Space Alert: 3 instances, threshold 80% full, affected log servers\nImportance: 1.000\nEntropy: 37.49 bits"}, {"color": "#4ECDC4", "font": {"color": "#000000"}, "id": "read-replica-1", "label": "Read Replica 1: 67% CPU utilization, ...", "shape": "dot", "size": 80.0, "title": "Type: entity\nContent: Read Replica 1: 67% CPU utilization, 8.7GB memory usage, 1,892 active connections, 38ms avg query time\nImportance: 1.000\nEntropy: 58.17 bits"}, {"color": "#FF6B6B", "font": {"color": "#000000"}, "id": "shr-2024-1115-001", "label": "System Health Report - Production Env...", "shape": "dot", "size": 80.0, "title": "Type: intent\nContent: System Health Report - Production Environment, Generated: 2024-11-15 14:30:00 UTC, Report ID: SHR-2024-1115-001\nImportance: 1.000\nEntropy: 61.97 bits"}, {"color": "#4ECDC4", "font": {"color": "#000000"}, "id": "api-v1-payments", "label": "/api/v1/payments: 445,223 requests, 6...", "shape": "dot", "size": 80.0, "title": "Type: entity\nContent: /api/v1/payments: 445,223 requests, 678ms avg latency, 99.95% success rate, 0.05% error rate (Stripe API delays)\nImportance: 1.000\nEntropy: 65.46 bits"}, {"color": "#4ECDC4", "font": {"color": "#000000"}, "id": "primary-postgresql", "label": "Primary PostgreSQL: 89% CPU utilizati...", "shape": "dot", "size": 80.0, "title": "Type: entity\nContent: Primary PostgreSQL: 89% CPU utilization, 12.3GB memory usage, 2,341 active connections, 45ms avg query time\nImportance: 1.000\nEntropy: 61.46 bits"}, {"color": "#DFE6E9", "font": {"color": "#000000"}, "id": "renew-ssl-certificates", "label": "Renew SSL certificates for api-stagin...", "shape": "dot", "size": 80.0, "title": "Type: outcome\nContent: Renew SSL certificates for api-staging.example.com and cdn-backup.example.com before expiry\nImportance: 1.000\nEntropy: 49.14 bits"}, {"color": "#DFE6E9", "font": {"color": "#000000"}, "id": "review-optimize-database-queries", "label": "Review and optimize top 10 slowest da...", "shape": "dot", "size": 80.0, "title": "Type: outcome\nContent: Review and optimize top 10 slowest database queries identified in analytics endpoint\nImportance: 1.000\nEntropy: 42.48 bits"}, {"color": "#DFE6E9", "font": {"color": "#000000"}, "id": "block-ip-range", "label": "Block IP range 203.45.67.0/24 at fire...", "shape": "dot", "size": 80.0, "title": "Type: outcome\nContent: Block IP range 203.45.67.0/24 at firewall level to prevent rate limit abuse\nImportance: 1.000\nEntropy: 41.20 bits"}, {"color": "#4ECDC4", "font": {"color": "#000000"}, "id": "suspicious-api-key-usage", "label": "Suspicious API Key Usage: 12 API keys...", "shape": "dot", "size": 80.0, "title": "Type: entity\nContent: Suspicious API Key Usage: 12 API keys flagged for unusual geographic access patterns, 3 keys revoked\nImportance: 1.000\nEntropy: 52.28 bits"}, {"color": "#4ECDC4", "font": {"color": "#000000"}, "id": "api-v1-users", "label": "/api/v1/users: 1,247,893 requests, 23...", "shape": "dot", "size": 80.0, "title": "Type: entity\nContent: /api/v1/users: 1,247,893 requests, 234ms avg latency, 99.97% success rate, 0.03% error rate (mostly 429 rate limits)\nImportance: 1.000\nEntropy: 66.75 bits"}, {"color": "#4ECDC4", "font": {"color": "#000000"}, "id": "429-rate-limit-errors", "label": "429 Rate Limit Errors: 3,456 occurren...", "shape": "dot", "size": 80.0, "title": "Type: entity\nContent: 429 Rate Limit Errors: 3,456 occurrences, affecting /api/v1/users endpoint, triggered by automated scrapers from IP range 203.45.67.0/24\nImportance: 1.000\nEntropy: 78.27 bits"}, {"color": "#4ECDC4", "font": {"color": "#000000"}, "id": "api-v1-products", "label": "/api/v1/products: 2,103,567 requests,...", "shape": "dot", "size": 80.0, "title": "Type: entity\nContent: /api/v1/products: 2,103,567 requests, 123ms avg latency, 99.99% success rate, 0.01% error rate\nImportance: 1.000\nEntropy: 54.00 bits"}, {"color": "#4ECDC4", "font": {"color": "#000000"}, "id": "ddos-mitigation", "label": "DDoS Mitigation: 3 incidents, largest...", "shape": "dot", "size": 80.0, "title": "Type: entity\nContent: DDoS Mitigation: 3 incidents, largest was 45Gbps attack, successfully mitigated by CloudFlare, lasted 23 minutes\nImportance: 1.000\nEntropy: 60.52 bits"}, {"color": "#DFE6E9", "font": {"color": "#000000"}, "id": "investigate-slow-shipping-api", "label": "Investigate slow shipping API integra...", "shape": "dot", "size": 80.0, "title": "Type: outcome\nContent: Investigate slow shipping API integration, consider implementing timeout and fallback mechanism\nImportance: 1.000\nEntropy: 48.76 bits"}, {"color": "#FFEAA7", "font": {"color": "#000000"}, "id": "ssl-certificate-expiry-warning", "label": "SSL Certificate Expiry Warning: 2 cer...", "shape": "dot", "size": 80.0, "title": "Type: constraint\nContent: SSL Certificate Expiry Warning: 2 certificates expiring in 14 days (api-staging.example.com, cdn-backup.example.com)\nImportance: 1.000\nEntropy: 65.13 bits"}, {"color": "#4ECDC4", "font": {"color": "#000000"}, "id": "sql-injection-attempts", "label": "SQL Injection Attempts: 234 attempts,...", "shape": "dot", "size": 80.0, "title": "Type: entity\nContent: SQL Injection Attempts: 234 attempts, all blocked by WAF, originating from 12 unique IPs\nImportance: 1.000\nEntropy: 48.79 bits"}, {"color": "#4ECDC4", "font": {"color": "#000000"}, "id": "api-v1-orders", "label": "/api/v1/orders: 892,441 requests, 456...", "shape": "dot", "size": 80.0, "title": "Type: entity\nContent: /api/v1/orders: 892,441 requests, 456ms avg latency, 99.89% success rate, 0.11% error rate (timeout issues)\nImportance: 1.000\nEntropy: 61.24 bits"}, {"color": "#4ECDC4", "font": {"color": "#000000"}, "id": "500-internal-server-errors", "label": "500 Internal Server Errors: 1,234 occ...", "shape": "dot", "size": 80.0, "title": "Type: entity\nContent: 500 Internal Server Errors: 1,234 occurrences, primarily in /api/v1/analytics endpoint, caused by database connection pool exhaustion\nImportance: 1.000\nEntropy: 72.76 bits"}, {"color": "#4ECDC4", "font": {"color": "#000000"}, "id": "redis-cache", "label": "Redis Cache: 34% memory utilization (...", "shape": "dot", "size": 80.0, "title": "Type: entity\nContent: Redis Cache: 34% memory utilization (17GB/50GB), 99.8% hit rate, 234,567 keys, 12ms avg latency\nImportance: 1.000\nEntropy: 57.90 bits"}, {"color": "#4ECDC4", "font": {"color": "#000000"}, "id": "cloudfront-cdn", "label": "CloudFront CDN: 12.4TB data transfer,...", "shape": "dot", "size": 80.0, "title": "Type: entity\nContent: CloudFront CDN: 12.4TB data transfer, 234M requests, 98.7% cache hit rate, $2,340/month cost\nImportance: 1.000\nEntropy: 52.65 bits"}, {"color": "#FFEAA7", "font": {"color": "#000000"}, "id": "high-cpu-alert", "label": "High CPU Alert: 12 instances, thresho...", "shape": "dot", "size": 80.0, "title": "Type: constraint\nContent: High CPU Alert: 12 instances, threshold 85%, max duration 45 minutes\nImportance: 1.000\nEntropy: 37.20 bits"}, {"color": "#DFE6E9", "font": {"color": "#000000"}, "id": "implement-query-result-caching", "label": "Implement query result caching for /a...", "shape": "dot", "size": 80.0, "title": "Type: outcome\nContent: Implement query result caching for /api/v1/analytics endpoint to reduce database load\nImportance: 1.000\nEntropy: 45.23 bits"}, {"color": "#96CEB4", "font": {"color": "#000000"}, "id": "network-bandwidth-trend", "label": "Network Bandwidth: increased 28% week...", "shape": "dot", "size": 80.0, "title": "Type: detail\nContent: Network Bandwidth: increased 28% week-over-week, driven by increased CDN usage\nImportance: 1.000\nEntropy: 40.98 bits"}, {"color": "#4ECDC4", "font": {"color": "#000000"}, "id": "s3-storage", "label": "S3 Storage: 2.3TB used, 45M objects, ...", "shape": "dot", "size": 80.0, "title": "Type: entity\nContent: S3 Storage: 2.3TB used, 45M objects, $890/month cost\nImportance: 1.000\nEntropy: 28.85 bits"}, {"color": "#4ECDC4", "font": {"color": "#000000"}, "id": "503-service-unavailable", "label": "503 Service Unavailable: 567 occurren...", "shape": "dot", "size": 80.0, "title": "Type: entity\nContent: 503 Service Unavailable: 567 occurrences, during deployment window 13:00-13:15 UTC, affected all endpoints\nImportance: 1.000\nEntropy: 60.60 bits"}, {"color": "#4ECDC4", "font": {"color": "#000000"}, "id": "ec2-instances", "label": "EC2 Instances: 47 running (32 web ser...", "shape": "dot", "size": 80.0, "title": "Type: entity\nContent: EC2 Instances: 47 running (32 web servers, 12 worker nodes, 3 database servers), $12,340/day cost\nImportance: 1.000\nEntropy: 53.32 bits"}, {"color": "#FFEAA7", "font": {"color": "#000000"}, "id": "database-connection-pool-alert", "label": "Database Connection Pool Alert: 8 ins...", "shape": "dot", "size": 80.0, "title": "Type: constraint\nContent: Database Connection Pool Alert: 8 instances, threshold 90% utilization, max duration 23 minutes\nImportance: 1.000\nEntropy: 50.64 bits"}, {"color": "#4ECDC4", "font": {"color": "#000000"}, "id": "api-v1-analytics", "label": "/api/v1/analytics: 334,112 requests, ...", "shape": "dot", "size": 80.0, "title": "Type: entity\nContent: /api/v1/analytics: 334,112 requests, 1,234ms avg latency, 98.76% success rate, 1.24% error rate (database query timeouts)\nImportance: 1.000\nEntropy: 70.19 bits"}, {"color": "#4ECDC4", "font": {"color": "#000000"}, "id": "load-balancer", "label": "Load Balancer: 3.2M requests/hour, 23...", "shape": "dot", "size": 74.0, "title": "Type: entity\nContent: Load Balancer: 3.2M requests/hour, 234GB data transfer, 99.99% uptime\nImportance: 0.900\nEntropy: 39.16 bits"}, {"color": "#DFE6E9", "font": {"color": "#000000"}, "id": "upgrade-ec2-instances", "label": "Upgrade EC2 instances from t3.large t...", "shape": "dot", "size": 80.0, "title": "Type: outcome\nContent: Upgrade EC2 instances from t3.large to t3.xlarge for web servers experiencing high CPU\nImportance: 1.000\nEntropy: 45.56 bits"}, {"color": "#4ECDC4", "font": {"color": "#000000"}, "id": "read-replica-2", "label": "Read Replica 2: 71% CPU utilization, ...", "shape": "dot", "size": 80.0, "title": "Type: entity\nContent: Read Replica 2: 71% CPU utilization, 9.1GB memory usage, 2,014 active connections, 41ms avg query time\nImportance: 1.000\nEntropy: 57.76 bits"}, {"color": "#DFE6E9", "font": {"color": "#000000"}, "id": "scale-database-connection-pool", "label": "Scale database connection pool from 2...", "shape": "dot", "size": 80.0, "title": "Type: outcome\nContent: Scale database connection pool from 2,500 to 3,500 connections to prevent exhaustion\nImportance: 1.000\nEntropy: 43.55 bits"}, {"color": "#DFE6E9", "font": {"color": "#000000"}, "id": "add-read-replicas", "label": "Add 2 additional read replicas to dis...", "shape": "dot", "size": 80.0, "title": "Type: outcome\nContent: Add 2 additional read replicas to distribute analytics query load\nImportance: 1.000\nEntropy: 31.33 bits"}, {"color": "#4ECDC4", "font": {"color": "#000000"}, "id": "failed-login-attempts", "label": "Failed Login Attempts: 23,456 attempt...", "shape": "dot", "size": 80.0, "title": "Type: entity\nContent: Failed Login Attempts: 23,456 attempts, 89% from known bot IPs, blocked by rate limiter\nImportance: 1.000\nEntropy: 48.33 bits"}, {"color": "#4ECDC4", "font": {"color": "#000000"}, "id": "504-gateway-timeout", "label": "504 Gateway Timeout: 890 occurrences,...", "shape": "dot", "size": 80.0, "title": "Type: entity\nContent: 504 Gateway Timeout: 890 occurrences, in /api/v1/orders endpoint, caused by slow third-party shipping API integration\nImportance: 1.000\nEntropy: 65.59 bits"}]);
+                  edges = new vis.DataSet([{"arrows": "to", "from": "disk-space-alert", "title": "requires", "to": "add-read-replicas"}, {"arrows": "to", "from": "read-replica-1", "title": "relates_to", "to": "database-connection-pool-alert"}, {"arrows": "to", "from": "shr-2024-1115-001", "title": "relates_to", "to": "api-v1-users"}, {"arrows": "to", "from": "shr-2024-1115-001", "title": "relates_to", "to": "api-v1-orders"}, {"arrows": "to", "from": "shr-2024-1115-001", "title": "relates_to", "to": "api-v1-products"}, {"arrows": "to", "from": "shr-2024-1115-001", "title": "relates_to", "to": "api-v1-payments"}, {"arrows": "to", "from": "shr-2024-1115-001", "title": "relates_to", "to": "api-v1-analytics"}, {"arrows": "to", "from": "primary-postgresql", "title": "relates_to", "to": "database-connection-pool-alert"}, {"arrows": "to", "from": "suspicious-api-key-usage", "title": "relates_to", "to": "ddos-mitigation"}, {"arrows": "to", "from": "api-v1-users", "title": "causes", "to": "429-rate-limit-errors"}, {"arrows": "to", "from": "429-rate-limit-errors", "title": "requires", "to": "block-ip-range"}, {"arrows": "to", "from": "ssl-certificate-expiry-warning", "title": "requires", "to": "renew-ssl-certificates"}, {"arrows": "to", "from": "sql-injection-attempts", "title": "relates_to", "to": "ddos-mitigation"}, {"arrows": "to", "from": "api-v1-orders", "title": "causes", "to": "504-gateway-timeout"}, {"arrows": "to", "from": "500-internal-server-errors", "title": "requires", "to": "implement-query-result-caching"}, {"arrows": "to", "from": "500-internal-server-errors", "title": "requires", "to": "review-optimize-database-queries"}, {"arrows": "to", "from": "cloudfront-cdn", "title": "relates_to", "to": "disk-space-alert"}, {"arrows": "to", "from": "high-cpu-alert", "title": "requires", "to": "scale-database-connection-pool"}, {"arrows": "to", "from": "high-cpu-alert", "title": "requires", "to": "add-read-replicas"}, {"arrows": "to", "from": "network-bandwidth-trend", "title": "causes", "to": "high-cpu-alert"}, {"arrows": "to", "from": "s3-storage", "title": "relates_to", "to": "disk-space-alert"}, {"arrows": "to", "from": "ec2-instances", "title": "relates_to", "to": "high-cpu-alert"}, {"arrows": "to", "from": "database-connection-pool-alert", "title": "requires", "to": "scale-database-connection-pool"}, {"arrows": "to", "from": "api-v1-analytics", "title": "causes", "to": "500-internal-server-errors"}, {"arrows": "to", "from": "load-balancer", "title": "relates_to", "to": "high-cpu-alert"}, {"arrows": "to", "from": "read-replica-2", "title": "relates_to", "to": "database-connection-pool-alert"}, {"arrows": "to", "from": "failed-login-attempts", "title": "relates_to", "to": "sql-injection-attempts"}, {"arrows": "to", "from": "504-gateway-timeout", "title": "requires", "to": "investigate-slow-shipping-api"}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {"layout": {"hierarchical": {"enabled": true, "direction": "UD", "sortMethod": "directed", "nodeSpacing": 200, "levelSeparation": 250}}, "physics": {"hierarchicalRepulsion": {"centralGravity": 0.0, "springLength": 150, "springConstant": 0.01, "nodeDistance": 150, "damping": 0.09}, "solver": "hierarchicalRepulsion", "stabilization": {"iterations": 200}}, "nodes": {"font": {"size": 16, "face": "arial"}}};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

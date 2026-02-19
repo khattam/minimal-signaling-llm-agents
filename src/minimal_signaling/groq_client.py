@@ -35,7 +35,7 @@ class GroqClient:
     def __init__(
         self,
         api_key: Optional[str] = None,
-        model: str = "llama-3.1-8b-instant",
+        model: str = "llama-3.3-70b-versatile",
         requests_per_minute: int = 30
     ):
         """Initialize Groq client.

@@ -1,0 +1,1706 @@
+{
+  "success": false,
+  "final_similarity": 0.6334813833236694,
+  "final_compression": 1.1370892018779342,
+  "original_tokens": 1065,
+  "final_tokens": 1211,
+  "total_iterations": 3,
+  "iterations": [
+    {
+      "iteration": 1,
+      "entropy_target": 0.9,
+      "nodes_kept": 33,
+      "total_nodes": 38,
+      "compression_ratio": 1.1323943661971831,
+      "similarity_score": 0.6212782859802246,
+      "decoded_tokens": 1206,
+      "missing_concepts": [
+        "Specific error rates for each API endpoint in the DECODED version",
+        "Detailed breakdown of error types and their causes",
+        "Exact dates for SSL certificate expiry",
+        "Specific IP range for automated scrapers causing 429 Rate Limit Errors",
+        "Detailed information about the top 10 slowest database queries",
+        "Recommendation to investigate slow shipping API integration",
+        "Specific details about the DDoS mitigation incidents",
+        "Cost and usage details for EC2 instances, S3 storage, and CloudFront CDN",
+        "Detailed information about the Read Replica databases",
+        "Specific metrics for CPU usage, memory usage, disk I/O, and network bandwidth trends",
+        "Recommendation to block IP range 203.45.67.0/24 at the firewall level",
+        "Details about the 500 Internal Server Errors, 503 Service Unavailable, and 504 Gateway Timeout errors"
+      ],
+      "decoded_message": "The System Health Report for the Production Environment, generated on 2024-11-15 14:30:00 UTC with Report ID: SHR-2024-1115-001, highlights several key areas of concern. The report notes that the Disk Space Alert has been triggered three times, with a threshold of 80% full, affecting the log servers. Additionally, an SSL Certificate Expiry Warning has been issued for two certificates expiring in 14 days, specifically for api-staging.example.com and cdn-backup.example.com. To address this, it is essential to renew these certificates before they expire. Furthermore, a High CPU Alert has been triggered 12 times, with a threshold of 85% and a maximum duration of 45 minutes, while a Database Connection Pool Alert has been triggered eight times, with a threshold of 90% utilization and a maximum duration of 23 minutes.\n\nThe report also provides an overview of the current system performance. The Primary PostgreSQL database is experiencing 89% CPU utilization, with 12.3GB memory usage, 2,341 active connections, and an average query time of 45ms. In contrast, Read Replica 1 has 67% CPU utilization, 8.7GB memory usage, 1,892 active connections, and an average query time of 38ms, while Read Replica 2 has 71% CPU utilization, 9.1GB memory usage, 2,014 active connections, and an average query time of 41ms. To improve database performance, it is recommended to review and optimize the top 10 slowest database queries identified in the analytics endpoint, implement query result caching for the /api/v1/analytics endpoint, and scale the database connection pool from 2,500 to 3,500 connections to prevent exhaustion. Moreover, adding two additional read replicas to distribute the analytics query load is also suggested.\n\nThe API performance is another critical aspect of the report. The /api/v1/payments endpoint has handled 445,223 requests, with an average latency of 678ms, a 99.95% success rate, and a 0.05% error rate, which is attributed to Stripe API delays. In contrast, the /api/v1/users endpoint has handled 1,247,893 requests, with an average latency of 234ms, a 99.97% success rate, and a 0.03% error rate, with most errors being 429 rate limits. The /api/v1/products endpoint has handled 2,103,567 requests, with an average latency of 123ms, a 99.99% success rate, and a 0.01% error rate. The /api/v1/orders endpoint has handled 892,441 requests, with an average latency of 456ms, a 99.89% success rate, and a 0.11% error rate, primarily due to timeout issues. The /api/v1/analytics endpoint has handled 334,112 requests, with an average latency of 1,234ms, a 98.76% success rate, and a 1.24% error rate, mainly caused by database query timeouts.\n\nSecurity is also a vital concern, with 234 SQL Injection Attempts being blocked by the WAF, originating from 12 unique IPs. Additionally, 23,456 Failed Login Attempts have been recorded, with 89% of these attempts coming from known bot IPs, which were blocked by the rate limiter. To prevent rate limit abuse, it is recommended to block the IP range 203.45.67.0/24 at the firewall level. The report also notes that 3,456 occurrences of 429 Rate Limit Errors have been triggered, primarily affecting the /api/v1/users endpoint, caused by automated scrapers from the IP range 203.45.67.0/24.\n\nThe report highlights several error types, including 500 Internal Server Errors, which have occurred 1,234 times, primarily in the /api/v1/analytics endpoint, caused by database connection pool exhaustion. There have also been 503 Service Unavailable errors, which occurred 567 times during the deployment window of 13:00-13:15 UTC, affecting all endpoints. Furthermore, 504 Gateway Timeout errors have occurred 890 times in the /api/v1/orders endpoint, caused by slow third-party shipping API integration. To address this, it is essential to investigate the slow shipping API integration and consider implementing a timeout and fallback mechanism.\n\nThe infrastructure is also reviewed in the report, with the Load Balancer handling 3.2M requests per hour, with 234GB data transfer, and a 99.99% uptime. The EC2 Instances consist of 47 running instances, including 32 web servers, 12 worker nodes, and 3 database servers, with a cost of $12,340 per day. The Redis Cache has 34% memory utilization, with a 99.8% hit rate, 234,567 keys, and an average latency of 12ms. The CloudFront CDN has transferred 12.4TB of data, with 234M requests, a 98.7% cache hit rate, and a cost of $2,340 per month. The S3 Storage has used 2.3TB, with 45M objects, and a cost of $890 per month.\n\nTo mitigate potential issues, the report suggests upgrading the EC2 instances from t3.large to t3.xlarge for web servers experiencing high CPU. Additionally, the DDoS Mitigation system has successfully mitigated three incidents, including a 45Gbps attack that lasted 23 minutes, thanks to CloudFlare. Overall, the System Health Report provides a comprehensive overview of the current system performance, highlighting areas of concern and suggesting recommendations for improvement to ensure the stability and security of the production environment.",
+      "total_entropy": 1977.8325926013813,
+      "retained_entropy": 1761.4404942190506,
+      "entropy_retention": 0.8905912971644799,
+      "total_importance": 34.1,
+      "retained_importance": 30.79999999999999,
+      "importance_retention": 0.9032258064516125,
+      "nodes_by_type": {
+        "constraint": 4,
+        "entity": 20,
+        "intent": 1,
+        "outcome": 8
+      },
+      "avg_node_importance": 0.933333333333333,
+      "compression_stats": {
+        "original_nodes": 38,
+        "compressed_nodes": 33,
+        "nodes_removed": 5,
+        "node_retention": 0.868421052631579,
+        "original_entropy": 1977.8325926013813,
+        "compressed_entropy": 1761.4404942190506,
+        "entropy_retention": 0.8905912971644799,
+        "original_importance": 34.1,
+        "compressed_importance": 30.79999999999999,
+        "importance_retention": 0.9032258064516125
+      },
+      "graph_data": {
+        "nodes": [
+          {
+            "id": "disk-space-alert",
+            "content": "Disk Space Alert: 3 instances, threshold 80% full, affected log servers",
+            "type": "constraint",
+            "importance": 1.0,
+            "entropy": 37.48587213757853,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "read-replica-1",
+            "content": "Read Replica 1: 67% CPU utilization, 8.7GB memory usage, 1,892 active connections, 38ms avg query time",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 58.167352879108826,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "shr-2024-1115-001",
+            "content": "System Health Report - Production Environment, Generated: 2024-11-15 14:30:00 UTC, Report ID: SHR-2024-1115-001",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 61.96517759033032,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "api-v1-payments",
+            "content": "/api/v1/payments: 445,223 requests, 678ms avg latency, 99.95% success rate, 0.05% error rate (Stripe API delays)",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 65.46019899100996,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "primary-postgresql",
+            "content": "Primary PostgreSQL: 89% CPU utilization, 12.3GB memory usage, 2,341 active connections, 45ms avg query time",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 61.45790966830895,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "renew-ssl-certificates",
+            "content": "Renew SSL certificates for api-staging.example.com and cdn-backup.example.com before expiry",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 49.1432291952971,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "review-optimize-database-queries",
+            "content": "Review and optimize top 10 slowest database queries identified in analytics endpoint",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 42.47714386207052,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "block-ip-range",
+            "content": "Block IP range 203.45.67.0/24 at firewall level to prevent rate limit abuse",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 41.2029638158521,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "api-v1-users",
+            "content": "/api/v1/users: 1,247,893 requests, 234ms avg latency, 99.97% success rate, 0.03% error rate (mostly 429 rate limits)",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 66.74991282646761,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "429-rate-limit-errors",
+            "content": "429 Rate Limit Errors: 3,456 occurrences, affecting /api/v1/users endpoint, triggered by automated scrapers from IP range 203.45.67.0/24",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 78.27403971994582,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "api-v1-products",
+            "content": "/api/v1/products: 2,103,567 requests, 123ms avg latency, 99.99% success rate, 0.01% error rate",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 54.003695869959635,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "ddos-mitigation",
+            "content": "DDoS Mitigation: 3 incidents, largest was 45Gbps attack, successfully mitigated by CloudFlare, lasted 23 minutes",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 60.5171103774892,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "investigate-slow-shipping-api",
+            "content": "Investigate slow shipping API integration, consider implementing timeout and fallback mechanism",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 48.76137368263602,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "ssl-certificate-expiry-warning",
+            "content": "SSL Certificate Expiry Warning: 2 certificates expiring in 14 days (api-staging.example.com, cdn-backup.example.com)",
+            "type": "constraint",
+            "importance": 1.0,
+            "entropy": 65.13329186609943,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "sql-injection-attempts",
+            "content": "SQL Injection Attempts: 234 attempts, all blocked by WAF, originating from 12 unique IPs",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 48.791760652775935,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "api-v1-orders",
+            "content": "/api/v1/orders: 892,441 requests, 456ms avg latency, 99.89% success rate, 0.11% error rate (timeout issues)",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 61.23735454021999,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "500-internal-server-errors",
+            "content": "500 Internal Server Errors: 1,234 occurrences, primarily in /api/v1/analytics endpoint, caused by database connection pool exhaustion",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 72.7608301303539,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "redis-cache",
+            "content": "Redis Cache: 34% memory utilization (17GB/50GB), 99.8% hit rate, 234,567 keys, 12ms avg latency",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 57.89531812687344,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "cloudfront-cdn",
+            "content": "CloudFront CDN: 12.4TB data transfer, 234M requests, 98.7% cache hit rate, $2,340/month cost",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 52.6450891286512,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "high-cpu-alert",
+            "content": "High CPU Alert: 12 instances, threshold 85%, max duration 45 minutes",
+            "type": "constraint",
+            "importance": 1.0,
+            "entropy": 37.20109709717321,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "implement-query-result-caching",
+            "content": "Implement query result caching for /api/v1/analytics endpoint to reduce database load",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 45.22879283262207,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "s3-storage",
+            "content": "S3 Storage: 2.3TB used, 45M objects, $890/month cost",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 28.849651554737054,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "503-service-unavailable",
+            "content": "503 Service Unavailable: 567 occurrences, during deployment window 13:00-13:15 UTC, affected all endpoints",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 60.59894885708917,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "ec2-instances",
+            "content": "EC2 Instances: 47 running (32 web servers, 12 worker nodes, 3 database servers), $12,340/day cost",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 53.324329172188285,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "database-connection-pool-alert",
+            "content": "Database Connection Pool Alert: 8 instances, threshold 90% utilization, max duration 23 minutes",
+            "type": "constraint",
+            "importance": 1.0,
+            "entropy": 50.64318417169767,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "api-v1-analytics",
+            "content": "/api/v1/analytics: 334,112 requests, 1,234ms avg latency, 98.76% success rate, 1.24% error rate (database query timeouts)",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 70.18893818430426,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "load-balancer",
+            "content": "Load Balancer: 3.2M requests/hour, 234GB data transfer, 99.99% uptime",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 39.15616957002077,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "upgrade-ec2-instances",
+            "content": "Upgrade EC2 instances from t3.large to t3.xlarge for web servers experiencing high CPU",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 45.558256951494066,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "read-replica-2",
+            "content": "Read Replica 2: 71% CPU utilization, 9.1GB memory usage, 2,014 active connections, 41ms avg query time",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 57.761713816879265,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "scale-database-connection-pool",
+            "content": "Scale database connection pool from 2,500 to 3,500 connections to prevent exhaustion",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 43.55056217496106,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "add-read-replicas",
+            "content": "Add 2 additional read replicas to distribute analytics query load",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 31.33048848704685,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "failed-login-attempts",
+            "content": "Failed Login Attempts: 23,456 attempts, 89% from known bot IPs, blocked by rate limiter",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 48.33033272798037,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "504-gateway-timeout",
+            "content": "504 Gateway Timeout: 890 occurrences, in /api/v1/orders endpoint, caused by slow third-party shipping API integration",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 65.588403559828,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "source": "shr-2024-1115-001",
+            "target": "api-v1-users",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "shr-2024-1115-001",
+            "target": "api-v1-orders",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "shr-2024-1115-001",
+            "target": "api-v1-products",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "shr-2024-1115-001",
+            "target": "api-v1-payments",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "shr-2024-1115-001",
+            "target": "api-v1-analytics",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "api-v1-users",
+            "target": "429-rate-limit-errors",
+            "relation": "causes",
+            "weight": 1.0
+          },
+          {
+            "source": "api-v1-orders",
+            "target": "504-gateway-timeout",
+            "relation": "causes",
+            "weight": 1.0
+          },
+          {
+            "source": "api-v1-analytics",
+            "target": "500-internal-server-errors",
+            "relation": "causes",
+            "weight": 1.0
+          },
+          {
+            "source": "primary-postgresql",
+            "target": "database-connection-pool-alert",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "read-replica-1",
+            "target": "database-connection-pool-alert",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "read-replica-2",
+            "target": "database-connection-pool-alert",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "ec2-instances",
+            "target": "high-cpu-alert",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "load-balancer",
+            "target": "high-cpu-alert",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "s3-storage",
+            "target": "disk-space-alert",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "cloudfront-cdn",
+            "target": "disk-space-alert",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "failed-login-attempts",
+            "target": "sql-injection-attempts",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "sql-injection-attempts",
+            "target": "ddos-mitigation",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "high-cpu-alert",
+            "target": "scale-database-connection-pool",
+            "relation": "requires",
+            "weight": 1.0
+          },
+          {
+            "source": "database-connection-pool-alert",
+            "target": "scale-database-connection-pool",
+            "relation": "requires",
+            "weight": 1.0
+          },
+          {
+            "source": "disk-space-alert",
+            "target": "add-read-replicas",
+            "relation": "requires",
+            "weight": 1.0
+          },
+          {
+            "source": "high-cpu-alert",
+            "target": "add-read-replicas",
+            "relation": "requires",
+            "weight": 1.0
+          },
+          {
+            "source": "500-internal-server-errors",
+            "target": "implement-query-result-caching",
+            "relation": "requires",
+            "weight": 1.0
+          },
+          {
+            "source": "429-rate-limit-errors",
+            "target": "block-ip-range",
+            "relation": "requires",
+            "weight": 1.0
+          },
+          {
+            "source": "ssl-certificate-expiry-warning",
+            "target": "renew-ssl-certificates",
+            "relation": "requires",
+            "weight": 1.0
+          },
+          {
+            "source": "504-gateway-timeout",
+            "target": "investigate-slow-shipping-api",
+            "relation": "requires",
+            "weight": 1.0
+          },
+          {
+            "source": "500-internal-server-errors",
+            "target": "review-optimize-database-queries",
+            "relation": "requires",
+            "weight": 1.0
+          }
+        ]
+      }
+    },
+    {
+      "iteration": 2,
+      "entropy_target": 0.95,
+      "nodes_kept": 35,
+      "total_nodes": 38,
+      "compression_ratio": 1.1258215962441314,
+      "similarity_score": 0.6334813833236694,
+      "decoded_tokens": 1199,
+      "missing_concepts": [
+        "Error Analysis section is partially missing",
+        "Specific error rates and causes for some API endpoints",
+        "Detailed information about the 500 Internal Server Errors",
+        "Full details about the SQL Injection Attempts",
+        "Complete list of security events and their details",
+        "Specific numbers for Failed Login Attempts from known bot IPs",
+        "Detailed information about the DDoS Mitigation incidents",
+        "Exact duration and details of the 503 Service Unavailable incidents",
+        "Specific numbers for the 504 Gateway Timeout occurrences",
+        "Detailed information about the Suspicious API Key Usage",
+        "Specific numbers for the CPU Usage, Memory Usage, Disk I/O, and Network Bandwidth trends",
+        "Detailed information about the Resource Utilization Trends",
+        "Complete list of Recommendations with specific details"
+      ],
+      "decoded_message": "The System Health Report for the Production Environment, generated on 2024-11-15 14:30:00 UTC with Report ID SHR-2024-1115-001, highlights several key areas of concern. The report notes that the Disk Space Alert has been triggered three times, with a threshold of 80% full, affecting the log servers. Additionally, there are High CPU Alerts, with 12 instances exceeding the 85% threshold, and a maximum duration of 45 minutes. The Database Connection Pool Alert has also been triggered eight times, with a threshold of 90% utilization and a maximum duration of 23 minutes. Furthermore, the SSL Certificate Expiry Warning indicates that two certificates, for api-staging.example.com and cdn-backup.example.com, are expiring in 14 days.\n\nIn terms of system performance, the Primary PostgreSQL database is experiencing 89% CPU utilization, with 12.3GB memory usage, 2,341 active connections, and an average query time of 45ms. The Read Replica 1 is operating at 67% CPU utilization, with 8.7GB memory usage, 1,892 active connections, and an average query time of 38ms. Read Replica 2 is also active, with 71% CPU utilization, 9.1GB memory usage, 2,014 active connections, and an average query time of 41ms. The Redis Cache is utilizing 34% of its memory, with a 99.8% hit rate, 234,567 keys, and an average latency of 12ms.\n\nThe API endpoints are experiencing varying levels of traffic and performance. The /api/v1/payments endpoint has handled 445,223 requests, with an average latency of 678ms, a 99.95% success rate, and a 0.05% error rate, which is attributed to Stripe API delays. The /api/v1/users endpoint has received 1,247,893 requests, with an average latency of 234ms, a 99.97% success rate, and a 0.03% error rate, primarily due to 429 rate limits. The /api/v1/products endpoint has handled 2,103,567 requests, with an average latency of 123ms, a 99.99% success rate, and a 0.01% error rate. The /api/v1/orders endpoint has received 892,441 requests, with an average latency of 456ms, a 99.89% success rate, and a 0.11% error rate, which is experiencing timeout issues. The /api/v1/analytics endpoint has handled 334,112 requests, with an average latency of 1,234ms, a 98.76% success rate, and a 1.24% error rate, due to database query timeouts.\n\nSecurity concerns have also been identified, with 234 SQL Injection Attempts, all of which were blocked by the WAF, originating from 12 unique IPs. There have been 12 API keys flagged for suspicious usage, with three keys revoked due to unusual geographic access patterns. The system has also experienced 23,456 Failed Login Attempts, with 89% of these attempts coming from known bot IPs, which were blocked by the rate limiter.\n\nThe Load Balancer is handling 3.2M requests per hour, with 234GB of data transfer, and a 99.99% uptime. The CloudFront CDN has transferred 12.4TB of data, with 234M requests, a 98.7% cache hit rate, and a cost of $2,340 per month. The S3 Storage is utilizing 2.3TB, with 45M objects, and a cost of $890 per month. The EC2 Instances, which include 32 web servers, 12 worker nodes, and 3 database servers, are costing $12,340 per day. The Network Bandwidth has increased by 28% week-over-week, driven by increased CDN usage.\n\nTo address these concerns, several outcomes have been recommended. The SSL certificates for api-staging.example.com and cdn-backup.example.com should be renewed before expiry. The top 10 slowest database queries identified in the analytics endpoint should be reviewed and optimized. The IP range 203.45.67.0/24 should be blocked at the firewall level to prevent rate limit abuse. The slow shipping API integration should be investigated, and a timeout and fallback mechanism should be considered. The database connection pool should be scaled from 2,500 to 3,500 connections to prevent exhaustion. Two additional read replicas should be added to distribute the analytics query load. The EC2 instances for web servers experiencing high CPU should be upgraded from t3.large to t3.xlarge.\n\nThe system has also experienced several incidents, including 3 DDoS Mitigation incidents, with the largest being a 45Gbps attack that was successfully mitigated by CloudFlare, lasting 23 minutes. There have been 3,456 occurrences of 429 Rate Limit Errors, affecting the /api/v1/users endpoint, triggered by automated scrapers from the IP range 203.45.67.0/24. The system has also experienced 1,234 occurrences of 500 Internal Server Errors, primarily in the /api/v1/analytics endpoint, caused by database connection pool exhaustion. Additionally, there have been 567 occurrences of 503 Service Unavailable, during the deployment window of 13:00-13:15 UTC, affecting all endpoints. The system has also experienced 890 occurrences of 504 Gateway Timeout, in the /api/v1/orders endpoint, caused by the slow third-party shipping API integration. To improve performance and prevent such incidents, implementing query result caching for the /api/v1/analytics endpoint is recommended.",
+      "total_entropy": 1977.8325926013813,
+      "retained_entropy": 1854.69908912853,
+      "entropy_retention": 0.937743212477403,
+      "total_importance": 36.85999999999999,
+      "retained_importance": 34.699999999999996,
+      "importance_retention": 0.9413998914812806,
+      "nodes_by_type": {
+        "constraint": 4,
+        "entity": 21,
+        "intent": 1,
+        "outcome": 8,
+        "detail": 1
+      },
+      "avg_node_importance": 0.9914285714285713,
+      "compression_stats": {
+        "original_nodes": 38,
+        "compressed_nodes": 35,
+        "nodes_removed": 3,
+        "node_retention": 0.9210526315789473,
+        "original_entropy": 1977.8325926013813,
+        "compressed_entropy": 1854.69908912853,
+        "entropy_retention": 0.937743212477403,
+        "original_importance": 36.85999999999999,
+        "compressed_importance": 34.699999999999996,
+        "importance_retention": 0.9413998914812806
+      },
+      "graph_data": {
+        "nodes": [
+          {
+            "id": "disk-space-alert",
+            "content": "Disk Space Alert: 3 instances, threshold 80% full, affected log servers",
+            "type": "constraint",
+            "importance": 1.0,
+            "entropy": 37.48587213757853,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "read-replica-1",
+            "content": "Read Replica 1: 67% CPU utilization, 8.7GB memory usage, 1,892 active connections, 38ms avg query time",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 58.167352879108826,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "shr-2024-1115-001",
+            "content": "System Health Report - Production Environment, Generated: 2024-11-15 14:30:00 UTC, Report ID: SHR-2024-1115-001",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 61.96517759033032,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "api-v1-payments",
+            "content": "/api/v1/payments: 445,223 requests, 678ms avg latency, 99.95% success rate, 0.05% error rate (Stripe API delays)",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 65.46019899100996,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "primary-postgresql",
+            "content": "Primary PostgreSQL: 89% CPU utilization, 12.3GB memory usage, 2,341 active connections, 45ms avg query time",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 61.45790966830895,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "renew-ssl-certificates",
+            "content": "Renew SSL certificates for api-staging.example.com and cdn-backup.example.com before expiry",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 49.1432291952971,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "review-optimize-database-queries",
+            "content": "Review and optimize top 10 slowest database queries identified in analytics endpoint",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 42.47714386207052,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "block-ip-range",
+            "content": "Block IP range 203.45.67.0/24 at firewall level to prevent rate limit abuse",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 41.2029638158521,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "suspicious-api-key-usage",
+            "content": "Suspicious API Key Usage: 12 API keys flagged for unusual geographic access patterns, 3 keys revoked",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 52.28126427697457,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "api-v1-users",
+            "content": "/api/v1/users: 1,247,893 requests, 234ms avg latency, 99.97% success rate, 0.03% error rate (mostly 429 rate limits)",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 66.74991282646761,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "429-rate-limit-errors",
+            "content": "429 Rate Limit Errors: 3,456 occurrences, affecting /api/v1/users endpoint, triggered by automated scrapers from IP range 203.45.67.0/24",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 78.27403971994582,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "api-v1-products",
+            "content": "/api/v1/products: 2,103,567 requests, 123ms avg latency, 99.99% success rate, 0.01% error rate",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 54.003695869959635,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "ddos-mitigation",
+            "content": "DDoS Mitigation: 3 incidents, largest was 45Gbps attack, successfully mitigated by CloudFlare, lasted 23 minutes",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 60.5171103774892,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "investigate-slow-shipping-api",
+            "content": "Investigate slow shipping API integration, consider implementing timeout and fallback mechanism",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 48.76137368263602,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "ssl-certificate-expiry-warning",
+            "content": "SSL Certificate Expiry Warning: 2 certificates expiring in 14 days (api-staging.example.com, cdn-backup.example.com)",
+            "type": "constraint",
+            "importance": 1.0,
+            "entropy": 65.13329186609943,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "sql-injection-attempts",
+            "content": "SQL Injection Attempts: 234 attempts, all blocked by WAF, originating from 12 unique IPs",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 48.791760652775935,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "api-v1-orders",
+            "content": "/api/v1/orders: 892,441 requests, 456ms avg latency, 99.89% success rate, 0.11% error rate (timeout issues)",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 61.23735454021999,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "500-internal-server-errors",
+            "content": "500 Internal Server Errors: 1,234 occurrences, primarily in /api/v1/analytics endpoint, caused by database connection pool exhaustion",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 72.7608301303539,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "redis-cache",
+            "content": "Redis Cache: 34% memory utilization (17GB/50GB), 99.8% hit rate, 234,567 keys, 12ms avg latency",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 57.89531812687344,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "cloudfront-cdn",
+            "content": "CloudFront CDN: 12.4TB data transfer, 234M requests, 98.7% cache hit rate, $2,340/month cost",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 52.6450891286512,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "high-cpu-alert",
+            "content": "High CPU Alert: 12 instances, threshold 85%, max duration 45 minutes",
+            "type": "constraint",
+            "importance": 1.0,
+            "entropy": 37.20109709717321,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "implement-query-result-caching",
+            "content": "Implement query result caching for /api/v1/analytics endpoint to reduce database load",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 45.22879283262207,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "network-bandwidth-trend",
+            "content": "Network Bandwidth: increased 28% week-over-week, driven by increased CDN usage",
+            "type": "detail",
+            "importance": 1.0,
+            "entropy": 40.977330632504945,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "s3-storage",
+            "content": "S3 Storage: 2.3TB used, 45M objects, $890/month cost",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 28.849651554737054,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "503-service-unavailable",
+            "content": "503 Service Unavailable: 567 occurrences, during deployment window 13:00-13:15 UTC, affected all endpoints",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 60.59894885708917,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "ec2-instances",
+            "content": "EC2 Instances: 47 running (32 web servers, 12 worker nodes, 3 database servers), $12,340/day cost",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 53.324329172188285,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "database-connection-pool-alert",
+            "content": "Database Connection Pool Alert: 8 instances, threshold 90% utilization, max duration 23 minutes",
+            "type": "constraint",
+            "importance": 1.0,
+            "entropy": 50.64318417169767,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "api-v1-analytics",
+            "content": "/api/v1/analytics: 334,112 requests, 1,234ms avg latency, 98.76% success rate, 1.24% error rate (database query timeouts)",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 70.18893818430426,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "load-balancer",
+            "content": "Load Balancer: 3.2M requests/hour, 234GB data transfer, 99.99% uptime",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 39.15616957002077,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "upgrade-ec2-instances",
+            "content": "Upgrade EC2 instances from t3.large to t3.xlarge for web servers experiencing high CPU",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 45.558256951494066,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "read-replica-2",
+            "content": "Read Replica 2: 71% CPU utilization, 9.1GB memory usage, 2,014 active connections, 41ms avg query time",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 57.761713816879265,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "scale-database-connection-pool",
+            "content": "Scale database connection pool from 2,500 to 3,500 connections to prevent exhaustion",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 43.55056217496106,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "add-read-replicas",
+            "content": "Add 2 additional read replicas to distribute analytics query load",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 31.33048848704685,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "failed-login-attempts",
+            "content": "Failed Login Attempts: 23,456 attempts, 89% from known bot IPs, blocked by rate limiter",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 48.33033272798037,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "504-gateway-timeout",
+            "content": "504 Gateway Timeout: 890 occurrences, in /api/v1/orders endpoint, caused by slow third-party shipping API integration",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 65.588403559828,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "source": "shr-2024-1115-001",
+            "target": "api-v1-users",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "shr-2024-1115-001",
+            "target": "api-v1-orders",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "shr-2024-1115-001",
+            "target": "api-v1-products",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "shr-2024-1115-001",
+            "target": "api-v1-payments",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "shr-2024-1115-001",
+            "target": "api-v1-analytics",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "api-v1-users",
+            "target": "429-rate-limit-errors",
+            "relation": "causes",
+            "weight": 1.0
+          },
+          {
+            "source": "api-v1-orders",
+            "target": "504-gateway-timeout",
+            "relation": "causes",
+            "weight": 1.0
+          },
+          {
+            "source": "api-v1-analytics",
+            "target": "500-internal-server-errors",
+            "relation": "causes",
+            "weight": 1.0
+          },
+          {
+            "source": "primary-postgresql",
+            "target": "database-connection-pool-alert",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "read-replica-1",
+            "target": "database-connection-pool-alert",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "read-replica-2",
+            "target": "database-connection-pool-alert",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "ec2-instances",
+            "target": "high-cpu-alert",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "load-balancer",
+            "target": "high-cpu-alert",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "s3-storage",
+            "target": "disk-space-alert",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "cloudfront-cdn",
+            "target": "disk-space-alert",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "failed-login-attempts",
+            "target": "sql-injection-attempts",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "sql-injection-attempts",
+            "target": "ddos-mitigation",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "suspicious-api-key-usage",
+            "target": "ddos-mitigation",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "network-bandwidth-trend",
+            "target": "high-cpu-alert",
+            "relation": "causes",
+            "weight": 1.0
+          },
+          {
+            "source": "high-cpu-alert",
+            "target": "scale-database-connection-pool",
+            "relation": "requires",
+            "weight": 1.0
+          },
+          {
+            "source": "database-connection-pool-alert",
+            "target": "scale-database-connection-pool",
+            "relation": "requires",
+            "weight": 1.0
+          },
+          {
+            "source": "disk-space-alert",
+            "target": "add-read-replicas",
+            "relation": "requires",
+            "weight": 1.0
+          },
+          {
+            "source": "high-cpu-alert",
+            "target": "add-read-replicas",
+            "relation": "requires",
+            "weight": 1.0
+          },
+          {
+            "source": "500-internal-server-errors",
+            "target": "implement-query-result-caching",
+            "relation": "requires",
+            "weight": 1.0
+          },
+          {
+            "source": "429-rate-limit-errors",
+            "target": "block-ip-range",
+            "relation": "requires",
+            "weight": 1.0
+          },
+          {
+            "source": "ssl-certificate-expiry-warning",
+            "target": "renew-ssl-certificates",
+            "relation": "requires",
+            "weight": 1.0
+          },
+          {
+            "source": "504-gateway-timeout",
+            "target": "investigate-slow-shipping-api",
+            "relation": "requires",
+            "weight": 1.0
+          },
+          {
+            "source": "500-internal-server-errors",
+            "target": "review-optimize-database-queries",
+            "relation": "requires",
+            "weight": 1.0
+          }
+        ]
+      }
+    },
+    {
+      "iteration": 3,
+      "entropy_target": 0.95,
+      "nodes_kept": 35,
+      "total_nodes": 38,
+      "compression_ratio": 1.1370892018779342,
+      "similarity_score": 0.6334813833236694,
+      "decoded_tokens": 1211,
+      "missing_concepts": [
+        "Resource Utilization Trends section",
+        "exact number of SQL Injection Attempts from unique IPs",
+        "exact number of Failed Login Attempts from known bot IPs",
+        "exact cost of Load Balancer",
+        "exact number of objects in S3 Storage",
+        "exact number of keys in Redis Cache",
+        "exact number of requests handled by each API endpoint",
+        "exact error rates for each API endpoint",
+        "exact average latency for each API endpoint",
+        "exact success rates for each API endpoint",
+        "exact number of occurrences of 500 Internal Server Errors",
+        "exact number of occurrences of 429 Rate Limit Errors",
+        "exact number of occurrences of 503 Service Unavailable errors",
+        "exact number of occurrences of 504 Gateway Timeout errors",
+        "exact duration of DDoS Mitigation incidents",
+        "exact size of largest DDoS Mitigation incident",
+        "exact number of days until SSL certificate expiry",
+        "exact number of days until recommended actions must be taken"
+      ],
+      "decoded_message": "The System Health Report for the Production Environment, generated on 2024-11-15 14:30:00 UTC with Report ID SHR-2024-1115-001, highlights several key areas of concern. The report notes that the Disk Space Alert has been triggered three times, with a threshold of 80% full, affecting the log servers. Additionally, there are High CPU Alerts, with 12 instances exceeding the 85% threshold, and a maximum duration of 45 minutes. The Database Connection Pool Alert has also been triggered eight times, with a threshold of 90% utilization and a maximum duration of 23 minutes. Furthermore, the SSL Certificate Expiry Warning indicates that two certificates, for api-staging.example.com and cdn-backup.example.com, are expiring in 14 days.\n\nIn terms of system performance, the Primary PostgreSQL database is experiencing 89% CPU utilization, with 12.3GB memory usage, 2,341 active connections, and an average query time of 45ms. The Read Replica 1 is operating at 67% CPU utilization, with 8.7GB memory usage, 1,892 active connections, and an average query time of 38ms. Read Replica 2 is also active, with 71% CPU utilization, 9.1GB memory usage, 2,014 active connections, and an average query time of 41ms. The Redis Cache is utilizing 34% of its memory, with a 99.8% hit rate, 234,567 keys, and an average latency of 12ms.\n\nThe API endpoints are experiencing varying levels of traffic and performance. The /api/v1/payments endpoint has handled 445,223 requests, with an average latency of 678ms, a 99.95% success rate, and a 0.05% error rate, which is attributed to Stripe API delays. The /api/v1/users endpoint has received 1,247,893 requests, with an average latency of 234ms, a 99.97% success rate, and a 0.03% error rate, primarily due to 429 rate limits. The /api/v1/products endpoint has handled 2,103,567 requests, with an average latency of 123ms, a 99.99% success rate, and a 0.01% error rate. The /api/v1/orders endpoint has received 892,441 requests, with an average latency of 456ms, a 99.89% success rate, and a 0.11% error rate, which is experiencing timeout issues. The /api/v1/analytics endpoint has handled 334,112 requests, with an average latency of 1,234ms, a 98.76% success rate, and a 1.24% error rate, which is experiencing database query timeouts.\n\nSecurity concerns include 234 SQL Injection Attempts, all of which were blocked by the WAF, originating from 12 unique IPs. There have also been 12 API keys flagged for suspicious usage, with three keys revoked due to unusual geographic access patterns. Additionally, 23,456 Failed Login Attempts have been recorded, with 89% of these attempts coming from known bot IPs, which were blocked by the rate limiter.\n\nThe network and infrastructure are also experiencing some issues. The Network Bandwidth has increased by 28% week-over-week, driven by increased CDN usage. The CloudFront CDN has transferred 12.4TB of data, with 234M requests, a 98.7% cache hit rate, and a cost of $2,340 per month. The S3 Storage is utilizing 2.3TB, with 45M objects, and a cost of $890 per month. The EC2 Instances are running at a cost of $12,340 per day, with 47 instances currently active, comprising 32 web servers, 12 worker nodes, and 3 database servers. The Load Balancer is handling 3.2M requests per hour, with 234GB of data transfer, and a 99.99% uptime.\n\nTo address these issues, several outcomes have been recommended. The SSL certificates for api-staging.example.com and cdn-backup.example.com should be renewed before expiry. The top 10 slowest database queries identified in the analytics endpoint should be reviewed and optimized. The IP range 203.45.67.0/24 should be blocked at the firewall level to prevent rate limit abuse. The slow shipping API integration should be investigated, and a timeout and fallback mechanism should be considered. The database connection pool should be scaled from 2,500 to 3,500 connections to prevent exhaustion. Two additional read replicas should be added to distribute the analytics query load. The EC2 instances for web servers experiencing high CPU should be upgraded from t3.large to t3.xlarge. Query result caching should be implemented for the /api/v1/analytics endpoint to reduce database load.\n\nThe system has also experienced some errors and incidents. There have been 1,234 occurrences of 500 Internal Server Errors, primarily in the /api/v1/analytics endpoint, caused by database connection pool exhaustion. The 429 Rate Limit Errors have occurred 3,456 times, affecting the /api/v1/users endpoint, triggered by automated scrapers from the IP range 203.45.67.0/24. The 503 Service Unavailable errors have occurred 567 times, during the deployment window of 13:00-13:15 UTC, affecting all endpoints. The 504 Gateway Timeout errors have occurred 890 times, in the /api/v1/orders endpoint, caused by the slow third-party shipping API integration. The DDoS Mitigation system has successfully mitigated three incidents, including a 45Gbps attack that lasted 23 minutes, with the largest incident being successfully mitigated by CloudFlare.",
+      "total_entropy": 1977.8325926013813,
+      "retained_entropy": 1854.69908912853,
+      "entropy_retention": 0.937743212477403,
+      "total_importance": 37.492000000000004,
+      "retained_importance": 34.9,
+      "importance_retention": 0.9308652512536006,
+      "nodes_by_type": {
+        "constraint": 4,
+        "entity": 21,
+        "intent": 1,
+        "outcome": 8,
+        "detail": 1
+      },
+      "avg_node_importance": 0.9971428571428571,
+      "compression_stats": {
+        "original_nodes": 38,
+        "compressed_nodes": 35,
+        "nodes_removed": 3,
+        "node_retention": 0.9210526315789473,
+        "original_entropy": 1977.8325926013813,
+        "compressed_entropy": 1854.69908912853,
+        "entropy_retention": 0.937743212477403,
+        "original_importance": 37.492000000000004,
+        "compressed_importance": 34.9,
+        "importance_retention": 0.9308652512536006
+      },
+      "graph_data": {
+        "nodes": [
+          {
+            "id": "disk-space-alert",
+            "content": "Disk Space Alert: 3 instances, threshold 80% full, affected log servers",
+            "type": "constraint",
+            "importance": 1.0,
+            "entropy": 37.48587213757853,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "read-replica-1",
+            "content": "Read Replica 1: 67% CPU utilization, 8.7GB memory usage, 1,892 active connections, 38ms avg query time",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 58.167352879108826,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "shr-2024-1115-001",
+            "content": "System Health Report - Production Environment, Generated: 2024-11-15 14:30:00 UTC, Report ID: SHR-2024-1115-001",
+            "type": "intent",
+            "importance": 1.0,
+            "entropy": 61.96517759033032,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "api-v1-payments",
+            "content": "/api/v1/payments: 445,223 requests, 678ms avg latency, 99.95% success rate, 0.05% error rate (Stripe API delays)",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 65.46019899100996,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "primary-postgresql",
+            "content": "Primary PostgreSQL: 89% CPU utilization, 12.3GB memory usage, 2,341 active connections, 45ms avg query time",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 61.45790966830895,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "renew-ssl-certificates",
+            "content": "Renew SSL certificates for api-staging.example.com and cdn-backup.example.com before expiry",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 49.1432291952971,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "review-optimize-database-queries",
+            "content": "Review and optimize top 10 slowest database queries identified in analytics endpoint",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 42.47714386207052,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "block-ip-range",
+            "content": "Block IP range 203.45.67.0/24 at firewall level to prevent rate limit abuse",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 41.2029638158521,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "suspicious-api-key-usage",
+            "content": "Suspicious API Key Usage: 12 API keys flagged for unusual geographic access patterns, 3 keys revoked",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 52.28126427697457,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "api-v1-users",
+            "content": "/api/v1/users: 1,247,893 requests, 234ms avg latency, 99.97% success rate, 0.03% error rate (mostly 429 rate limits)",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 66.74991282646761,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "429-rate-limit-errors",
+            "content": "429 Rate Limit Errors: 3,456 occurrences, affecting /api/v1/users endpoint, triggered by automated scrapers from IP range 203.45.67.0/24",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 78.27403971994582,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "api-v1-products",
+            "content": "/api/v1/products: 2,103,567 requests, 123ms avg latency, 99.99% success rate, 0.01% error rate",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 54.003695869959635,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "ddos-mitigation",
+            "content": "DDoS Mitigation: 3 incidents, largest was 45Gbps attack, successfully mitigated by CloudFlare, lasted 23 minutes",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 60.5171103774892,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "investigate-slow-shipping-api",
+            "content": "Investigate slow shipping API integration, consider implementing timeout and fallback mechanism",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 48.76137368263602,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "ssl-certificate-expiry-warning",
+            "content": "SSL Certificate Expiry Warning: 2 certificates expiring in 14 days (api-staging.example.com, cdn-backup.example.com)",
+            "type": "constraint",
+            "importance": 1.0,
+            "entropy": 65.13329186609943,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "sql-injection-attempts",
+            "content": "SQL Injection Attempts: 234 attempts, all blocked by WAF, originating from 12 unique IPs",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 48.791760652775935,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "api-v1-orders",
+            "content": "/api/v1/orders: 892,441 requests, 456ms avg latency, 99.89% success rate, 0.11% error rate (timeout issues)",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 61.23735454021999,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "500-internal-server-errors",
+            "content": "500 Internal Server Errors: 1,234 occurrences, primarily in /api/v1/analytics endpoint, caused by database connection pool exhaustion",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 72.7608301303539,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "redis-cache",
+            "content": "Redis Cache: 34% memory utilization (17GB/50GB), 99.8% hit rate, 234,567 keys, 12ms avg latency",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 57.89531812687344,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "cloudfront-cdn",
+            "content": "CloudFront CDN: 12.4TB data transfer, 234M requests, 98.7% cache hit rate, $2,340/month cost",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 52.6450891286512,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "high-cpu-alert",
+            "content": "High CPU Alert: 12 instances, threshold 85%, max duration 45 minutes",
+            "type": "constraint",
+            "importance": 1.0,
+            "entropy": 37.20109709717321,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "implement-query-result-caching",
+            "content": "Implement query result caching for /api/v1/analytics endpoint to reduce database load",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 45.22879283262207,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "network-bandwidth-trend",
+            "content": "Network Bandwidth: increased 28% week-over-week, driven by increased CDN usage",
+            "type": "detail",
+            "importance": 1.0,
+            "entropy": 40.977330632504945,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "s3-storage",
+            "content": "S3 Storage: 2.3TB used, 45M objects, $890/month cost",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 28.849651554737054,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "503-service-unavailable",
+            "content": "503 Service Unavailable: 567 occurrences, during deployment window 13:00-13:15 UTC, affected all endpoints",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 60.59894885708917,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "ec2-instances",
+            "content": "EC2 Instances: 47 running (32 web servers, 12 worker nodes, 3 database servers), $12,340/day cost",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 53.324329172188285,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "database-connection-pool-alert",
+            "content": "Database Connection Pool Alert: 8 instances, threshold 90% utilization, max duration 23 minutes",
+            "type": "constraint",
+            "importance": 1.0,
+            "entropy": 50.64318417169767,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "api-v1-analytics",
+            "content": "/api/v1/analytics: 334,112 requests, 1,234ms avg latency, 98.76% success rate, 1.24% error rate (database query timeouts)",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 70.18893818430426,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "load-balancer",
+            "content": "Load Balancer: 3.2M requests/hour, 234GB data transfer, 99.99% uptime",
+            "type": "entity",
+            "importance": 0.8999999999999999,
+            "entropy": 39.15616957002077,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "upgrade-ec2-instances",
+            "content": "Upgrade EC2 instances from t3.large to t3.xlarge for web servers experiencing high CPU",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 45.558256951494066,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "read-replica-2",
+            "content": "Read Replica 2: 71% CPU utilization, 9.1GB memory usage, 2,014 active connections, 41ms avg query time",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 57.761713816879265,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "scale-database-connection-pool",
+            "content": "Scale database connection pool from 2,500 to 3,500 connections to prevent exhaustion",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 43.55056217496106,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "add-read-replicas",
+            "content": "Add 2 additional read replicas to distribute analytics query load",
+            "type": "outcome",
+            "importance": 1.0,
+            "entropy": 31.33048848704685,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          },
+          {
+            "id": "failed-login-attempts",
+            "content": "Failed Login Attempts: 23,456 attempts, 89% from known bot IPs, blocked by rate limiter",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 48.33033272798037,
+            "metadata": {
+              "llm_importance": "medium"
+            }
+          },
+          {
+            "id": "504-gateway-timeout",
+            "content": "504 Gateway Timeout: 890 occurrences, in /api/v1/orders endpoint, caused by slow third-party shipping API integration",
+            "type": "entity",
+            "importance": 1.0,
+            "entropy": 65.588403559828,
+            "metadata": {
+              "llm_importance": "high"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "source": "shr-2024-1115-001",
+            "target": "api-v1-users",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "shr-2024-1115-001",
+            "target": "api-v1-orders",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "shr-2024-1115-001",
+            "target": "api-v1-products",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "shr-2024-1115-001",
+            "target": "api-v1-payments",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "shr-2024-1115-001",
+            "target": "api-v1-analytics",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "api-v1-users",
+            "target": "429-rate-limit-errors",
+            "relation": "causes",
+            "weight": 1.0
+          },
+          {
+            "source": "api-v1-orders",
+            "target": "504-gateway-timeout",
+            "relation": "causes",
+            "weight": 1.0
+          },
+          {
+            "source": "api-v1-analytics",
+            "target": "500-internal-server-errors",
+            "relation": "causes",
+            "weight": 1.0
+          },
+          {
+            "source": "primary-postgresql",
+            "target": "database-connection-pool-alert",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "read-replica-1",
+            "target": "database-connection-pool-alert",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "read-replica-2",
+            "target": "database-connection-pool-alert",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "ec2-instances",
+            "target": "high-cpu-alert",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "load-balancer",
+            "target": "high-cpu-alert",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "s3-storage",
+            "target": "disk-space-alert",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "cloudfront-cdn",
+            "target": "disk-space-alert",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "failed-login-attempts",
+            "target": "sql-injection-attempts",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "sql-injection-attempts",
+            "target": "ddos-mitigation",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "suspicious-api-key-usage",
+            "target": "ddos-mitigation",
+            "relation": "relates_to",
+            "weight": 1.0
+          },
+          {
+            "source": "network-bandwidth-trend",
+            "target": "high-cpu-alert",
+            "relation": "causes",
+            "weight": 1.0
+          },
+          {
+            "source": "high-cpu-alert",
+            "target": "scale-database-connection-pool",
+            "relation": "requires",
+            "weight": 1.0
+          },
+          {
+            "source": "database-connection-pool-alert",
+            "target": "scale-database-connection-pool",
+            "relation": "requires",
+            "weight": 1.0
+          },
+          {
+            "source": "disk-space-alert",
+            "target": "add-read-replicas",
+            "relation": "requires",
+            "weight": 1.0
+          },
+          {
+            "source": "high-cpu-alert",
+            "target": "add-read-replicas",
+            "relation": "requires",
+            "weight": 1.0
+          },
+          {
+            "source": "500-internal-server-errors",
+            "target": "implement-query-result-caching",
+            "relation": "requires",
+            "weight": 1.0
+          },
+          {
+            "source": "429-rate-limit-errors",
+            "target": "block-ip-range",
+            "relation": "requires",
+            "weight": 1.0
+          },
+          {
+            "source": "ssl-certificate-expiry-warning",
+            "target": "renew-ssl-certificates",
+            "relation": "requires",
+            "weight": 1.0
+          },
+          {
+            "source": "504-gateway-timeout",
+            "target": "investigate-slow-shipping-api",
+            "relation": "requires",
+            "weight": 1.0
+          },
+          {
+            "source": "500-internal-server-errors",
+            "target": "review-optimize-database-queries",
+            "relation": "requires",
+            "weight": 1.0
+          }
+        ]
+      }
+    }
+  ]
+}
